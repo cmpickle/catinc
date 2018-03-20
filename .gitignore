@@ -17,39 +17,39 @@
 *.userprefs
 
 # Build results
-[Dd]ebug/
-[Dd]ebugPublic/
-[Rr]elease/
-[Rr]eleases/
-x64/
-x86/
-bld/
-[Bb]in/
-[Oo]bj/
-[Ll]og/
+*/[Dd]ebug/
+*/[Dd]ebugPublic/
+*/[Rr]elease/
+*/[Rr]eleases/
+*/x64/
+*/x86/
+*/bld/
+*/[Bb]in/
+*/[Oo]bj/
+*/[Ll]og/
 
 # Visual Studio 2015 cache/options directory
-.vs/
+*/.vs/
 # Uncomment if you have tasks that create the project's static files in wwwroot
 #wwwroot/
 
 # MSTest test Results
-[Tt]est[Rr]esult*/
-[Bb]uild[Ll]og.*
+*/[Tt]est[Rr]esult*/
+*/[Bb]uild[Ll]og.*
 
 # NUNIT
 *.VisualState.xml
 TestResult.xml
 
 # Build Results of an ATL Project
-[Dd]ebugPS/
-[Rr]eleasePS/
+*/[Dd]ebugPS/
+*/[Rr]eleasePS/
 dlldata.c
 
 # .NET Core
 project.lock.json
 project.fragment.lock.json
-artifacts/
+*/artifacts/
 **/Properties/launchSettings.json
 
 *_i.c
@@ -81,7 +81,7 @@ artifacts/
 _Chutzpah*
 
 # Visual C++ cache files
-ipch/
+*/ipch/
 *.aps
 *.ncb
 *.opendb
@@ -104,7 +104,7 @@ $tf/
 *.gpState
 
 # ReSharper is a .NET coding add-in
-_ReSharper*/
+*/_ReSharper*/
 *.[Rr]e[Ss]harper
 *.DotSettings.user
 
@@ -134,7 +134,7 @@ AutoTest.Net/
 .sass-cache/
 
 # Installshield output folder
-[Ee]xpress/
+*/[Ee]xpress/
 
 # DocProject is a documentation generator add-in
 DocProject/buildhelp/
@@ -147,7 +147,7 @@ DocProject/Help/Html2
 DocProject/Help/html
 
 # Click-Once directory
-publish/
+*/publish/
 
 # Publish Web Output
 *.[Pp]ublish.xml
@@ -162,7 +162,7 @@ publish/
 # Microsoft Azure Web App publish settings. Comment the next line if you want to
 # checkin your Azure Web App publish settings, but sensitive information contained
 # in these scripts will be unencrypted
-PublishScripts/
+*/PublishScripts/
 
 # NuGet Packages
 *.nupkg
@@ -177,16 +177,16 @@ PublishScripts/
 *.nuget.targets
 
 # Microsoft Azure Build Output
-csx/
+*/csx/
 *.build.csdef
 
 # Microsoft Azure Emulator
-ecf/
-rcf/
+*/ecf/
+*/rcf/
 
 # Windows Store app package directories and files
-AppPackages/
-BundleArtifacts/
+*/AppPackages/
+*/BundleArtifacts/
 Package.StoreAssociation.xml
 _pkginfo.txt
 
@@ -197,7 +197,7 @@ _pkginfo.txt
 !*.[Cc]ache/
 
 # Others
-ClientBin/
+*/ClientBin/
 ~$*
 *~
 *.dbmdl
@@ -233,17 +233,17 @@ UpgradeLog*.htm
 *.bim_*.settings
 
 # Microsoft Fakes
-FakesAssemblies/
+*/FakesAssemblies/
 
 # GhostDoc plugin setting file
 *.GhostDoc.xml
 
 # Node.js Tools for Visual Studio
 .ntvs_analysis.dat
-node_modules/
+*/node_modules/
 
 # Typescript v1 declaration files
-typings/
+*/typings/
 
 # Visual Studio 6 build log
 *.plg
@@ -294,7 +294,7 @@ __pycache__/
 *.xsd.cs
 
 ### VisualStudioCode ###
-.vscode/*
+*/.vscode/*
 !.vscode/settings.json
 !.vscode/tasks.json
 !.vscode/launch.json
