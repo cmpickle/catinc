@@ -12,10 +12,10 @@ CREATE DATABASE Cat_Inc;
 
 USE Cat_Inc;
 
-CREATE TABLE User
+CREATE TABLE Users
 (
     UserID          INT             NOT NULL  AUTO_INCREMENT, 
-    Username        NVARCHAR(30)    NOT NULL, 
+    Username        VARCHAR(30)     NOT NULL, 
     UserHash        VARCHAR(30)     NOT NULL, 
     Salt            VARCHAR(20)     NOT NULL, 
     UserDeleted     BIT             NOT NULL,
@@ -38,7 +38,7 @@ CREATE TABLE Loyalty
     PRIMARY KEY(LoyaltyID)
 );
 
-CREATE TABLE Order
+CREATE TABLE Orders
 (
     OrderID         INT         NOT NULL  AUTO_INCREMENT,
     OrderTimestamp  DATETIME    NOT NULL, 
@@ -46,7 +46,7 @@ CREATE TABLE Order
     PRIMARY KEY(OrderID)
 );
 
-CREATE TABLE Product_Order
+CREATE TABLE ProductOrder
 (
     ProductOrderID      INT    NOT NULL  AUTO_INCREMENT,
     OrderID             INT    NOT NULL,
@@ -60,7 +60,7 @@ CREATE TABLE Product
     ProductID               INT             NOT NULL  AUTO_INCREMENT,
     ProductSKU              VARCHAR(15)     NULL,
     ProductName             VARCHAR(30)     NOT NULL,
-    ProductPrice            SMALLMONEY      NOT NULL,
+    ProductPrice            DECIMAL(10, 2)  NOT NULL,
     ProductInventory        INT             NOT NULL,
     ProductExpirationDate   DATETIME        NULL,  
     ProductDeleted          BIT             NOT NULL,
@@ -73,7 +73,7 @@ CREATE TABLE Discount
     DiscountStart       DATETIME    NOT NULL,
     DiscoundEnd         DATETIME    NOT NULL,
     DiscountDeleted     BIT         NOT NULL,
-    PRIMARY KEY(DiscoundID)
+    PRIMARY KEY(DiscountID)
 );
 
 CREATE TABLE Patron
@@ -92,7 +92,7 @@ CREATE TABLE Patron
 
 CREATE TABLE PatronCreditcard
 (
-    PatrodCreditcardID  INT     NOT NULL  AUTO_INCREMENT,
+    PatronCreditcardID  INT     NOT NULL  AUTO_INCREMENT,
     PatronID            INT     NOT NULL,
     CreditcardID        INT     NOT NULL,
     PRIMARY KEY(PatronCreditcardID)
@@ -132,7 +132,7 @@ CREATE TABLE Vendor
     VendorAddress           VARCHAR(100)    NOT NULL,
     VendorTelephoneNo       VARCHAR(15)     NULL,
     VendorEmail             VARCHAR(50)     NULL,
-    VendorPaymentAmount     SMALLMONEY      NOT NULL,
+    VendorPaymentAmount     DECIMAL(10,2)   NOT NULL,
     VendorCreditcardNo      INT             NOT NULL,
     VendorActive            BIT             NOT NULL,
     VendorSuspended         BIT             NOT NULL,
@@ -153,7 +153,7 @@ ALTER TABLE Loyalty
     ON DELETE CASCADE
     ON UPDATE CASCADE;
 
-ALTER TABLE Order
+ALTER TABLE Orders
   ADD CONSTRAINT fk_order_discount_id
     FOREIGN KEY (DiscountID) REFERENCES Discount(DiscountID)
     ON DELETE CASCADE
@@ -161,18 +161,18 @@ ALTER TABLE Order
     
 ALTER TABLE ProductOrder
   ADD CONSTRAINT fk_productorder_order_id
-    FOREIGN KEY (OrderID) REFERENCES Order(OrderID)
+    FOREIGN KEY (OrderID) REFERENCES Orders(OrderID)
     ON DELETE CASCADE
     ON UPDATE CASCADE,
 
-    CONSTRAINT fk_productorder_product_id
+    ADD CONSTRAINT fk_productorder_product_id
     FOREIGN KEY (ProductID) REFERENCES Product(ProductID)
     ON DELETE CASCADE
     ON UPDATE CASCADE;
     
 ALTER TABLE Patron
   ADD CONSTRAINT fk_patron_user_id
-    FOREIGN KEY (UserID) REFERENCES User(UserID)
+    FOREIGN KEY (UserID) REFERENCES Users(UserID)
     ON DELETE CASCADE
     ON UPDATE CASCADE;
     
@@ -182,7 +182,7 @@ ALTER TABLE PatronCreditcard
     ON DELETE CASCADE
     ON UPDATE CASCADE,
 
-    CONTSRAINT fk_patroncreditcard_creditcard_id
+    ADD CONSTRAINT fk_patroncreditcard_creditcard_id
     FOREIGN KEY (CreditcardID) REFERENCES Creditcard(CreditcardID)
     ON DELETE CASCADE
     ON UPDATE CASCADE;
@@ -193,7 +193,7 @@ ALTER TABLE VendorUser
     ON DELETE CASCADE
     ON UPDATE CASCADE,
 
-    CONTSRAINT fk_vendoruser_user_id
-    FOREIGN KEY (UserID) REFERENCES User(UserID)
+    ADD CONSTRAINT fk_vendoruser_user_id
+    FOREIGN KEY (UserID) REFERENCES Users(UserID)
     ON DELETE CASCADE
     ON UPDATE CASCADE;
