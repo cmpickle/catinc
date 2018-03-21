@@ -1,0 +1,157 @@
+Cat Inc.
+Super Admin Password (Backdoor)
+
+primary focus desktop or mobile?
+International clients?
+
+User Types:
+Vendor and Purchaser
+    User Validation/Verification?
+    
+
+ASP Identity
+
+Vendor Types:
+Kiosk, Swap Meet, Fair Seller
+
+Vendor Requirements:
+    Vendor payment handling?
+    Vendor creation portal
+    Inventory
+        Product display?
+            product search
+            product filter/sorting
+            paging?
+            Sold Out
+        Product Sales
+    shopping cart
+    Vendor contact/about us page?
+
+Product Inventory
+    Foods or products
+    path to image
+    inventory sold (Kept track of with Order History)
+
+Order History
+
+Payment Options
+    cash
+    CreditCard payment gateway will be mocked
+        interface class for pay entry?
+    google wallet, android pay, samsung pay, apple pay
+
+Loyalty Feature:
+    Patron loyalties
+    Support Patron Checkout
+    How to identify Patrons (Credit Card(Number, date, security code))
+    No loyalty points for Guest
+    Identify by more than just credit card (email, phone number, etc)
+    patrons are by default not part of loyalty plan
+    Only ask if you want to join loyalty program if checkout as guest
+    needs contact information to notify patron of award (interface)
+        Convert email to text for SMS
+
+Patrons
+    Identification
+        credit card number
+        email
+        phone number
+        name and address
+
+Logging
+
+
+Flow
+Seller interface
+    Inventory
+        Paging?
+        Filtering?
+    Add a product
+    Send out coupon
+        Email customization
+        All customers or also specific targets?
+    
+Patron interface
+    How does patron select product? Is it input by them or cashier?
+    shopping cart?
+    Purchase product
+        Input CC / information
+        Loyalty program
+            How do loyalty points work?
+            Does patron want points applied
+        coupons/discounts
+    view available discounts (external site?)
+
+
+
+Database
+User
+    UserID - PK
+    Username
+    Hash
+    Salt
+    UserDeleted
+
+Permission
+    PermissionID - PK
+    UserID - FK (User)
+    PermissionLevel
+
+Person
+
+Vendor
+    VendorID - PK
+    VendorName
+    VendorAddress
+    VendorTelephoneNo
+    VendorEmail
+    VendorPrice - (should be own table?)
+    VendorCreditCardNo - *Should these be ints or chars? *
+    VendorIsActive
+    VendorSuspended?
+    VendorDeleted
+
+Patron
+    PatronID - PK
+    PatronFirst
+    PatronLast
+    PatronAddress
+    PatronCreditCardNo
+    PatronEmail
+    PatronTelephoneNo
+    PatronSuspended?
+    PatronDeleted
+
+Product
+    ProductID - PK
+    Product SKU
+    ProductName
+    ProductPrice
+    ProductInventory - (Quantities of how many? more than 2.147 billion?)
+    ProductExpirationDate
+    ProductDeleted
+
+Order
+    OrderID - PK
+    UserID - FK(User)
+    ProductID - FK(Product)
+    Quantity
+    OrderTimestamp
+
+Loyalty
+    LoyaltyID
+    UserID - FK(User)
+    LoyaltyPoints
+
+Discount
+    DiscountID - PK
+    DiscountStart
+    DiscountEnd
+    DiscountDeleted
+
+Log
+    LogID - PK
+    UserID - FK(User)
+    LogTimestamp
+    LogLevel
+    LogMessage
