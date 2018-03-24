@@ -6,6 +6,13 @@ using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using Microsoft.EntityFrameworkCore;
+// using MySQL.Data.EntityFrameworkCore.Extensions;
+
+// using Microsoft.Framework.ConfigurationModel;
+// using Microsoft.AspNetCore.Hosting;
+using NewMvc6Project.Models;
+using Microsoft.AspNetCore.Identity;
 
 namespace final_project_cmpickle
 {
@@ -21,6 +28,15 @@ namespace final_project_cmpickle
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            // Add Entity Framework services to the services container.
+            services.AddEntityFrameworkMySql()
+                .AddDbContext<ApplicationDbContext>(options =>
+                options.UseMySql("DefaultConnection"));
+
+            // Add Identity services to the services container
+            services.AddIdentity<ApplicationUser, IdentityRole>()
+                .AddEntityFrameworkStores<ApplicationDbContext>();
+
             services.AddMvc();
         }
 
@@ -30,6 +46,7 @@ namespace final_project_cmpickle
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
+                app.UseStatusCodePages();
             }
             else
             {
