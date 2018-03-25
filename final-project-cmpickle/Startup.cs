@@ -10,7 +10,6 @@ using Microsoft.EntityFrameworkCore;
 // using MySQL.Data.EntityFrameworkCore.Extensions;
 
 // using Microsoft.Framework.ConfigurationModel;
-// using Microsoft.AspNetCore.Hosting;
 using NewMvc6Project.Models;
 using Microsoft.AspNetCore.Identity;
 
@@ -30,8 +29,7 @@ namespace final_project_cmpickle
         {
             // Add Entity Framework services to the services container.
             services.AddEntityFrameworkMySql()
-                .AddDbContext<ApplicationDbContext>(options =>
-                options.UseMySql("DefaultConnection"));
+                .AddDbContext<ApplicationDbContext>();
 
             // Add Identity services to the services container
             services.AddIdentity<ApplicationUser, IdentityRole>()
@@ -54,6 +52,8 @@ namespace final_project_cmpickle
             }
 
             app.UseStaticFiles();
+
+            app.UseAuthentication();
 
             app.UseMvc(routes =>
             {
