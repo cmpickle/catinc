@@ -14,7 +14,7 @@ namespace NewMvc6Project.Models
 
     protected override void OnConfiguring(DbContextOptionsBuilder options)
     {
-      options.UseMySql("DefaultConnection");
+      options.UseMySql("Server=67.205.183.11;Database=cmpickle;Uid=cmpickle;Pwd=Photog42;");
     }
   }
 }
