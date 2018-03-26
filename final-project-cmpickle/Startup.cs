@@ -12,6 +12,7 @@ using Microsoft.EntityFrameworkCore;
 // using Microsoft.Framework.ConfigurationModel;
 using NewMvc6Project.Models;
 using Microsoft.AspNetCore.Identity;
+using final_project_cmpickle.Services;
 
 namespace final_project_cmpickle
 {
@@ -33,7 +34,11 @@ namespace final_project_cmpickle
 
             // Add Identity services to the services container
             services.AddIdentity<ApplicationUser, IdentityRole>()
-                .AddEntityFrameworkStores<ApplicationDbContext>();
+                .AddEntityFrameworkStores<ApplicationDbContext>()
+                .AddDefaultTokenProviders();
+            
+            // Add application services
+            services.AddTransient<IEmailSender, EmailSender>();
 
             services.AddMvc();
         }
