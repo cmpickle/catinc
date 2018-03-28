@@ -39,6 +39,7 @@ namespace final_project_cmpickle
             
             // Add application services
             services.AddTransient<IEmailSender, EmailSender>();
+            services.AddTransient<IUserRepository, UserRepository>();
 
             services.AddMvc();
         }
@@ -62,10 +63,6 @@ namespace final_project_cmpickle
 
             app.UseMvc(routes =>
             {
-                routes.MapRoute(
-                    name: "account",
-                    template: "{controller=Account}/{action=Index}/{id?}");
-
                 routes.MapRoute(
                     name: "default",
                     template: "{controller=Home}/{action=Index}/{id?}");
