@@ -7,9 +7,6 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.EntityFrameworkCore;
-// using MySQL.Data.EntityFrameworkCore.Extensions;
-
-// using Microsoft.Framework.ConfigurationModel;
 using NewMvc6Project.Models;
 using Microsoft.AspNetCore.Identity;
 using final_project_cmpickle.Services;
