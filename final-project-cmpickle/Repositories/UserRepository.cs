@@ -1,68 +1,70 @@
 using System.Linq;
 using System.Threading.Tasks;
+using final_project_cmpickle.Models.AccountViewModels;
+using final_project_cmpickle.Models.MemberSystem;
 using Microsoft.AspNetCore.Identity;
-using NewMvc6Project.Models;
 
 public class UserRepository : IUserRepository
 {
-    private UserManager<ApplicationUser> _userManager;
+    private UserManager<IIdentityUser> _userManager;
 
-    public UserRepository(UserManager<ApplicationUser> userManager)
+    public UserRepository(UserManager<IIdentityUser> userManager)
     {
         _userManager = userManager;
     }
 
-    public IdentityResult Create(ApplicationUser applicationUser, string password)
+    public IdentityResult Create(RegisterViewModel registerViewModel, string password)
     {
-        return _userManager.CreateAsync(applicationUser, password).Result;
+        var user = new MyIdentityUser(registerViewModel.Email);
+        return _userManager.CreateAsync(user, password).Result;
     }
 
-    public IdentityResult Delete(ApplicationUser applicationUser)
+    public IdentityResult Delete(IIdentityUser applicationUser)
     {
         return _userManager.DeleteAsync(applicationUser).Result;
     }
 
-    public Task<string> GenerateEmailConfirmationTokenAsync(ApplicationUser applicationUser)
+    public Task<string> GenerateEmailConfirmationTokenAsync(IIdentityUser applicationUser)
     {
         return _userManager.GenerateEmailConfirmationTokenAsync(applicationUser);
     }
 
-    public IQueryable<ApplicationUser> Get()
+    public IQueryable<IIdentityUser> Get()
     {
         return _userManager.Users;
     }
 
-    public Task<ApplicationUser> FindByEmailAsync(string email)
+    public Task<IIdentityUser> FindByEmailAsync(string email)
     {
         return _userManager.FindByEmailAsync(email);
     }
 
-    public Task<ApplicationUser> FindByIdAsync(string userId)
+    public Task<IIdentityUser> FindByIdAsync(string userId)
     {
         return _userManager.FindByIdAsync(userId);
     }
 
-    public IdentityResult Update(ApplicationUser applicationUser)
+    public IdentityResult Update(IIdentityUser applicationUser)
     {
         return _userManager.UpdateAsync(applicationUser).Result;
     }
 
-    public Task<IdentityResult> ConfirmEmailAsync(ApplicationUser applicationUser, string code)
+    public Task<IdentityResult> ConfirmEmailAsync(IIdentityUser applicationUser, string code)
     {
         return _userManager.ConfirmEmailAsync(applicationUser, code);
     }
 
-    public Task<bool> IsEmailConfirmedAsync(ApplicationUser applicationUser)
+    public Task<bool> IsEmailConfirmedAsync(IIdentityUser applicationUser)
     {
         return _userManager.IsEmailConfirmedAsync(applicationUser);
     }
 
-    public Task<string> GeneratePasswordResetTokenAsync(ApplicationUser applicationUser)
+    public Task<string> GeneratePasswordResetTokenAsync(IIdentityUser applicationUser)
     {
         return _userManager.GeneratePasswordResetTokenAsync(applicationUser);
     }
 
-    public Task<IdentityResult> ResetPasswordAsync(ApplicationUser applicationUser, string code, string password)
+    public Task<IdentityResult> ResetPasswordAsync(IIdentityUser applicationUser, string code, string password)
     {
         return _userManager.ResetPasswordAsync(applicationUser, code, password);
     }

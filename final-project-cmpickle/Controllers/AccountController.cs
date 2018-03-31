@@ -12,7 +12,7 @@ using final_project_cmpickle.Models.AccountViewModels;
 using final_project_cmpickle.Models.ManageViewModels;
 using final_project_cmpickle.Services;
 using Microsoft.Extensions.Logging;
-using NewMvc6Project.Models;
+using final_project_cmpickle.Models.MemberSystem;
 
 namespace final_project_cmpickle.Controllers
 {
@@ -21,13 +21,13 @@ namespace final_project_cmpickle.Controllers
     public class AccountController : Controller
     {
         private readonly IUserRepository _userRepository;
-        private readonly SignInManager<ApplicationUser> _signInManager;
+        private readonly SignInManager<IIdentityUser> _signInManager;
         private readonly IEmailSender _emailSender;
         private readonly ILogger _logger;
 
         public AccountController(
             IUserRepository userRepository,
-            SignInManager<ApplicationUser> signInManager,
+            SignInManager<IIdentityUser> signInManager,
             IEmailSender emailSender,
             ILogger<AccountController> logger)
         {
@@ -128,11 +128,11 @@ namespace final_project_cmpickle.Controllers
             ViewData["ReturnUrl"] = returnUrl;
             if (ModelState.IsValid)
             {
-                var user = new ApplicationUser { UserName = model.Email, Email = model.Email };
-                var result = _userRepository.Create(user, model.Password);
+                var result = _userRepository.Create(model, model.Password);
                 if (result.Succeeded)
                 {
                     _logger.LogInformation("User created a new account with password.");
+                    var user = _userRepository.FindByEmailAsync(model.Email).Result;
 
                     var code = await _userRepository.GenerateEmailConfirmationTokenAsync(user);
                     var callbackUrl = Url.EmailConfirmationLink(user.Id, code, Request.Scheme);

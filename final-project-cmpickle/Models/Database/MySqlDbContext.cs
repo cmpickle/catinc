@@ -2,12 +2,14 @@ using System;
 using Microsoft.EntityFrameworkCore.Design;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
+using final_project_cmpickle.Models.MemberSystem;
+using Microsoft.AspNetCore.Identity;
 
-namespace NewMvc6Project.Models
+namespace final_project_cmpickle.Models.Database
 {
-  public class ApplicationDbContext : IdentityDbContext<IUserIdentity>
+  public class MyMySqlDbContext : IdentityDbContext<IdentityUser>
   {
-    public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options) : base(options)
+    public MyMySqlDbContext(DbContextOptions<MyMySqlDbContext> options) : base(options)
     {
       Database.EnsureCreated();
     }

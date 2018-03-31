@@ -1,29 +1,30 @@
 using System.Linq;
 using System.Threading.Tasks;
+using final_project_cmpickle.Models.AccountViewModels;
+using final_project_cmpickle.Models.MemberSystem;
 using Microsoft.AspNetCore.Identity;
-using NewMvc6Project.Models;
 
 public interface IUserRepository
 {
-    IQueryable<ApplicationUser> Get();
+    IQueryable<IIdentityUser> Get();
 
-    Task<ApplicationUser> FindByEmailAsync(string email);
+    Task<IIdentityUser> FindByEmailAsync(string email);
 
-    Task<ApplicationUser> FindByIdAsync(string userId);
+    Task<IIdentityUser> FindByIdAsync(string userId);
 
-    IdentityResult Create(ApplicationUser applicationUser, string password);
+    IdentityResult Create(RegisterViewModel registerViewModel, string password);
 
-    IdentityResult Update(ApplicationUser applicationUser);
+    IdentityResult Update(IIdentityUser identityUser);
 
-    IdentityResult Delete(ApplicationUser applicationUser);
+    IdentityResult Delete(IIdentityUser identityUser);
 
-    Task<string> GenerateEmailConfirmationTokenAsync(ApplicationUser applicationUser);
+    Task<string> GenerateEmailConfirmationTokenAsync(IIdentityUser applicationUser);
 
-    Task<IdentityResult> ConfirmEmailAsync(ApplicationUser applicationUser, string code);
+    Task<IdentityResult> ConfirmEmailAsync(IIdentityUser identityUser, string code);
 
-    Task<bool> IsEmailConfirmedAsync(ApplicationUser applicationUser);
+    Task<bool> IsEmailConfirmedAsync(IIdentityUser identityUser);
 
-    Task<string> GeneratePasswordResetTokenAsync(ApplicationUser applicationUser);
+    Task<string> GeneratePasswordResetTokenAsync(IIdentityUser identityUser);
 
-    Task<IdentityResult> ResetPasswordAsync(ApplicationUser applicationUser, string code, string password);
+    Task<IdentityResult> ResetPasswordAsync(IIdentityUser identityUser, string code, string password);
 }

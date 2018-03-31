@@ -7,9 +7,10 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.EntityFrameworkCore;
-using NewMvc6Project.Models;
 using Microsoft.AspNetCore.Identity;
 using final_project_cmpickle.Services;
+using final_project_cmpickle.Models.Database;
+using final_project_cmpickle.Models.MemberSystem;
 
 namespace final_project_cmpickle
 {
@@ -27,11 +28,11 @@ namespace final_project_cmpickle
         {
             // Add Entity Framework services to the services container.
             services.AddEntityFrameworkMySql()
-                .AddDbContext<ApplicationDbContext>();
+                .AddDbContext<MySqlDbContext>();
 
             // Add Identity services to the services container
-            services.AddIdentity<ApplicationUser, IdentityRole>()
-                .AddEntityFrameworkStores<ApplicationDbContext>()
+            services.AddIdentity<IIdentityUser, IdentityRole>()
+                .AddEntityFrameworkStores<MySqlDbContext>()
                 .AddDefaultTokenProviders();
             
             // Add application services
