@@ -7,9 +7,9 @@ using Microsoft.AspNetCore.Identity;
 
 namespace final_project_cmpickle.Models.Database
 {
-  public class MyMySqlDbContext : IdentityDbContext<IdentityUser>
+  public class MySqlDbContext : IdentityDbContext<IdentityUser>
   {
-    public MyMySqlDbContext(DbContextOptions<MyMySqlDbContext> options) : base(options)
+    public MySqlDbContext(DbContextOptions<MySqlDbContext> options) : base(options)
     {
       Database.EnsureCreated();
     }

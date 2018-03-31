@@ -1,8 +1,8 @@
 namespace final_project_cmpickle.Models.MemberSystem
 {
-    public interface IMyIdentityUser
+    public interface IIdentityUser
     {
-        int Id { get; set; }
+        string Id { get; set; }
 
         IIdentityUser Create();
     }
