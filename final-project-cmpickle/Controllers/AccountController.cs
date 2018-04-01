@@ -21,13 +21,13 @@ namespace final_project_cmpickle.Controllers
     public class AccountController : Controller
     {
         private readonly IUserRepository _userRepository;
-        private readonly SignInManager<IIdentityUser> _signInManager;
+        private readonly ISignInManager _signInManager;
         private readonly IEmailSender _emailSender;
         private readonly ILogger _logger;
 
         public AccountController(
             IUserRepository userRepository,
-            SignInManager<IIdentityUser> signInManager,
+            ISignInManager signInManager,
             IEmailSender emailSender,
             ILogger<AccountController> logger)
         {

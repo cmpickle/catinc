@@ -8,7 +8,7 @@ namespace final_project_cmpickle.Models.MemberSystem
 
         string IIdentityUser.Id { get => throw new System.NotImplementedException(); set => throw new System.NotImplementedException(); }
 
-        IIdentityUser IIdentityUser.Create()
+        public IIdentityUser Create()
         {
             throw new System.NotImplementedException();
         }

@@ -6,9 +6,9 @@ using Microsoft.AspNetCore.Identity;
 
 public class UserRepository : IUserRepository
 {
-    private UserManager<IIdentityUser> _userManager;
+    private IUserManager _userManager;
 
-    public UserRepository(UserManager<IIdentityUser> userManager)
+    public UserRepository(IUserManager userManager)
     {
         _userManager = userManager;
     }
@@ -19,14 +19,14 @@ public class UserRepository : IUserRepository
         return _userManager.CreateAsync(user, password).Result;
     }
 
-    public IdentityResult Delete(IIdentityUser applicationUser)
+    public IdentityResult Delete(IIdentityUser identityUser)
     {
-        return _userManager.DeleteAsync(applicationUser).Result;
+        return _userManager.DeleteAsync(identityUser).Result;
     }
 
-    public Task<string> GenerateEmailConfirmationTokenAsync(IIdentityUser applicationUser)
+    public Task<string> GenerateEmailConfirmationTokenAsync(IIdentityUser identityUser)
     {
-        return _userManager.GenerateEmailConfirmationTokenAsync(applicationUser);
+        return _userManager.GenerateEmailConfirmationTokenAsync(identityUser);
     }
 
     public IQueryable<IIdentityUser> Get()
@@ -44,28 +44,28 @@ public class UserRepository : IUserRepository
         return _userManager.FindByIdAsync(userId);
     }
 
-    public IdentityResult Update(IIdentityUser applicationUser)
+    public IdentityResult Update(IIdentityUser identityUser)
     {
-        return _userManager.UpdateAsync(applicationUser).Result;
+        return _userManager.UpdateAsync(identityUser).Result;
     }
 
-    public Task<IdentityResult> ConfirmEmailAsync(IIdentityUser applicationUser, string code)
+    public Task<IdentityResult> ConfirmEmailAsync(IIdentityUser identityUser, string code)
     {
-        return _userManager.ConfirmEmailAsync(applicationUser, code);
+        return _userManager.ConfirmEmailAsync(identityUser, code);
     }
 
-    public Task<bool> IsEmailConfirmedAsync(IIdentityUser applicationUser)
+    public Task<bool> IsEmailConfirmedAsync(IIdentityUser identityUser)
     {
-        return _userManager.IsEmailConfirmedAsync(applicationUser);
+        return _userManager.IsEmailConfirmedAsync(identityUser);
     }
 
-    public Task<string> GeneratePasswordResetTokenAsync(IIdentityUser applicationUser)
+    public Task<string> GeneratePasswordResetTokenAsync(IIdentityUser identityUser)
     {
-        return _userManager.GeneratePasswordResetTokenAsync(applicationUser);
+        return _userManager.GeneratePasswordResetTokenAsync(identityUser);
     }
 
-    public Task<IdentityResult> ResetPasswordAsync(IIdentityUser applicationUser, string code, string password)
+    public Task<IdentityResult> ResetPasswordAsync(IIdentityUser identityUser, string code, string password)
     {
-        return _userManager.ResetPasswordAsync(applicationUser, code, password);
+        return _userManager.ResetPasswordAsync(identityUser, code, password);
     }
 }
