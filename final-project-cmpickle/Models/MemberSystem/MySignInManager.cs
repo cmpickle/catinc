@@ -7,9 +7,9 @@ using Microsoft.Extensions.Options;
 
 namespace final_project_cmpickle.Models.MemberSystem
 {
-    public class MySignInManager : SignInManager<IdentityUser>, ISignInManager
+    public class MySignInManager : SignInManager<MyIdentityUser>, ISignInManager
     {
-        public MySignInManager(UserManager<IdentityUser> userManager, IHttpContextAccessor contextAccessor, IUserClaimsPrincipalFactory<IdentityUser> claimsFactory, IOptions<IdentityOptions> optionsAccessor, ILogger<SignInManager<IdentityUser>> logger, IAuthenticationSchemeProvider schemes) : base(userManager, contextAccessor, claimsFactory, optionsAccessor, logger, schemes)
+        public MySignInManager(UserManager<MyIdentityUser> userManager, IHttpContextAccessor contextAccessor, IUserClaimsPrincipalFactory<MyIdentityUser> claimsFactory, IOptions<IdentityOptions> optionsAccessor, ILogger<SignInManager<MyIdentityUser>> logger, IAuthenticationSchemeProvider schemes) : base(userManager, contextAccessor, claimsFactory, optionsAccessor, logger, schemes)
         {
         }
 

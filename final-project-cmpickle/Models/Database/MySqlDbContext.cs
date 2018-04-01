@@ -7,7 +7,7 @@ using Microsoft.AspNetCore.Identity;
 
 namespace final_project_cmpickle.Models.Database
 {
-  public class MySqlDbContext : IdentityDbContext<IdentityUser>
+  public class MySqlDbContext : IdentityDbContext<MyIdentityUser>
   {
     public MySqlDbContext(DbContextOptions<MySqlDbContext> options) : base(options)
     {

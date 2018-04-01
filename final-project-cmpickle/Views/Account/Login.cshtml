@@ -2,9 +2,9 @@
 @using System.Linq
 @using Microsoft.AspNetCore.Http
 @using Microsoft.AspNetCore.Http.Authentication
+@using final_project_cmpickle.Models.MemberSystem
 @model LoginViewModel
-@using NewMvc6Project.Models;
-@inject SignInManager<IIdentityUser> SignInManager
+@inject ISignInManager SignInManager
 
 @{
     ViewData["Title"] = "Log in";

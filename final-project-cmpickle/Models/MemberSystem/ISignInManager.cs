@@ -1,4 +1,6 @@
+using System.Collections.Generic;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Identity;
 
 namespace final_project_cmpickle.Models.MemberSystem
@@ -12,5 +14,7 @@ namespace final_project_cmpickle.Models.MemberSystem
         Task<SignInResult> SignOutAsync();
 
         Task<SignInResult> GetTwoFactorAuthenticationUserAsync();
+
+        Task<IEnumerable<AuthenticationScheme>> GetExternalAuthenticationSchemesAsync();
     }
 }
