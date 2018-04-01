@@ -1,7 +1,8 @@
 @using Microsoft.AspNetCore.Identity;
-@using NewMvc6Project.Models;
-@inject SignInManager<IIdentityUser> SignInManager
-@inject UserManager<IIdentityUser> UserManager
+@using final_project_cmpickle.Models;
+@using final_project_cmpickle.Models.MemberSystem;
+@inject SignInManager<MyIdentityUser> SignInManager
+@inject UserManager<MyIdentityUser> UserManager
 
 @if (SignInManager.IsSignedIn(User))
 {

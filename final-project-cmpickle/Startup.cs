@@ -31,13 +31,14 @@ namespace final_project_cmpickle
                 .AddDbContext<MySqlDbContext>();
 
             // Add Identity services to the services container
-            services.AddIdentity<IIdentityUser, IdentityRole>()
+            services.AddIdentity<MyIdentityUser, IdentityRole>()
                 .AddEntityFrameworkStores<MySqlDbContext>()
                 .AddDefaultTokenProviders();
             
             // Add application services
             services.AddTransient<IEmailSender, EmailSender>();
             services.AddTransient<IUserRepository, UserRepository>();
+            services.AddTransient<IIdentityUser, MyIdentityUser>();
 
             services.AddMvc();
         }
