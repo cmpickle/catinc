@@ -18,5 +18,8 @@ namespace final_project_cmpickle.Models.Database
     {
       options.UseMySql("Server=67.205.183.11;Database=cmpickle;Uid=cmpickle;Pwd=Photog42;");
     }
+
+    public DbSet<Creditcard> Creditcard { get; set; }
+    
   }
 }
