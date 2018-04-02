@@ -37,9 +37,9 @@ namespace final_project_cmpickle
             
             // Add application services
             services.AddTransient<IEmailSender, EmailSender>();
-            services.AddTransient<IUserRepository, UserRepository>();
-            services.AddTransient<IUserManager, MyIdentityUserManager>();
-            services.AddTransient<ISignInManager, MySignInManager>();
+            services.AddTransient<IUserRepository<MyIdentityUser>, UserRepository>();
+            services.AddTransient<IUserManager<MyIdentityUser>, MyIdentityUserManager<MyIdentityUser>>();
+            services.AddTransient<ISignInManager<MyIdentityUser>, MySignInManager<MyIdentityUser>>();
             services.AddTransient<IIdentityUser, MyIdentityUser>();
 
             services.AddMvc();

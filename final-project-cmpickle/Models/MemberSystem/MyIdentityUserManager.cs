@@ -18,7 +18,7 @@ namespace final_project_cmpickle.Models.MemberSystem
 
         override public Task<IdentityResult> ConfirmEmailAsync(TUser identityUser, string code)
         {
-            throw new NotImplementedException();
+            return base.ConfirmEmailAsync(identityUser, code);
         }
 
         public override Task<IdentityResult> CreateAsync(TUser user, string password)
@@ -28,42 +28,42 @@ namespace final_project_cmpickle.Models.MemberSystem
 
         override public Task<IdentityResult> DeleteAsync(TUser identityUser)
         {
-            throw new NotImplementedException();
+            return base.DeleteAsync(identityUser);
         }
 
         override public Task<string> GenerateEmailConfirmationTokenAsync(TUser identityUser)
         {
-            throw new NotImplementedException();
+            return base.GenerateEmailConfirmationTokenAsync(identityUser);
         }
 
         override public Task<string> GeneratePasswordResetTokenAsync(TUser identityUser)
         {
-            throw new NotImplementedException();
+            return base.GeneratePasswordResetTokenAsync(identityUser);
         }
 
         override public Task<bool> IsEmailConfirmedAsync(TUser identityUser)
         {
-            throw new NotImplementedException();
+            return base.IsEmailConfirmedAsync(identityUser);
         }
 
         override public Task<IdentityResult> ResetPasswordAsync(TUser identityUser, string code, string password)
         {
-            throw new NotImplementedException();
+            return base.ResetPasswordAsync(identityUser, code, password);
         }
 
         override public Task<IdentityResult> UpdateAsync(TUser identityUser)
         {
-            throw new NotImplementedException();
+            return base.UpdateAsync(identityUser);
         }
 
         override public Task<TUser> FindByEmailAsync(string email)
         {
-            throw new NotImplementedException();
+            return base.FindByEmailAsync(email);
         }
 
         public Task<TUser> FindByIdAsync<T>(string userId)
         {
-            throw new NotImplementedException();
+            return base.FindByIdAsync(userId);
         }
     }
 }

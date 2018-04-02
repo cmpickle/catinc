@@ -1,3 +1,5 @@
+using System;
+using System.Collections.Generic;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Http;
@@ -7,25 +9,35 @@ using Microsoft.Extensions.Options;
 
 namespace final_project_cmpickle.Models.MemberSystem
 {
-    public class MySignInManager : SignInManager<MyIdentityUser>, ISignInManager
+    public class MySignInManager<TUser> : SignInManager<TUser>, ISignInManager<TUser>, IDisposable where TUser : MyIdentityUser
     {
-        public MySignInManager(UserManager<MyIdentityUser> userManager, IHttpContextAccessor contextAccessor, IUserClaimsPrincipalFactory<MyIdentityUser> claimsFactory, IOptions<IdentityOptions> optionsAccessor, ILogger<SignInManager<MyIdentityUser>> logger, IAuthenticationSchemeProvider schemes) : base(userManager, contextAccessor, claimsFactory, optionsAccessor, logger, schemes)
+        public MySignInManager(UserManager<TUser> userManager, IHttpContextAccessor contextAccessor, IUserClaimsPrincipalFactory<TUser> claimsFactory, IOptions<IdentityOptions> optionsAccessor, ILogger<SignInManager<TUser>> logger, IAuthenticationSchemeProvider schemes) : base(userManager, contextAccessor, claimsFactory, optionsAccessor, logger, schemes)
         {
         }
 
-        public Task<SignInResult> SignInAsync(IIdentityUser user, bool isPersistent)
+        public Task SignInAsync(TUser user, bool isPersistent)
         {
-            throw new System.NotImplementedException();
+            return base.SignInAsync(user, isPersistent);
         }
 
-        Task<SignInResult> ISignInManager.GetTwoFactorAuthenticationUserAsync()
+        override public Task<TUser> GetTwoFactorAuthenticationUserAsync()
         {
-            throw new System.NotImplementedException();
+            return base.GetTwoFactorAuthenticationUserAsync();
         }
 
-        Task ISignInManager.SignOutAsync()
+        override public Task SignOutAsync()
         {
             return base.SignOutAsync();
+        }
+
+        override public Task<IEnumerable<AuthenticationScheme>> GetExternalAuthenticationSchemesAsync()
+        {
+            return base.GetExternalAuthenticationSchemesAsync();
+        }
+
+        public void Dispose()
+        {
+            
         }
     }
 }

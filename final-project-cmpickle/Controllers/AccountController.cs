@@ -20,14 +20,14 @@ namespace final_project_cmpickle.Controllers
     [Route("[controller]/[action]")]
     public class AccountController : Controller
     {
-        private readonly IUserRepository _userRepository;
-        private readonly ISignInManager _signInManager;
+        private readonly IUserRepository<MyIdentityUser> _userRepository;
+        private readonly ISignInManager<MyIdentityUser> _signInManager;
         private readonly IEmailSender _emailSender;
         private readonly ILogger _logger;
 
         public AccountController(
-            IUserRepository userRepository,
-            ISignInManager signInManager,
+            IUserRepository<MyIdentityUser> userRepository,
+            ISignInManager<MyIdentityUser> signInManager,
             IEmailSender emailSender,
             ILogger<AccountController> logger)
         {

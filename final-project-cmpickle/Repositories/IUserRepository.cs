@@ -4,27 +4,27 @@ using final_project_cmpickle.Models.AccountViewModels;
 using final_project_cmpickle.Models.MemberSystem;
 using Microsoft.AspNetCore.Identity;
 
-public interface IUserRepository
+public interface IUserRepository<TUser>
 {
-    IQueryable<IIdentityUser> Get();
+    IQueryable Get();
 
-    Task<IIdentityUser> FindByEmailAsync(string email);
+    Task<TUser> FindByEmailAsync(string email);
 
-    Task<IIdentityUser> FindByIdAsync(string userId);
+    Task<TUser> FindByIdAsync(string userId);
 
     IdentityResult Create(RegisterViewModel registerViewModel, string password);
 
-    IdentityResult Update(IIdentityUser identityUser);
+    IdentityResult Update(TUser identityUser);
 
-    IdentityResult Delete(IIdentityUser identityUser);
+    IdentityResult Delete(TUser identityUser);
 
-    Task<string> GenerateEmailConfirmationTokenAsync(IIdentityUser applicationUser);
+    Task<string> GenerateEmailConfirmationTokenAsync(TUser applicationUser);
 
-    Task<IdentityResult> ConfirmEmailAsync(IIdentityUser identityUser, string code);
+    Task<IdentityResult> ConfirmEmailAsync(TUser identityUser, string code);
 
-    Task<bool> IsEmailConfirmedAsync(IIdentityUser identityUser);
+    Task<bool> IsEmailConfirmedAsync(TUser identityUser);
 
-    Task<string> GeneratePasswordResetTokenAsync(IIdentityUser identityUser);
+    Task<string> GeneratePasswordResetTokenAsync(TUser identityUser);
 
-    Task<IdentityResult> ResetPasswordAsync(IIdentityUser identityUser, string code, string password);
+    Task<IdentityResult> ResetPasswordAsync(TUser identityUser, string code, string password);
 }
