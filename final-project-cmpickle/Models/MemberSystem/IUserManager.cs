@@ -4,28 +4,28 @@ using Microsoft.AspNetCore.Identity;
 
 namespace final_project_cmpickle.Models.MemberSystem
 {
-    public interface IUserManager
+    public interface IUserManager<T>
     {
-        IQueryable<IIdentityUser> Users { get; set; }
+        IQueryable Users { get; set; }
 
-       Task<IdentityResult> CreateAsync(IIdentityUser user, string password);
+       Task<IdentityResult> CreateAsync(T user, string password);
 
-       Task<IdentityResult> DeleteAsync(IIdentityUser identityUser);
+       Task<IdentityResult> DeleteAsync(T identityUser);
 
-       Task<string> GenerateEmailConfirmationTokenAsync(IIdentityUser identityUser);
+       Task<string> GenerateEmailConfirmationTokenAsync(T identityUser);
 
-       Task<IIdentityUser> FindByEmailAsync(string email);
+       Task<T> FindByEmailAsync(string email);
 
-       Task<IIdentityUser> FindByIdAsync(string userId);
+       Task<T> FindByIdAsync(string userId);
 
-       Task<IdentityResult> UpdateAsync(IIdentityUser identityUser);
+       Task<IdentityResult> UpdateAsync(T identityUser);
 
-       Task<IdentityResult> ConfirmEmailAsync(IIdentityUser identityUser, string code);
+       Task<IdentityResult> ConfirmEmailAsync(T identityUser, string code);
 
-       Task<bool> IsEmailConfirmedAsync(IIdentityUser identityUser);
+       Task<bool> IsEmailConfirmedAsync(T identityUser);
 
-       Task<string> GeneratePasswordResetTokenAsync(IIdentityUser identityUser);
+       Task<string> GeneratePasswordResetTokenAsync(T identityUser);
 
-       Task<IdentityResult> ResetPasswordAsync(IIdentityUser identityUser, string code, string password);
+       Task<IdentityResult> ResetPasswordAsync(T identityUser, string code, string password);
     }
 }

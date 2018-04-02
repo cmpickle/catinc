@@ -8,60 +8,60 @@ using Microsoft.Extensions.Options;
 
 namespace final_project_cmpickle.Models.MemberSystem
 {
-    public class MyIdentityUserManager : UserManager<MyIdentityUser>, IUserManager
+    public class MyIdentityUserManager<TUser> : UserManager<TUser>, IUserManager<TUser>, IDisposable where TUser : MyIdentityUser
     {
-        public MyIdentityUserManager(IUserStore<MyIdentityUser> store, IOptions<IdentityOptions> optionsAccessor, IPasswordHasher<MyIdentityUser> passwordHasher, IEnumerable<IUserValidator<MyIdentityUser>> userValidators, IEnumerable<IPasswordValidator<MyIdentityUser>> passwordValidators, ILookupNormalizer keyNormalizer, IdentityErrorDescriber errors, IServiceProvider services, ILogger<UserManager<MyIdentityUser>> logger) : base(store, optionsAccessor, passwordHasher, userValidators, passwordValidators, keyNormalizer, errors, services, logger)
+        public MyIdentityUserManager(IUserStore<TUser> store, IOptions<IdentityOptions> optionsAccessor, IPasswordHasher<TUser> passwordHasher, IEnumerable<IUserValidator<TUser>> userValidators, IEnumerable<IPasswordValidator<TUser>> passwordValidators, ILookupNormalizer keyNormalizer, IdentityErrorDescriber errors, IServiceProvider services, ILogger<UserManager<TUser>> logger) : base(store, optionsAccessor, passwordHasher, userValidators, passwordValidators, keyNormalizer, errors, services, logger)
         {
         }
 
-        IQueryable<IIdentityUser> IUserManager.Users { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
+        IQueryable IUserManager<TUser>.Users { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
 
-        public Task<IdentityResult> ConfirmEmailAsync(IIdentityUser identityUser, string code)
-        {
-            throw new NotImplementedException();
-        }
-
-        public Task<IdentityResult> CreateAsync(IIdentityUser user, string password)
+        override public Task<IdentityResult> ConfirmEmailAsync(TUser identityUser, string code)
         {
             throw new NotImplementedException();
         }
 
-        public Task<IdentityResult> DeleteAsync(IIdentityUser identityUser)
+        public override Task<IdentityResult> CreateAsync(TUser user, string password)
+        {
+            return base.CreateAsync(user, password);
+        }
+
+        override public Task<IdentityResult> DeleteAsync(TUser identityUser)
         {
             throw new NotImplementedException();
         }
 
-        public Task<string> GenerateEmailConfirmationTokenAsync(IIdentityUser identityUser)
+        override public Task<string> GenerateEmailConfirmationTokenAsync(TUser identityUser)
         {
             throw new NotImplementedException();
         }
 
-        public Task<string> GeneratePasswordResetTokenAsync(IIdentityUser identityUser)
+        override public Task<string> GeneratePasswordResetTokenAsync(TUser identityUser)
         {
             throw new NotImplementedException();
         }
 
-        public Task<bool> IsEmailConfirmedAsync(IIdentityUser identityUser)
+        override public Task<bool> IsEmailConfirmedAsync(TUser identityUser)
         {
             throw new NotImplementedException();
         }
 
-        public Task<IdentityResult> ResetPasswordAsync(IIdentityUser identityUser, string code, string password)
+        override public Task<IdentityResult> ResetPasswordAsync(TUser identityUser, string code, string password)
         {
             throw new NotImplementedException();
         }
 
-        public Task<IdentityResult> UpdateAsync(IIdentityUser identityUser)
+        override public Task<IdentityResult> UpdateAsync(TUser identityUser)
         {
             throw new NotImplementedException();
         }
 
-        Task<IIdentityUser> IUserManager.FindByEmailAsync(string email)
+        override public Task<TUser> FindByEmailAsync(string email)
         {
             throw new NotImplementedException();
         }
 
-        Task<IIdentityUser> IUserManager.FindByIdAsync(string userId)
+        public Task<TUser> FindByIdAsync<T>(string userId)
         {
             throw new NotImplementedException();
         }

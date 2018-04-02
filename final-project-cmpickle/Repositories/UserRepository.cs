@@ -6,9 +6,9 @@ using Microsoft.AspNetCore.Identity;
 
 public class UserRepository : IUserRepository
 {
-    private IUserManager _userManager;
+    private IUserManager<MyIdentityUser> _userManager;
 
-    public UserRepository(IUserManager userManager)
+    public UserRepository(IUserManager<MyIdentityUser> userManager)
     {
         _userManager = userManager;
     }

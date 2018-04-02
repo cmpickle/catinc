@@ -23,9 +23,9 @@ namespace final_project_cmpickle.Models.MemberSystem
             throw new System.NotImplementedException();
         }
 
-        Task<SignInResult> ISignInManager.SignOutAsync()
+        Task ISignInManager.SignOutAsync()
         {
-            throw new System.NotImplementedException();
+            return base.SignOutAsync();
         }
     }
 }

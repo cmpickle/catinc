@@ -2,18 +2,19 @@ using System.Collections.Generic;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Mvc;
 
 namespace final_project_cmpickle.Models.MemberSystem
 {
     public interface ISignInManager
     {
-        Task<SignInResult> PasswordSignInAsync(string email, string password, bool isPersistent, bool lockoutOnFailure);
+        Task<Microsoft.AspNetCore.Identity.SignInResult> PasswordSignInAsync(string email, string password, bool isPersistent, bool lockoutOnFailure);
 
-        Task<SignInResult> SignInAsync(IIdentityUser user, bool isPersistent);
+        Task<Microsoft.AspNetCore.Identity.SignInResult> SignInAsync(IIdentityUser user, bool isPersistent);
 
-        Task<SignInResult> SignOutAsync();
+        Task SignOutAsync();
 
-        Task<SignInResult> GetTwoFactorAuthenticationUserAsync();
+        Task<Microsoft.AspNetCore.Identity.SignInResult> GetTwoFactorAuthenticationUserAsync();
 
         Task<IEnumerable<AuthenticationScheme>> GetExternalAuthenticationSchemesAsync();
     }
