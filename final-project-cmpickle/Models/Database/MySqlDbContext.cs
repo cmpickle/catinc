@@ -20,6 +20,8 @@ namespace final_project_cmpickle.Models.Database
     }
 
     public DbSet<Creditcard> Creditcard { get; set; }
+
+    public DbSet<Discount> Discount { get; set; }
     
     public DbSet<Log> Log { get; set; }
 

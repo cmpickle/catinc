@@ -1,3 +1,5 @@
+using System.ComponentModel.DataAnnotations.Schema;
+
 namespace final_project_cmpickle.Models
 {
     public class Patron
@@ -10,6 +12,7 @@ namespace final_project_cmpickle.Models
         public string PatronTelephoneNo { get; set; }
         public bool IsPatronSuspended { get; set; }
         public bool IsPatronDeleted { get; set; }
+        [ForeignKey("Users")]
         public int UserID { get; set; }
     }
 }

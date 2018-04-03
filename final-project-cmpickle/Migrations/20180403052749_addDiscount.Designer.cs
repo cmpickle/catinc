@@ -11,9 +11,10 @@ using System;
 namespace finalprojectcmpickle.Migrations
 {
     [DbContext(typeof(MySqlDbContext))]
-    partial class MySqlDbContextModelSnapshot : ModelSnapshot
+    [Migration("20180403052749_addDiscount")]
+    partial class addDiscount
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -34,22 +35,6 @@ namespace finalprojectcmpickle.Migrations
                     b.HasKey("CreditcardID");
 
                     b.ToTable("Creditcard");
-                });
-
-            modelBuilder.Entity("final_project_cmpickle.Models.Discount", b =>
-                {
-                    b.Property<int>("DiscountID")
-                        .ValueGeneratedOnAdd();
-
-                    b.Property<DateTime>("DiscountEnd");
-
-                    b.Property<DateTime>("DiscountStart");
-
-                    b.Property<bool>("IsDiscountDeleted");
-
-                    b.HasKey("DiscountID");
-
-                    b.ToTable("Discount");
                 });
 
             modelBuilder.Entity("final_project_cmpickle.Models.Log", b =>
