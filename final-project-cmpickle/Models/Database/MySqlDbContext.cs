@@ -21,5 +21,26 @@ namespace final_project_cmpickle.Models.Database
 
     public DbSet<Creditcard> Creditcard { get; set; }
     
+    public DbSet<Log> Log { get; set; }
+
+    public DbSet<Loyalty> Loyalty { get; set; }
+
+    public DbSet<Orders> Orders { get; set; }
+
+    public DbSet<Patron> Patron { get; set; }
+
+    public DbSet<PatronCreditcard> PatronCreditcard { get; set; }
+
+    public DbSet<Permission> Permission { get; set; }
+
+    public DbSet<Product> Product { get; set; }
+
+    public DbSet<ProductOrder> ProductOrder { get; set; }
+
+    public DbSet<Users> Users { get; set; }
+
+    public DbSet<Vendor> Vendor { get; set; }
+
+    public DbSet<VendorUser> VendorUser { get; set; }
   }
 }
