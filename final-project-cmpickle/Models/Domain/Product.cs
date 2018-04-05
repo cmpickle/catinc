@@ -1,6 +1,6 @@
 using System;
 
-namespace final_project_cmpickle.Models
+namespace final_project_cmpickle.Models.Domain
 {
     public class Product
     {

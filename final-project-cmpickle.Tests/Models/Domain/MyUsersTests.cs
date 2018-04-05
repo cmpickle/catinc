@@ -1,7 +1,7 @@
 using NUnit.Framework;
-using final_project_cmpickle.Models;
+using final_project_cmpickle.Models.Domain;
 
-namespace Tests
+namespace Tests.Models.Domain
 {
     [TestFixture]
     public class MyUsersTests

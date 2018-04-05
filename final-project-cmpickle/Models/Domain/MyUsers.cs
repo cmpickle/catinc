@@ -1,7 +1,7 @@
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
-namespace final_project_cmpickle.Models
+namespace final_project_cmpickle.Models.Domain
 {
     public class MyUsers
     {

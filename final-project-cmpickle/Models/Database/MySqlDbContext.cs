@@ -4,6 +4,7 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using final_project_cmpickle.Models.MemberSystem;
 using Microsoft.AspNetCore.Identity;
+using final_project_cmpickle.Models.Domain;
 
 namespace final_project_cmpickle.Models.Database
 {
