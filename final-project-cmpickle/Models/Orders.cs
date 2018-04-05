@@ -8,7 +8,7 @@ namespace final_project_cmpickle.Models
     {
         [Key]
         public int OrderID { get; set; }
-        [ForeignKey("Users")]
+        [ForeignKey("MyUsers")]
         public int UserID { get; set; }
         public DateTime OrderTimestamp { get; set; }
         [ForeignKey("Discount")]

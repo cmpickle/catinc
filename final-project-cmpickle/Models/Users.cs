@@ -3,7 +3,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace final_project_cmpickle.Models
 {
-    public class Users
+    public class MyUsers
     {
         [Key]
         public int UserID { get; set; }

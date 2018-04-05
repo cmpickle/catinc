@@ -12,7 +12,7 @@ namespace final_project_cmpickle.Models
         public string PatronTelephoneNo { get; set; }
         public bool IsPatronSuspended { get; set; }
         public bool IsPatronDeleted { get; set; }
-        [ForeignKey("Users")]
+        [ForeignKey("MyUsers")]
         public int UserID { get; set; }
     }
 }

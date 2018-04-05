@@ -39,7 +39,7 @@ namespace final_project_cmpickle.Models.Database
 
     public DbSet<ProductOrder> ProductOrder { get; set; }
 
-    public DbSet<Users> Users { get; set; }
+    public DbSet<MyUsers> MyUsers { get; set; }
 
     public DbSet<Vendor> Vendor { get; set; }
 
