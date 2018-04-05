@@ -134,6 +134,20 @@ namespace finalprojectcmpickle.Migrations
                     b.ToTable("AspNetUsers");
                 });
 
+            modelBuilder.Entity("final_project_cmpickle.Models.MyUsers", b =>
+                {
+                    b.Property<int>("UserID")
+                        .ValueGeneratedOnAdd();
+
+                    b.Property<int>("IdentityUserId");
+
+                    b.Property<bool>("IsUserDeleted");
+
+                    b.HasKey("UserID");
+
+                    b.ToTable("MyUsers");
+                });
+
             modelBuilder.Entity("final_project_cmpickle.Models.Orders", b =>
                 {
                     b.Property<int>("OrderID")
@@ -240,20 +254,6 @@ namespace finalprojectcmpickle.Migrations
                     b.HasKey("ProductOrderID");
 
                     b.ToTable("ProductOrder");
-                });
-
-            modelBuilder.Entity("final_project_cmpickle.Models.Users", b =>
-                {
-                    b.Property<int>("UserID")
-                        .ValueGeneratedOnAdd();
-
-                    b.Property<int>("IdentityUserId");
-
-                    b.Property<bool>("IsUserDeleted");
-
-                    b.HasKey("UserID");
-
-                    b.ToTable("Users");
                 });
 
             modelBuilder.Entity("final_project_cmpickle.Models.Vendor", b =>

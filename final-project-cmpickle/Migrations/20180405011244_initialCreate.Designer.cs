@@ -11,8 +11,8 @@ using System;
 namespace finalprojectcmpickle.Migrations
 {
     [DbContext(typeof(MySqlDbContext))]
-    [Migration("20180403052749_addDiscount")]
-    partial class addDiscount
+    [Migration("20180405011244_initialCreate")]
+    partial class initialCreate
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -35,6 +35,22 @@ namespace finalprojectcmpickle.Migrations
                     b.HasKey("CreditcardID");
 
                     b.ToTable("Creditcard");
+                });
+
+            modelBuilder.Entity("final_project_cmpickle.Models.Discount", b =>
+                {
+                    b.Property<int>("DiscountID")
+                        .ValueGeneratedOnAdd();
+
+                    b.Property<DateTime>("DiscountEnd");
+
+                    b.Property<DateTime>("DiscountStart");
+
+                    b.Property<bool>("IsDiscountDeleted");
+
+                    b.HasKey("DiscountID");
+
+                    b.ToTable("Discount");
                 });
 
             modelBuilder.Entity("final_project_cmpickle.Models.Log", b =>
@@ -117,6 +133,20 @@ namespace finalprojectcmpickle.Migrations
                         .HasName("UserNameIndex");
 
                     b.ToTable("AspNetUsers");
+                });
+
+            modelBuilder.Entity("final_project_cmpickle.Models.MyUsers", b =>
+                {
+                    b.Property<int>("UserID")
+                        .ValueGeneratedOnAdd();
+
+                    b.Property<int>("IdentityUserId");
+
+                    b.Property<bool>("IsUserDeleted");
+
+                    b.HasKey("UserID");
+
+                    b.ToTable("MyUsers");
                 });
 
             modelBuilder.Entity("final_project_cmpickle.Models.Orders", b =>
@@ -225,20 +255,6 @@ namespace finalprojectcmpickle.Migrations
                     b.HasKey("ProductOrderID");
 
                     b.ToTable("ProductOrder");
-                });
-
-            modelBuilder.Entity("final_project_cmpickle.Models.Users", b =>
-                {
-                    b.Property<int>("UserID")
-                        .ValueGeneratedOnAdd();
-
-                    b.Property<int>("IdentityUserId");
-
-                    b.Property<bool>("IsUserDeleted");
-
-                    b.HasKey("UserID");
-
-                    b.ToTable("Users");
                 });
 
             modelBuilder.Entity("final_project_cmpickle.Models.Vendor", b =>
