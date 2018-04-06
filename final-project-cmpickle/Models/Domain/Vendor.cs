@@ -8,7 +8,7 @@ namespace final_project_cmpickle.Models.Domain
         public string VendorTelephoneNo { get; set; }
         public string VendorEmail { get; set; }
         public decimal VendorPaymentAmount { get; set; }
-        public int VendorCreditCardNo { get; set; }
+        public int VendorCreditcardNo { get; set; }
         public bool IsVendorActive { get; set; }
         public bool IsVendorSuspended { get; set; }
         public bool IsvendorDeleted { get; set; }
