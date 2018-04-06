@@ -5,7 +5,7 @@ using System;
 namespace Tests.Models.Domain
 {
     [TestFixture]
-    public class LogTests
+    public class MyLogTests
     {
         private Log log;
 
