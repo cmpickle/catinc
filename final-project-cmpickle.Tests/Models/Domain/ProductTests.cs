@@ -40,6 +40,22 @@ namespace Tests.Models.Domain
         }
 
         [Test]
+        public void SetProductShortDescription()
+        {
+            product.ProductShortDescription = "This is a short Description.";
+
+            Assert.That(product.ProductShortDescription.Equals("This is a short Description."));
+        }
+
+        [Test]
+        public void SetProductLongDescription()
+        {
+            product.ProductLongDescription = "This is a long description of a product. This description will go on giving details about the product in greater length.";
+
+            Assert.That(product.ProductLongDescription.Equals("This is a long description of a product. This description will go on giving details about the product in greater length."));
+        }
+
+        [Test]
         public void SetProductPrice()
         {
             product.ProductPrice = 1000.56m;
