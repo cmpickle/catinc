@@ -1,5 +1,7 @@
 using System.Threading.Tasks;
+using final_project_cmpickle.Models.Domain;
 using final_project_cmpickle.Models.ViewModels.VendorViewModels;
+using final_project_cmpickle.Repositories;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
@@ -11,9 +13,11 @@ namespace final_project_cmpickle.Controllers
     public class VendorController : Controller
     {
         private ILogger _logger;
+        private IVendorRepository<Vendor> _vendorRepository;
 
-        public VendorController(ILogger<VendorController> logger)
+        public VendorController(IVendorRepository<Vendor> vendorRepository, ILogger<VendorController> logger)
         {
+            _vendorRepository = vendorRepository;
             _logger = logger;
         }
 
@@ -33,11 +37,11 @@ namespace final_project_cmpickle.Controllers
             ViewData["ReturnUrl"] = returnUrl;
             if (ModelState.IsValid)
             {
-                var result = 
-                if (result.Succeeded)
+                var result = _vendorRepository.Create(model);
+                if (result == Result.Success)
                 {
                     _logger.LogInformation("User created a new account with password.");
-                    var user = _userRepository.FindByEmailAsync(model.Email).Result;
+                    var user = _vendorRepository.FindByName(model.VendorName);
 
                     var code = await _userRepository.GenerateEmailConfirmationTokenAsync(user);
                     var callbackUrl = Url.EmailConfirmationLink(user.Id, code, Request.Scheme);
