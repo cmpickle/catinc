@@ -24,6 +24,6 @@ namespace final_project_cmpickle.Models.ViewModels.VendorViewModels
 
         [DataType(DataType.CreditCard)]
         [Display(Name = "Credit Card Number")]
-        public string CreditcardNo { get; set; }
+        public int CreditcardNo { get; set; }
     }
 }

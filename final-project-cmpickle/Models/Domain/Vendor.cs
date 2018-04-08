@@ -12,5 +12,17 @@ namespace final_project_cmpickle.Models.Domain
         public bool IsVendorActive { get; set; }
         public bool IsVendorSuspended { get; set; }
         public bool IsvendorDeleted { get; set; }
+
+        public Vendor(string vendorName, string vendorAddress, string vendorTelephoneNo, string vendorEmail, int vendorCreditcardNo)
+        {
+            VendorName = vendorName;
+            VendorAddress = vendorAddress;
+            VendorTelephoneNo = vendorTelephoneNo;
+            VendorEmail = vendorEmail;
+            VendorCreditcardNo = vendorCreditcardNo;
+            IsVendorActive = true;
+            IsVendorSuspended = false;
+            IsvendorDeleted = false;
+        }
     }
 }
