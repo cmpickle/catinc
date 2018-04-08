@@ -1,6 +1,6 @@
 using System.ComponentModel.DataAnnotations;
 
-namespace final_project_cmpickle.Models.ManageViewModels
+namespace final_project_cmpickle.Models.ViewModels.ManageViewModels
 {
     public class IndexViewModel
     {

@@ -1,6 +1,6 @@
 using System.Linq;
 using System.Threading.Tasks;
-using final_project_cmpickle.Models.AccountViewModels;
+using final_project_cmpickle.Models.ViewModels.AccountViewModels;
 using final_project_cmpickle.Models.MemberSystem;
 using Microsoft.AspNetCore.Identity;
 

@@ -1,6 +1,6 @@
 using System.ComponentModel.DataAnnotations;
 
-namespace final_project_cmpickle.Models.AccountViewModels
+namespace final_project_cmpickle.Models.ViewModels.AccountViewModels
 {
     public class RegisterViewModel
     {
