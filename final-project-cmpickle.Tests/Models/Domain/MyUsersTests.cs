@@ -25,9 +25,9 @@ namespace Tests.Models.Domain
         [Test]
         public void SetIdentityUserIdTest()
         {
-            user.IdentityUserId = 12;
+            user.IdentityUserID = 12;
 
-            Assert.That(user.IdentityUserId == 12);
+            Assert.That(user.IdentityUserID == 12);
         }
 
         [Test]

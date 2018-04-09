@@ -13,6 +13,7 @@ namespace final_project_cmpickle.Models.Domain
         public string ProductLongDescription { get; set; }
         public decimal ProductPrice { get; set; }
         public int ProductInventory {get; set; }
+        public string ProductImageURL { get; set; }
         public DateTime ProductExpirationDate { get; set; }
         public bool IsProductedDeleted { get; set; }
     }

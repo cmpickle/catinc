@@ -11,6 +11,9 @@ if they wish.  There should be a page for a customer see how many award points t
 able to create a discount or coupon email that can be sent to all customers who have bought a product within
 the last month.
 
+### Schema
+![Database Schema](final-project-cmpickle-schema.pdf)
+
 ### Notes
 
 #### Reward Formula

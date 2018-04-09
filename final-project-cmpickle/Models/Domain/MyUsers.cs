@@ -9,7 +9,7 @@ namespace final_project_cmpickle.Models.Domain
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int UserID { get; set; }
         [ForeignKey("IdentityUser")]
-        public int IdentityUserId { get; set; }
+        public int IdentityUserID { get; set; }
         // public string Username { get; set; }
         // public string UserHash { get; set; }
         // public string Salt { get; set; }
