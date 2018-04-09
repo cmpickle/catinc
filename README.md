@@ -12,7 +12,11 @@ able to create a discount or coupon email that can be sent to all customers who 
 the last month.
 
 ### Schema
-![Database Schema](final-project-cmpickle-schema.pdf)
+<object data="https://github.com/web4790-spr-2018/final-project-cmpickle/blob/master/final-project-cmpickle-schema.pdf" type="application/pdf" width="700px" height="700px">
+    <embed src="https://github.com/web4790-spr-2018/final-project-cmpickle/blob/master/final-project-cmpickle-schema.pdf">
+        This browser does not support PDFs. Please download the PDF to view it: <a href="https://github.com/web4790-spr-2018/final-project-cmpickle/blob/master/final-project-cmpickle-schema.pdf">Download PDF</a>.</p>
+    </embed>
+</object>
 
 ### Notes
 
