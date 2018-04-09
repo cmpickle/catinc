@@ -5,6 +5,7 @@ namespace final_project_cmpickle.Models.Domain
 {
     public class Log
     {
+        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int LogID { get; set; }
         [ForeignKey("MyUsers")]
         public int UserID { get; set; }

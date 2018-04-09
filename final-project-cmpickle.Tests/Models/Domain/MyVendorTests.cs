@@ -89,9 +89,9 @@ namespace Tests.Models.Domain
         [Test]
         public void setVendorIsDeleted()
         {
-            vendor.IsvendorDeleted = true;
+            vendor.IsVendorDeleted = true;
 
-            Assert.That(vendor.IsvendorDeleted);
+            Assert.That(vendor.IsVendorDeleted);
         }
     }
 }

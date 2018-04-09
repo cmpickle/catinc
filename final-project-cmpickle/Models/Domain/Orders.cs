@@ -7,6 +7,7 @@ namespace final_project_cmpickle.Models.Domain
     public class Orders
     {
         [Key]
+        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int OrderID { get; set; }
         [ForeignKey("MyUsers")]
         public int UserID { get; set; }

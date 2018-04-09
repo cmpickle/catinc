@@ -16,11 +16,14 @@ namespace final_project_cmpickle.Repositories
         public VendorRepository(MySqlDbContext mySqlDbContext)
         {
             _mySqlDbContext = mySqlDbContext;
+
+            vendors = new List<Vendor>();
         }
 
         public Result Create(RegisterVendorViewModel model)
         {
             Vendor vendor = new Vendor(model.VendorName, model.Address, model.TelephoneNo, model.Email, model.CreditcardNo);
+            vendors.Add(vendor);
 
             using(MySqlDbContext context = _mySqlDbContext)
             {
@@ -31,9 +34,9 @@ namespace final_project_cmpickle.Repositories
             return Result.Success;
         }
 
-        public Vendor FindByName(string name)
+        public Task<Vendor> FindByNameAsync(string name)
         {
-            return vendors.FirstOrDefault(v => v.VendorName == name)
+            return Task.Run(() => vendors.FirstOrDefault(v => v.VendorName == name));
         }
 
         public IQueryable Get()

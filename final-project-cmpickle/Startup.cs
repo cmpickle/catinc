@@ -11,6 +11,8 @@ using Microsoft.AspNetCore.Identity;
 using final_project_cmpickle.Services;
 using final_project_cmpickle.Models.Database;
 using final_project_cmpickle.Models.MemberSystem;
+using final_project_cmpickle.Repositories;
+using final_project_cmpickle.Models.Domain;
 
 namespace final_project_cmpickle
 {
@@ -41,6 +43,7 @@ namespace final_project_cmpickle
             services.AddTransient<IUserManager<MyIdentityUser>, MyIdentityUserManager<MyIdentityUser>>();
             services.AddTransient<ISignInManager<MyIdentityUser>, MySignInManager<MyIdentityUser>>();
             services.AddTransient<IIdentityUser, MyIdentityUser>();
+            services.AddTransient<IVendorRepository<Vendor>, VendorRepository>();
 
             services.AddMvc();
         }

@@ -30,9 +30,9 @@ namespace final_project_cmpickle.Controllers
         }
 
         [HttpPost]
-        [AllowAnonymous]
+        // [AllowAnonymous]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Register(RegisterVendorViewModel model, string returnUrl = null)
+        public async Task<IActionResult> RegisterVendor(RegisterVendorViewModel model, string returnUrl = null)
         {
             ViewData["ReturnUrl"] = returnUrl;
             if (ModelState.IsValid)
@@ -41,21 +41,40 @@ namespace final_project_cmpickle.Controllers
                 if (result == Result.Success)
                 {
                     _logger.LogInformation("User created a new account with password.");
-                    var user = _vendorRepository.FindByName(model.VendorName);
+                    var user = await _vendorRepository.FindByNameAsync(model.VendorName);
 
-                    var code = await _userRepository.GenerateEmailConfirmationTokenAsync(user);
-                    var callbackUrl = Url.EmailConfirmationLink(user.Id, code, Request.Scheme);
-                    await _emailSender.SendEmailConfirmationAsync(model.Email, callbackUrl);
-
-                    await _signInManager.SignInAsync(user, isPersistent: false);
-                    _logger.LogInformation("User created a new account with password.");
-                    return RedirectToLocal(returnUrl);
+                    _logger.LogInformation("User created a new Vendor.");
+                    return RedirectToLocal("/home/index");
                 }
-                AddErrors(result);
+                // AddErrors(result);
             }
 
             // If we got this far, something failed, redisplay form
             return View(model);
         }
+
+        #region Helpers
+
+        // private void AddErrors(Result result)
+        // {
+        //     foreach (var error in result.Errors)
+        //     {
+        //         ModelState.AddModelError(string.Empty, error.Description);
+        //     }
+        // }
+
+        private IActionResult RedirectToLocal(string returnUrl)
+        {
+            if (Url.IsLocalUrl(returnUrl))
+            {
+                return Redirect(returnUrl);
+            }
+            else
+            {
+                return RedirectToAction(nameof(HomeController.Index), "Home");
+            }
+        }
+
+        #endregion
     }
 }

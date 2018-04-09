@@ -6,6 +6,7 @@ namespace final_project_cmpickle.Models.Domain
     public class MyUsers
     {
         [Key]
+        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int UserID { get; set; }
         [ForeignKey("IdentityUser")]
         public int IdentityUserId { get; set; }

@@ -4,6 +4,7 @@ namespace final_project_cmpickle.Models.Domain
 {
     public class Patron
     {
+        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int PatronID { get; set; }
         public string PatronFirst { get; set; }
         public string PatronLast { get; set; }
