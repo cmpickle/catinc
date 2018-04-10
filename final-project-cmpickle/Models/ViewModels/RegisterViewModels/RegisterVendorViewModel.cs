@@ -1,4 +1,5 @@
 using System.ComponentModel.DataAnnotations;
+using final_project_cmpickle.Models.Domain;
 
 namespace final_project_cmpickle.Models.ViewModels.VendorViewModels
 {
@@ -25,5 +26,9 @@ namespace final_project_cmpickle.Models.ViewModels.VendorViewModels
         [DataType(DataType.CreditCard)]
         [Display(Name = "Credit Card Number")]
         public int CreditcardNo { get; set; }
+
+        public int UserID { get; set; }
+
+        public string UserName { get; set; }
     }
 }

@@ -28,6 +28,8 @@ namespace final_project_cmpickle.Repositories
             using(MySqlDbContext context = _mySqlDbContext)
             {
                 context.Vendor.Add(vendor);
+                VendorUser vendorUser = new VendorUser(vendor.VendorID, model.UserID);
+                context.VendorUser.Add(vendorUser);
                 context.SaveChanges();
             }
 

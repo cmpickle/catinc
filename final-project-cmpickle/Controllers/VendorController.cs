@@ -1,5 +1,6 @@
 using System.Threading.Tasks;
 using final_project_cmpickle.Models.Domain;
+using final_project_cmpickle.Models.MemberSystem;
 using final_project_cmpickle.Models.ViewModels.VendorViewModels;
 using final_project_cmpickle.Repositories;
 using Microsoft.AspNetCore.Authorization;
@@ -37,6 +38,7 @@ namespace final_project_cmpickle.Controllers
             ViewData["ReturnUrl"] = returnUrl;
             if (ModelState.IsValid)
             {
+                model.UserName = User.Identity.Name;
                 var result = _vendorRepository.Create(model);
                 if (result == Result.Success)
                 {

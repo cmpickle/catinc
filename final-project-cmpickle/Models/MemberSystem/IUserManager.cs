@@ -18,6 +18,8 @@ namespace final_project_cmpickle.Models.MemberSystem
 
        Task<T> FindByIdAsync(string userId);
 
+       Task<T> FindByNameAsync(string name);
+
        Task<IdentityResult> UpdateAsync(T identityUser);
 
        Task<IdentityResult> ConfirmEmailAsync(T identityUser, string code);

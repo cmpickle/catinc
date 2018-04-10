@@ -65,5 +65,10 @@ namespace final_project_cmpickle.Models.MemberSystem
         {
             return base.FindByIdAsync(userId);
         }
+
+        public Task<TUser> FindByNameAsync<T>(string name)
+        {
+            return base.FindByNameAsync(name);
+        }
     }
 }
