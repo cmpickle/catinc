@@ -5,6 +5,9 @@ using final_project_cmpickle.Models.Database;
 using final_project_cmpickle.Models.Domain;
 using final_project_cmpickle.Repositories;
 using final_project_cmpickle.Models.ViewModels.VendorViewModels;
+using Microsoft.AspNetCore.Identity;
+using final_project_cmpickle.Models.MemberSystem;
+using System.Security.Claims;
 
 namespace final_project_cmpickle.Repositories
 {
@@ -20,15 +23,15 @@ namespace final_project_cmpickle.Repositories
             vendors = new List<Vendor>();
         }
 
-        public Result Create(RegisterVendorViewModel model)
+        public Result Create(RegisterVendorViewModel model, ClaimsPrincipal user)
         {
             Vendor vendor = new Vendor(model.VendorName, model.Address, model.TelephoneNo, model.Email, model.CreditcardNo);
+            VendorUser vendorUser = new VendorUser{Vendor = vendor, User = user};
             vendors.Add(vendor);
 
             using(MySqlDbContext context = _mySqlDbContext)
             {
                 context.Vendor.Add(vendor);
-                VendorUser vendorUser = new VendorUser(vendor.VendorID, model.UserID);
                 context.VendorUser.Add(vendorUser);
                 context.SaveChanges();
             }

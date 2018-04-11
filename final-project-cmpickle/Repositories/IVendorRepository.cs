@@ -1,5 +1,7 @@
 using System.Linq;
+using System.Security.Claims;
 using System.Threading.Tasks;
+using final_project_cmpickle.Models.MemberSystem;
 using final_project_cmpickle.Models.ViewModels.VendorViewModels;
 
 namespace final_project_cmpickle.Repositories
@@ -10,7 +12,7 @@ namespace final_project_cmpickle.Repositories
 
         Task<Vendor> FindByNameAsync(string name);
 
-        Result Create(RegisterVendorViewModel registerVendorViewModel);
+        Result Create(RegisterVendorViewModel registerVendorViewModel, ClaimsPrincipal user);
     }
 
 }

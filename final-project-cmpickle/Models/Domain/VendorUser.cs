@@ -1,4 +1,6 @@
 using System.ComponentModel.DataAnnotations.Schema;
+using System.Security.Claims;
+using final_project_cmpickle.Models.MemberSystem;
 
 namespace final_project_cmpickle.Models.Domain
 {
@@ -6,9 +8,12 @@ namespace final_project_cmpickle.Models.Domain
     {
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int VendorUserID { get; set; }
-        [ForeignKey("Vendor")]
+        // [ForeignKey("Vendor")]
+        public Vendor Vendor { get; set; }
         public int VendorID { get; set; }
-        [ForeignKey("MyUsers")]
+        // [ForeignKey("MyUsers")]
+        [NotMapped]
+        public ClaimsPrincipal User { get; set; }
         public int UserID { get; set; }
 
         public VendorUser() {}

@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations.Schema;
 
 namespace final_project_cmpickle.Models.Domain
@@ -15,6 +16,7 @@ namespace final_project_cmpickle.Models.Domain
         public bool IsVendorActive { get; set; }
         public bool IsVendorSuspended { get; set; }
         public bool IsVendorDeleted { get; set; }
+        public List<VendorUser> VendorUsers { get; set; }
 
         public Vendor()
         {

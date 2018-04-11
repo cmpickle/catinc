@@ -20,26 +20,28 @@ namespace finalprojectcmpickle.Migrations
                 .HasAnnotation("MySql:ValueGenerationStrategy", MySqlValueGenerationStrategy.IdentityColumn)
                 .HasAnnotation("ProductVersion", "2.0.1-rtm-125");
 
-            modelBuilder.Entity("final_project_cmpickle.Models.Creditcard", b =>
+            modelBuilder.Entity("final_project_cmpickle.Models.Domain.Creditcard", b =>
                 {
                     b.Property<int>("CreditcardID")
-                        .ValueGeneratedOnAdd();
+                        .ValueGeneratedOnAdd()
+                        .HasAnnotation("MySql:ValueGenerationStrategy", MySqlValueGenerationStrategy.IdentityColumn);
 
                     b.Property<int>("CCV");
 
                     b.Property<int>("CreditcardNo");
 
-                    b.Property<DateTime>("EpirationDate");
+                    b.Property<DateTime>("ExpirationDate");
 
                     b.HasKey("CreditcardID");
 
                     b.ToTable("Creditcard");
                 });
 
-            modelBuilder.Entity("final_project_cmpickle.Models.Discount", b =>
+            modelBuilder.Entity("final_project_cmpickle.Models.Domain.Discount", b =>
                 {
                     b.Property<int>("DiscountID")
-                        .ValueGeneratedOnAdd();
+                        .ValueGeneratedOnAdd()
+                        .HasAnnotation("MySql:ValueGenerationStrategy", MySqlValueGenerationStrategy.IdentityColumn);
 
                     b.Property<DateTime>("DiscountEnd");
 
@@ -52,10 +54,11 @@ namespace finalprojectcmpickle.Migrations
                     b.ToTable("Discount");
                 });
 
-            modelBuilder.Entity("final_project_cmpickle.Models.Log", b =>
+            modelBuilder.Entity("final_project_cmpickle.Models.Domain.Log", b =>
                 {
                     b.Property<int>("LogID")
-                        .ValueGeneratedOnAdd();
+                        .ValueGeneratedOnAdd()
+                        .HasAnnotation("MySql:ValueGenerationStrategy", MySqlValueGenerationStrategy.IdentityColumn);
 
                     b.Property<int>("LogLevel");
 
@@ -70,10 +73,11 @@ namespace finalprojectcmpickle.Migrations
                     b.ToTable("Log");
                 });
 
-            modelBuilder.Entity("final_project_cmpickle.Models.Loyalty", b =>
+            modelBuilder.Entity("final_project_cmpickle.Models.Domain.Loyalty", b =>
                 {
                     b.Property<int>("LoyaltyID")
-                        .ValueGeneratedOnAdd();
+                        .ValueGeneratedOnAdd()
+                        .HasAnnotation("MySql:ValueGenerationStrategy", MySqlValueGenerationStrategy.IdentityColumn);
 
                     b.Property<int>("LoyaltyPoints");
 
@@ -82,6 +86,195 @@ namespace finalprojectcmpickle.Migrations
                     b.HasKey("LoyaltyID");
 
                     b.ToTable("Loyalty");
+                });
+
+            modelBuilder.Entity("final_project_cmpickle.Models.Domain.MyUsers", b =>
+                {
+                    b.Property<int>("UserID")
+                        .ValueGeneratedOnAdd()
+                        .HasAnnotation("MySql:ValueGenerationStrategy", MySqlValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<int>("IdentityUserID");
+
+                    b.Property<bool>("IsUserDeleted");
+
+                    b.HasKey("UserID");
+
+                    b.ToTable("MyUsers");
+                });
+
+            modelBuilder.Entity("final_project_cmpickle.Models.Domain.Orders", b =>
+                {
+                    b.Property<int>("OrderID")
+                        .ValueGeneratedOnAdd()
+                        .HasAnnotation("MySql:ValueGenerationStrategy", MySqlValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<int>("DiscountID");
+
+                    b.Property<DateTime>("OrderTimestamp");
+
+                    b.Property<int>("UserID");
+
+                    b.HasKey("OrderID");
+
+                    b.ToTable("Orders");
+                });
+
+            modelBuilder.Entity("final_project_cmpickle.Models.Domain.Patron", b =>
+                {
+                    b.Property<int>("PatronID")
+                        .ValueGeneratedOnAdd()
+                        .HasAnnotation("MySql:ValueGenerationStrategy", MySqlValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<bool>("IsPatronDeleted");
+
+                    b.Property<bool>("IsPatronSuspended");
+
+                    b.Property<string>("PatronAddress");
+
+                    b.Property<string>("PatronEmail");
+
+                    b.Property<string>("PatronFirst");
+
+                    b.Property<string>("PatronLast");
+
+                    b.Property<string>("PatronTelephoneNo");
+
+                    b.Property<int>("UserID");
+
+                    b.HasKey("PatronID");
+
+                    b.ToTable("Patron");
+                });
+
+            modelBuilder.Entity("final_project_cmpickle.Models.Domain.PatronCreditcard", b =>
+                {
+                    b.Property<int>("PatronCreditcardID")
+                        .ValueGeneratedOnAdd()
+                        .HasAnnotation("MySql:ValueGenerationStrategy", MySqlValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<int>("CreditcardID");
+
+                    b.Property<int>("PatronID");
+
+                    b.HasKey("PatronCreditcardID");
+
+                    b.ToTable("PatronCreditcard");
+                });
+
+            modelBuilder.Entity("final_project_cmpickle.Models.Domain.Permission", b =>
+                {
+                    b.Property<int>("PermissionID")
+                        .ValueGeneratedOnAdd()
+                        .HasAnnotation("MySql:ValueGenerationStrategy", MySqlValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<int>("PermissionLevel");
+
+                    b.Property<int>("UserID");
+
+                    b.HasKey("PermissionID");
+
+                    b.ToTable("Permission");
+                });
+
+            modelBuilder.Entity("final_project_cmpickle.Models.Domain.Product", b =>
+                {
+                    b.Property<int>("ProductID")
+                        .ValueGeneratedOnAdd()
+                        .HasAnnotation("MySql:ValueGenerationStrategy", MySqlValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<bool>("IsProductedDeleted");
+
+                    b.Property<DateTime>("ProductExpirationDate");
+
+                    b.Property<string>("ProductImageURL");
+
+                    b.Property<int>("ProductInventory");
+
+                    b.Property<string>("ProductLongDescription");
+
+                    b.Property<string>("ProductName");
+
+                    b.Property<decimal>("ProductPrice");
+
+                    b.Property<string>("ProductSKU");
+
+                    b.Property<string>("ProductShortDescription");
+
+                    b.HasKey("ProductID");
+
+                    b.ToTable("Product");
+                });
+
+            modelBuilder.Entity("final_project_cmpickle.Models.Domain.ProductOrder", b =>
+                {
+                    b.Property<int>("ProductOrderID")
+                        .ValueGeneratedOnAdd()
+                        .HasAnnotation("MySql:ValueGenerationStrategy", MySqlValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<int>("OrderID");
+
+                    b.Property<int?>("Orders");
+
+                    b.Property<int?>("Product");
+
+                    b.Property<int>("ProductID");
+
+                    b.Property<int>("Quantity");
+
+                    b.HasKey("ProductOrderID");
+
+                    b.HasIndex("Orders");
+
+                    b.HasIndex("Product");
+
+                    b.ToTable("ProductOrder");
+                });
+
+            modelBuilder.Entity("final_project_cmpickle.Models.Domain.Vendor", b =>
+                {
+                    b.Property<int>("VendorID")
+                        .ValueGeneratedOnAdd()
+                        .HasAnnotation("MySql:ValueGenerationStrategy", MySqlValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<bool>("IsVendorActive");
+
+                    b.Property<bool>("IsVendorDeleted");
+
+                    b.Property<bool>("IsVendorSuspended");
+
+                    b.Property<string>("VendorAddress");
+
+                    b.Property<int>("VendorCreditcardNo");
+
+                    b.Property<string>("VendorEmail");
+
+                    b.Property<string>("VendorName");
+
+                    b.Property<decimal>("VendorPaymentAmount");
+
+                    b.Property<string>("VendorTelephoneNo");
+
+                    b.HasKey("VendorID");
+
+                    b.ToTable("Vendor");
+                });
+
+            modelBuilder.Entity("final_project_cmpickle.Models.Domain.VendorUser", b =>
+                {
+                    b.Property<int>("VendorUserID")
+                        .ValueGeneratedOnAdd()
+                        .HasAnnotation("MySql:ValueGenerationStrategy", MySqlValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<int>("UserID");
+
+                    b.Property<int>("VendorID");
+
+                    b.HasKey("VendorUserID");
+
+                    b.HasIndex("VendorID");
+
+                    b.ToTable("VendorUser");
                 });
 
             modelBuilder.Entity("final_project_cmpickle.Models.MemberSystem.MyIdentityUser", b =>
@@ -132,170 +325,6 @@ namespace finalprojectcmpickle.Migrations
                         .HasName("UserNameIndex");
 
                     b.ToTable("AspNetUsers");
-                });
-
-            modelBuilder.Entity("final_project_cmpickle.Models.MyUsers", b =>
-                {
-                    b.Property<int>("UserID")
-                        .ValueGeneratedOnAdd();
-
-                    b.Property<int>("IdentityUserId");
-
-                    b.Property<bool>("IsUserDeleted");
-
-                    b.HasKey("UserID");
-
-                    b.ToTable("MyUsers");
-                });
-
-            modelBuilder.Entity("final_project_cmpickle.Models.Orders", b =>
-                {
-                    b.Property<int>("OrderID")
-                        .ValueGeneratedOnAdd();
-
-                    b.Property<int>("DiscountID");
-
-                    b.Property<DateTime>("OrderTimestamp");
-
-                    b.Property<int>("UserID");
-
-                    b.HasKey("OrderID");
-
-                    b.ToTable("Orders");
-                });
-
-            modelBuilder.Entity("final_project_cmpickle.Models.Patron", b =>
-                {
-                    b.Property<int>("PatronID")
-                        .ValueGeneratedOnAdd();
-
-                    b.Property<bool>("IsPatronDeleted");
-
-                    b.Property<bool>("IsPatronSuspended");
-
-                    b.Property<string>("PatronAddress");
-
-                    b.Property<string>("PatronEmail");
-
-                    b.Property<string>("PatronFirst");
-
-                    b.Property<string>("PatronLast");
-
-                    b.Property<string>("PatronTelephoneNo");
-
-                    b.Property<int>("UserID");
-
-                    b.HasKey("PatronID");
-
-                    b.ToTable("Patron");
-                });
-
-            modelBuilder.Entity("final_project_cmpickle.Models.PatronCreditcard", b =>
-                {
-                    b.Property<int>("PatronCreditcardID")
-                        .ValueGeneratedOnAdd();
-
-                    b.Property<int>("CreditcardID");
-
-                    b.Property<int>("PatronID");
-
-                    b.HasKey("PatronCreditcardID");
-
-                    b.ToTable("PatronCreditcard");
-                });
-
-            modelBuilder.Entity("final_project_cmpickle.Models.Permission", b =>
-                {
-                    b.Property<int>("PermissionID")
-                        .ValueGeneratedOnAdd();
-
-                    b.Property<int>("PermissionLevel");
-
-                    b.Property<int>("UserID");
-
-                    b.HasKey("PermissionID");
-
-                    b.ToTable("Permission");
-                });
-
-            modelBuilder.Entity("final_project_cmpickle.Models.Product", b =>
-                {
-                    b.Property<int>("ProductID")
-                        .ValueGeneratedOnAdd();
-
-                    b.Property<bool>("IsProductedDeleted");
-
-                    b.Property<DateTime>("ProductExpirationDate");
-
-                    b.Property<int>("ProductInventory");
-
-                    b.Property<string>("ProductName");
-
-                    b.Property<decimal>("ProductPrice");
-
-                    b.Property<string>("ProductSKU");
-
-                    b.HasKey("ProductID");
-
-                    b.ToTable("Product");
-                });
-
-            modelBuilder.Entity("final_project_cmpickle.Models.ProductOrder", b =>
-                {
-                    b.Property<int>("ProductOrderID")
-                        .ValueGeneratedOnAdd();
-
-                    b.Property<int>("OrderID");
-
-                    b.Property<int>("ProductID");
-
-                    b.Property<int>("Quantity");
-
-                    b.HasKey("ProductOrderID");
-
-                    b.ToTable("ProductOrder");
-                });
-
-            modelBuilder.Entity("final_project_cmpickle.Models.Vendor", b =>
-                {
-                    b.Property<int>("VendorID")
-                        .ValueGeneratedOnAdd();
-
-                    b.Property<bool>("IsVendorActive");
-
-                    b.Property<bool>("IsVendorSuspended");
-
-                    b.Property<bool>("IsvendorDeleted");
-
-                    b.Property<string>("VendorAddress");
-
-                    b.Property<int>("VendorCreditCardNo");
-
-                    b.Property<string>("VendorEmail");
-
-                    b.Property<string>("VendorName");
-
-                    b.Property<decimal>("VendorPaymentAmount");
-
-                    b.Property<string>("VendorTelephoneNo");
-
-                    b.HasKey("VendorID");
-
-                    b.ToTable("Vendor");
-                });
-
-            modelBuilder.Entity("final_project_cmpickle.Models.VendorUser", b =>
-                {
-                    b.Property<int>("VendorUserID")
-                        .ValueGeneratedOnAdd();
-
-                    b.Property<int>("UserID");
-
-                    b.Property<int>("VendorID");
-
-                    b.HasKey("VendorUserID");
-
-                    b.ToTable("VendorUser");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRole", b =>
@@ -403,6 +432,25 @@ namespace finalprojectcmpickle.Migrations
                     b.HasKey("UserId", "LoginProvider", "Name");
 
                     b.ToTable("AspNetUserTokens");
+                });
+
+            modelBuilder.Entity("final_project_cmpickle.Models.Domain.ProductOrder", b =>
+                {
+                    b.HasOne("final_project_cmpickle.Models.Domain.Orders", "order")
+                        .WithMany()
+                        .HasForeignKey("Orders");
+
+                    b.HasOne("final_project_cmpickle.Models.Domain.Product", "product")
+                        .WithMany()
+                        .HasForeignKey("Product");
+                });
+
+            modelBuilder.Entity("final_project_cmpickle.Models.Domain.VendorUser", b =>
+                {
+                    b.HasOne("final_project_cmpickle.Models.Domain.Vendor", "Vendor")
+                        .WithMany("VendorUsers")
+                        .HasForeignKey("VendorID")
+                        .OnDelete(DeleteBehavior.Cascade);
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>
