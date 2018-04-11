@@ -11,9 +11,10 @@ using System;
 namespace finalprojectcmpickle.Migrations
 {
     [DbContext(typeof(MySqlDbContext))]
-    partial class MySqlDbContextModelSnapshot : ModelSnapshot
+    [Migration("20180411011019_testManytoMany1")]
+    partial class testManytoMany1
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -266,7 +267,7 @@ namespace finalprojectcmpickle.Migrations
                         .ValueGeneratedOnAdd()
                         .HasAnnotation("MySql:ValueGenerationStrategy", MySqlValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<Guid>("UserID");
+                    b.Property<int>("UserID");
 
                     b.Property<int>("VendorID");
 

@@ -39,7 +39,7 @@ namespace final_project_cmpickle.Controllers
             if (ModelState.IsValid)
             {
                 model.UserName = User.Identity.Name;
-                var result = _vendorRepository.Create(model, this.User);
+                var result = _vendorRepository.Create(model, HttpContext.User);
                 if (result == Result.Success)
                 {
                     _logger.LogInformation("User created a new account with password.");
