@@ -13,8 +13,8 @@ namespace final_project_cmpickle.Models.Domain
         public Vendor Vendor { get; set; }
         public int VendorID { get; set; }
         // [ForeignKey("MyUsers")]
-        // [NotMapped]
-        public ClaimsPrincipal User { get; set; }
+        [NotMapped]
+        public IIdentityUser User { get; set; }
         public Guid UserID { get; set; }
     }
 }

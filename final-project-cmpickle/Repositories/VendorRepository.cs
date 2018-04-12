@@ -15,10 +15,12 @@ namespace final_project_cmpickle.Repositories
     {
         List<Vendor> vendors;
         private MySqlDbContext _mySqlDbContext;
+        private IUserManager<IIdentityUser> _identityUserManager;
 
-        public VendorRepository(MySqlDbContext mySqlDbContext)
+        public VendorRepository(MySqlDbContext mySqlDbContext, IUserManager<IIdentityUser> userManager)
         {
             _mySqlDbContext = mySqlDbContext;
+            _identityUserManager = userManager;
 
             vendors = new List<Vendor>();
         }
@@ -26,7 +28,8 @@ namespace final_project_cmpickle.Repositories
         public Result Create(RegisterVendorViewModel model, ClaimsPrincipal user)
         {
             Vendor vendor = new Vendor(model.VendorName, model.Address, model.TelephoneNo, model.Email, model.CreditcardNo);
-            VendorUser vendorUser = new VendorUser{Vendor = vendor, User = user};
+            var myUser = _identityUserManager.FindByNameAsync(user.Identity.Name).Result;
+            VendorUser vendorUser = new VendorUser{Vendor = vendor, User = myUser};
             vendors.Add(vendor);
 
             using(MySqlDbContext context = _mySqlDbContext)
