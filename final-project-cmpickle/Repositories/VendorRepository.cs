@@ -15,9 +15,9 @@ namespace final_project_cmpickle.Repositories
     {
         List<Vendor> vendors;
         private MySqlDbContext _mySqlDbContext;
-        private IUserManager<IIdentityUser> _identityUserManager;
+        private IUserManager<MyIdentityUser> _identityUserManager;
 
-        public VendorRepository(MySqlDbContext mySqlDbContext, IUserManager<IIdentityUser> userManager)
+        public VendorRepository(MySqlDbContext mySqlDbContext, IUserManager<MyIdentityUser> userManager)
         {
             _mySqlDbContext = mySqlDbContext;
             _identityUserManager = userManager;

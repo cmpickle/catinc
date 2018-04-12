@@ -1,3 +1,4 @@
+using System;
 using Microsoft.AspNetCore.Identity;
 
 namespace final_project_cmpickle.Models.MemberSystem
@@ -8,7 +9,7 @@ namespace final_project_cmpickle.Models.MemberSystem
 
         public MyIdentityUser(string name): base(name) {}
 
-        string IIdentityUser.Id { get => throw new System.NotImplementedException(); set => throw new System.NotImplementedException(); }
+        override public string Id { get => base.Id; set => base.Id = Id; }
 
         public IIdentityUser Create()
         {

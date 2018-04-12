@@ -15,6 +15,6 @@ namespace final_project_cmpickle.Models.Domain
         // [ForeignKey("MyUsers")]
         [NotMapped]
         public IIdentityUser User { get; set; }
-        public Guid UserID { get; set; }
+        public string UserID { get; set; }
     }
 }
