@@ -15,10 +15,10 @@ namespace final_project_cmpickle.Models.Database
       Database.EnsureCreated();
     }
 
-    protected override void OnConfiguring(DbContextOptionsBuilder options)
-    {
-      options.UseMySql("Server=67.205.183.11;Database=cmpickle;Uid=cmpickle;Pwd=Photog42;");
-    }
+    // protected override void OnConfiguring(DbContextOptionsBuilder options)
+    // {
+    //   options.UseMySql("Server=67.205.183.11;Database=cmpickle;Uid=cmpickle;Pwd=Photog42;");
+    // }
 
     public DbSet<Creditcard> Creditcard { get; set; }
 
@@ -45,5 +45,40 @@ namespace final_project_cmpickle.Models.Database
     public DbSet<Vendor> Vendor { get; set; }
 
     public DbSet<VendorUser> VendorUser { get; set; }
+
+    protected override void OnModelCreating(ModelBuilder builder)
+    {
+      builder.Entity<Vendor>(b => 
+      {
+        b.HasKey(v => v.VendorID);
+        b.Property(v => v.VendorID).ValueGeneratedOnAdd();
+        b.Property(v => v.VendorID).HasDefaultValue(System.ComponentModel.DataAnnotations.Schema.DatabaseGeneratedOption.Identity);
+      });
+
+      builder.Entity<MyUsers>(b =>
+      {
+        b.HasKey(u => u.UserID);
+      });
+
+      builder.Entity<Orders>(b =>
+      {
+        b.HasKey(o => o.OrderID);
+      });
+
+      builder.Entity<IdentityUserLogin<string>>(b =>
+      {
+        b.HasKey(i => i.UserId);
+      });
+
+      builder.Entity<IdentityUserRole<string>>(b =>
+      {
+        b.HasKey(i => i.UserId);
+      });
+
+      builder.Entity<IdentityUserToken<string>>(b =>
+      {
+        b.HasKey(i => i.UserId);
+      });
+    }
   }
 }

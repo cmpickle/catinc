@@ -30,7 +30,7 @@ namespace final_project_cmpickle
         {
             // Add Entity Framework services to the services container.
             services.AddEntityFrameworkMySql()
-                .AddDbContext<MySqlDbContext>();
+                .AddDbContext<MySqlDbContext>(options => options.UseMySql("Server=67.205.183.11;Database=cmpickle;Uid=cmpickle;Pwd=Photog42;"));
 
             // Add Identity services to the services container
             services.AddIdentity<MyIdentityUser, IdentityRole>()

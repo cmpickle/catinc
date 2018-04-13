@@ -7,7 +7,7 @@ namespace final_project_cmpickle.Models.Domain
 {
     public class VendorUser
     {
-        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
+        // [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int VendorUserID { get; set; }
         // [ForeignKey("Vendor")]
         public Vendor Vendor { get; set; }

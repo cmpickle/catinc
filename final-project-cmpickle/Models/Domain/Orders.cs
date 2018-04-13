@@ -6,13 +6,13 @@ namespace final_project_cmpickle.Models.Domain
 {
     public class Orders
     {
-        [Key]
-        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
+        // [Key]
+        // [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int OrderID { get; set; }
-        [ForeignKey("MyUsers")]
+        // [ForeignKey("MyUsers")]
         public int UserID { get; set; }
         public DateTime OrderTimestamp { get; set; }
-        [ForeignKey("Discount")]
+        // [ForeignKey("Discount")]
         public int DiscountID { get; set; }
     }
 }

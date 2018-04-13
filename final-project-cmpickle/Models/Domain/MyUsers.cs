@@ -5,10 +5,10 @@ namespace final_project_cmpickle.Models.Domain
 {
     public class MyUsers
     {
-        [Key]
-        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
+        // [Key]
+        // [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int UserID { get; set; }
-        [ForeignKey("IdentityUser")]
+        // [ForeignKey("IdentityUser")]
         public int IdentityUserID { get; set; }
         // public string Username { get; set; }
         // public string UserHash { get; set; }

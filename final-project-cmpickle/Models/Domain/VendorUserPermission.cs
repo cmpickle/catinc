@@ -4,11 +4,11 @@ namespace final_project_cmpickle.Models.Domain
 {
     public class VendorUserPermission
     {
-        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
+        // [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int VendorUserPermissionID { get; set; }
-        [ForeignKey("Vendor")]
+        // [ForeignKey("Vendor")]
         public int VendorUserID { get; set; }
-        [ForeignKey("VendorUser")]
+        // [ForeignKey("VendorUser")]
         public int PermissionLevel { get; set; }
     }
 }

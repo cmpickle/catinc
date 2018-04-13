@@ -23,8 +23,7 @@ namespace finalprojectcmpickle.Migrations
             modelBuilder.Entity("final_project_cmpickle.Models.Domain.Creditcard", b =>
                 {
                     b.Property<int>("CreditcardID")
-                        .ValueGeneratedOnAdd()
-                        .HasAnnotation("MySql:ValueGenerationStrategy", MySqlValueGenerationStrategy.IdentityColumn);
+                        .ValueGeneratedOnAdd();
 
                     b.Property<int>("CCV");
 
@@ -40,8 +39,7 @@ namespace finalprojectcmpickle.Migrations
             modelBuilder.Entity("final_project_cmpickle.Models.Domain.Discount", b =>
                 {
                     b.Property<int>("DiscountID")
-                        .ValueGeneratedOnAdd()
-                        .HasAnnotation("MySql:ValueGenerationStrategy", MySqlValueGenerationStrategy.IdentityColumn);
+                        .ValueGeneratedOnAdd();
 
                     b.Property<DateTime>("DiscountEnd");
 
@@ -57,8 +55,7 @@ namespace finalprojectcmpickle.Migrations
             modelBuilder.Entity("final_project_cmpickle.Models.Domain.Log", b =>
                 {
                     b.Property<int>("LogID")
-                        .ValueGeneratedOnAdd()
-                        .HasAnnotation("MySql:ValueGenerationStrategy", MySqlValueGenerationStrategy.IdentityColumn);
+                        .ValueGeneratedOnAdd();
 
                     b.Property<int>("LogLevel");
 
@@ -76,8 +73,7 @@ namespace finalprojectcmpickle.Migrations
             modelBuilder.Entity("final_project_cmpickle.Models.Domain.Loyalty", b =>
                 {
                     b.Property<int>("LoyaltyID")
-                        .ValueGeneratedOnAdd()
-                        .HasAnnotation("MySql:ValueGenerationStrategy", MySqlValueGenerationStrategy.IdentityColumn);
+                        .ValueGeneratedOnAdd();
 
                     b.Property<int>("LoyaltyPoints");
 
@@ -91,8 +87,7 @@ namespace finalprojectcmpickle.Migrations
             modelBuilder.Entity("final_project_cmpickle.Models.Domain.MyUsers", b =>
                 {
                     b.Property<int>("UserID")
-                        .ValueGeneratedOnAdd()
-                        .HasAnnotation("MySql:ValueGenerationStrategy", MySqlValueGenerationStrategy.IdentityColumn);
+                        .ValueGeneratedOnAdd();
 
                     b.Property<int>("IdentityUserID");
 
@@ -106,8 +101,7 @@ namespace finalprojectcmpickle.Migrations
             modelBuilder.Entity("final_project_cmpickle.Models.Domain.Orders", b =>
                 {
                     b.Property<int>("OrderID")
-                        .ValueGeneratedOnAdd()
-                        .HasAnnotation("MySql:ValueGenerationStrategy", MySqlValueGenerationStrategy.IdentityColumn);
+                        .ValueGeneratedOnAdd();
 
                     b.Property<int>("DiscountID");
 
@@ -123,8 +117,7 @@ namespace finalprojectcmpickle.Migrations
             modelBuilder.Entity("final_project_cmpickle.Models.Domain.Patron", b =>
                 {
                     b.Property<int>("PatronID")
-                        .ValueGeneratedOnAdd()
-                        .HasAnnotation("MySql:ValueGenerationStrategy", MySqlValueGenerationStrategy.IdentityColumn);
+                        .ValueGeneratedOnAdd();
 
                     b.Property<bool>("IsPatronDeleted");
 
@@ -150,8 +143,7 @@ namespace finalprojectcmpickle.Migrations
             modelBuilder.Entity("final_project_cmpickle.Models.Domain.PatronCreditcard", b =>
                 {
                     b.Property<int>("PatronCreditcardID")
-                        .ValueGeneratedOnAdd()
-                        .HasAnnotation("MySql:ValueGenerationStrategy", MySqlValueGenerationStrategy.IdentityColumn);
+                        .ValueGeneratedOnAdd();
 
                     b.Property<int>("CreditcardID");
 
@@ -165,8 +157,7 @@ namespace finalprojectcmpickle.Migrations
             modelBuilder.Entity("final_project_cmpickle.Models.Domain.Permission", b =>
                 {
                     b.Property<int>("PermissionID")
-                        .ValueGeneratedOnAdd()
-                        .HasAnnotation("MySql:ValueGenerationStrategy", MySqlValueGenerationStrategy.IdentityColumn);
+                        .ValueGeneratedOnAdd();
 
                     b.Property<int>("PermissionLevel");
 
@@ -180,8 +171,7 @@ namespace finalprojectcmpickle.Migrations
             modelBuilder.Entity("final_project_cmpickle.Models.Domain.Product", b =>
                 {
                     b.Property<int>("ProductID")
-                        .ValueGeneratedOnAdd()
-                        .HasAnnotation("MySql:ValueGenerationStrategy", MySqlValueGenerationStrategy.IdentityColumn);
+                        .ValueGeneratedOnAdd();
 
                     b.Property<bool>("IsProductedDeleted");
 
@@ -209,14 +199,9 @@ namespace finalprojectcmpickle.Migrations
             modelBuilder.Entity("final_project_cmpickle.Models.Domain.ProductOrder", b =>
                 {
                     b.Property<int>("ProductOrderID")
-                        .ValueGeneratedOnAdd()
-                        .HasAnnotation("MySql:ValueGenerationStrategy", MySqlValueGenerationStrategy.IdentityColumn);
+                        .ValueGeneratedOnAdd();
 
                     b.Property<int>("OrderID");
-
-                    b.Property<int?>("Orders");
-
-                    b.Property<int?>("Product");
 
                     b.Property<int>("ProductID");
 
@@ -224,9 +209,9 @@ namespace finalprojectcmpickle.Migrations
 
                     b.HasKey("ProductOrderID");
 
-                    b.HasIndex("Orders");
+                    b.HasIndex("OrderID");
 
-                    b.HasIndex("Product");
+                    b.HasIndex("ProductID");
 
                     b.ToTable("ProductOrder");
                 });
@@ -235,7 +220,7 @@ namespace finalprojectcmpickle.Migrations
                 {
                     b.Property<int>("VendorID")
                         .ValueGeneratedOnAdd()
-                        .HasAnnotation("MySql:ValueGenerationStrategy", MySqlValueGenerationStrategy.IdentityColumn);
+                        .HasDefaultValue(1);
 
                     b.Property<bool>("IsVendorActive");
 
@@ -263,8 +248,7 @@ namespace finalprojectcmpickle.Migrations
             modelBuilder.Entity("final_project_cmpickle.Models.Domain.VendorUser", b =>
                 {
                     b.Property<int>("VendorUserID")
-                        .ValueGeneratedOnAdd()
-                        .HasAnnotation("MySql:ValueGenerationStrategy", MySqlValueGenerationStrategy.IdentityColumn);
+                        .ValueGeneratedOnAdd();
 
                     b.Property<string>("UserID");
 
@@ -285,11 +269,9 @@ namespace finalprojectcmpickle.Migrations
 
                     b.Property<int>("AccessFailedCount");
 
-                    b.Property<string>("ConcurrencyStamp")
-                        .IsConcurrencyToken();
+                    b.Property<string>("ConcurrencyStamp");
 
-                    b.Property<string>("Email")
-                        .HasMaxLength(256);
+                    b.Property<string>("Email");
 
                     b.Property<bool>("EmailConfirmed");
 
@@ -297,11 +279,9 @@ namespace finalprojectcmpickle.Migrations
 
                     b.Property<DateTimeOffset?>("LockoutEnd");
 
-                    b.Property<string>("NormalizedEmail")
-                        .HasMaxLength(256);
+                    b.Property<string>("NormalizedEmail");
 
-                    b.Property<string>("NormalizedUserName")
-                        .HasMaxLength(256);
+                    b.Property<string>("NormalizedUserName");
 
                     b.Property<string>("PasswordHash");
 
@@ -313,19 +293,11 @@ namespace finalprojectcmpickle.Migrations
 
                     b.Property<bool>("TwoFactorEnabled");
 
-                    b.Property<string>("UserName")
-                        .HasMaxLength(256);
+                    b.Property<string>("UserName");
 
                     b.HasKey("Id");
 
-                    b.HasIndex("NormalizedEmail")
-                        .HasName("EmailIndex");
-
-                    b.HasIndex("NormalizedUserName")
-                        .IsUnique()
-                        .HasName("UserNameIndex");
-
-                    b.ToTable("AspNetUsers");
+                    b.ToTable("Users");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRole", b =>
@@ -333,22 +305,15 @@ namespace finalprojectcmpickle.Migrations
                     b.Property<string>("Id")
                         .ValueGeneratedOnAdd();
 
-                    b.Property<string>("ConcurrencyStamp")
-                        .IsConcurrencyToken();
+                    b.Property<string>("ConcurrencyStamp");
 
-                    b.Property<string>("Name")
-                        .HasMaxLength(256);
+                    b.Property<string>("Name");
 
-                    b.Property<string>("NormalizedName")
-                        .HasMaxLength(256);
+                    b.Property<string>("NormalizedName");
 
                     b.HasKey("Id");
 
-                    b.HasIndex("NormalizedName")
-                        .IsUnique()
-                        .HasName("RoleNameIndex");
-
-                    b.ToTable("AspNetRoles");
+                    b.ToTable("Roles");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>
@@ -360,14 +325,11 @@ namespace finalprojectcmpickle.Migrations
 
                     b.Property<string>("ClaimValue");
 
-                    b.Property<string>("RoleId")
-                        .IsRequired();
+                    b.Property<string>("RoleId");
 
                     b.HasKey("Id");
 
-                    b.HasIndex("RoleId");
-
-                    b.ToTable("AspNetRoleClaims");
+                    b.ToTable("RoleClaims");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserClaim<string>", b =>
@@ -379,50 +341,45 @@ namespace finalprojectcmpickle.Migrations
 
                     b.Property<string>("ClaimValue");
 
-                    b.Property<string>("UserId")
-                        .IsRequired();
+                    b.Property<string>("UserId");
 
                     b.HasKey("Id");
 
-                    b.HasIndex("UserId");
-
-                    b.ToTable("AspNetUserClaims");
+                    b.ToTable("UserClaims");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserLogin<string>", b =>
                 {
-                    b.Property<string>("LoginProvider");
+                    b.Property<string>("UserId")
+                        .ValueGeneratedOnAdd();
 
-                    b.Property<string>("ProviderKey");
+                    b.Property<string>("LoginProvider");
 
                     b.Property<string>("ProviderDisplayName");
 
-                    b.Property<string>("UserId")
-                        .IsRequired();
+                    b.Property<string>("ProviderKey");
 
-                    b.HasKey("LoginProvider", "ProviderKey");
+                    b.HasKey("UserId");
 
-                    b.HasIndex("UserId");
-
-                    b.ToTable("AspNetUserLogins");
+                    b.ToTable("UserLogins");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserRole<string>", b =>
                 {
-                    b.Property<string>("UserId");
+                    b.Property<string>("UserId")
+                        .ValueGeneratedOnAdd();
 
                     b.Property<string>("RoleId");
 
-                    b.HasKey("UserId", "RoleId");
+                    b.HasKey("UserId");
 
-                    b.HasIndex("RoleId");
-
-                    b.ToTable("AspNetUserRoles");
+                    b.ToTable("UserRoles");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserToken<string>", b =>
                 {
-                    b.Property<string>("UserId");
+                    b.Property<string>("UserId")
+                        .ValueGeneratedOnAdd();
 
                     b.Property<string>("LoginProvider");
 
@@ -430,20 +387,22 @@ namespace finalprojectcmpickle.Migrations
 
                     b.Property<string>("Value");
 
-                    b.HasKey("UserId", "LoginProvider", "Name");
+                    b.HasKey("UserId");
 
-                    b.ToTable("AspNetUserTokens");
+                    b.ToTable("UserTokens");
                 });
 
             modelBuilder.Entity("final_project_cmpickle.Models.Domain.ProductOrder", b =>
                 {
                     b.HasOne("final_project_cmpickle.Models.Domain.Orders", "order")
                         .WithMany()
-                        .HasForeignKey("Orders");
+                        .HasForeignKey("OrderID")
+                        .OnDelete(DeleteBehavior.Cascade);
 
                     b.HasOne("final_project_cmpickle.Models.Domain.Product", "product")
                         .WithMany()
-                        .HasForeignKey("Product");
+                        .HasForeignKey("ProductID")
+                        .OnDelete(DeleteBehavior.Cascade);
                 });
 
             modelBuilder.Entity("final_project_cmpickle.Models.Domain.VendorUser", b =>
@@ -455,51 +414,6 @@ namespace finalprojectcmpickle.Migrations
                     b.HasOne("final_project_cmpickle.Models.Domain.Vendor", "Vendor")
                         .WithMany("VendorUsers")
                         .HasForeignKey("VendorID")
-                        .OnDelete(DeleteBehavior.Cascade);
-                });
-
-            modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>
-                {
-                    b.HasOne("Microsoft.AspNetCore.Identity.IdentityRole")
-                        .WithMany()
-                        .HasForeignKey("RoleId")
-                        .OnDelete(DeleteBehavior.Cascade);
-                });
-
-            modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserClaim<string>", b =>
-                {
-                    b.HasOne("final_project_cmpickle.Models.MemberSystem.MyIdentityUser")
-                        .WithMany()
-                        .HasForeignKey("UserId")
-                        .OnDelete(DeleteBehavior.Cascade);
-                });
-
-            modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserLogin<string>", b =>
-                {
-                    b.HasOne("final_project_cmpickle.Models.MemberSystem.MyIdentityUser")
-                        .WithMany()
-                        .HasForeignKey("UserId")
-                        .OnDelete(DeleteBehavior.Cascade);
-                });
-
-            modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserRole<string>", b =>
-                {
-                    b.HasOne("Microsoft.AspNetCore.Identity.IdentityRole")
-                        .WithMany()
-                        .HasForeignKey("RoleId")
-                        .OnDelete(DeleteBehavior.Cascade);
-
-                    b.HasOne("final_project_cmpickle.Models.MemberSystem.MyIdentityUser")
-                        .WithMany()
-                        .HasForeignKey("UserId")
-                        .OnDelete(DeleteBehavior.Cascade);
-                });
-
-            modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserToken<string>", b =>
-                {
-                    b.HasOne("final_project_cmpickle.Models.MemberSystem.MyIdentityUser")
-                        .WithMany()
-                        .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade);
                 });
 #pragma warning restore 612, 618

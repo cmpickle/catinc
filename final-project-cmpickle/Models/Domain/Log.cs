@@ -5,9 +5,9 @@ namespace final_project_cmpickle.Models.Domain
 {
     public class Log
     {
-        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
+        // [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int LogID { get; set; }
-        [ForeignKey("MyUsers")]
+        // [ForeignKey("MyUsers")]
         public int UserID { get; set; }
         public DateTime LogTimestamp { get; set; }
         public int LogLevel { get; set; }

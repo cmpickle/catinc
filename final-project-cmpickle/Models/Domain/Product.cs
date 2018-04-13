@@ -5,7 +5,7 @@ namespace final_project_cmpickle.Models.Domain
 {
     public class Product
     {
-        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
+        // [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int ProductID { get; set; }
         public string ProductSKU { get; set; }
         public string ProductName { get; set; }

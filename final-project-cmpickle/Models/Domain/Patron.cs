@@ -4,7 +4,7 @@ namespace final_project_cmpickle.Models.Domain
 {
     public class Patron
     {
-        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
+        // [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int PatronID { get; set; }
         public string PatronFirst { get; set; }
         public string PatronLast { get; set; }
@@ -13,7 +13,7 @@ namespace final_project_cmpickle.Models.Domain
         public string PatronTelephoneNo { get; set; }
         public bool IsPatronSuspended { get; set; }
         public bool IsPatronDeleted { get; set; }
-        [ForeignKey("MyUsers")]
+        // [ForeignKey("MyUsers")]
         public int UserID { get; set; }
     }
 }
