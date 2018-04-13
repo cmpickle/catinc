@@ -1,19 +1,28 @@
 using System;
+using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 using Microsoft.AspNetCore.Identity;
 
 namespace final_project_cmpickle.Models.MemberSystem
 {
     public class MyIdentityUser : IdentityUser, IIdentityUser
     {
-        public MyIdentityUser(): base() {}
+        public MyIdentityUser(): base() 
+        {
+            var id = Guid.NewGuid().ToString();
+            Id = id;
+        }
 
         public MyIdentityUser(string name): base(name) {}
 
-        override public string Id { get => base.Id; set => base.Id = Id; }
+        [Key]
+        [DatabaseGenerated(DatabaseGeneratedOption.None)]
+        override public string Id { get; set; }
 
         public IIdentityUser Create()
         {
-            throw new System.NotImplementedException();
+            this.Id = new Guid().ToString();
+            return this;
         }
     }
 }

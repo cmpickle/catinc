@@ -11,8 +11,8 @@ using System;
 namespace finalprojectcmpickle.Migrations
 {
     [DbContext(typeof(MySqlDbContext))]
-    [Migration("20180411011019_testManytoMany1")]
-    partial class testManytoMany1
+    [Migration("20180413024032_test3")]
+    partial class test3
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -235,8 +235,7 @@ namespace finalprojectcmpickle.Migrations
             modelBuilder.Entity("final_project_cmpickle.Models.Domain.Vendor", b =>
                 {
                     b.Property<int>("VendorID")
-                        .ValueGeneratedOnAdd()
-                        .HasAnnotation("MySql:ValueGenerationStrategy", MySqlValueGenerationStrategy.IdentityColumn);
+                        .ValueGeneratedOnAdd();
 
                     b.Property<bool>("IsVendorActive");
 
@@ -267,11 +266,13 @@ namespace finalprojectcmpickle.Migrations
                         .ValueGeneratedOnAdd()
                         .HasAnnotation("MySql:ValueGenerationStrategy", MySqlValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<int>("UserID");
+                    b.Property<string>("UserID");
 
                     b.Property<int>("VendorID");
 
                     b.HasKey("VendorUserID");
+
+                    b.HasIndex("UserID");
 
                     b.HasIndex("VendorID");
 
@@ -280,8 +281,7 @@ namespace finalprojectcmpickle.Migrations
 
             modelBuilder.Entity("final_project_cmpickle.Models.MemberSystem.MyIdentityUser", b =>
                 {
-                    b.Property<string>("Id")
-                        .ValueGeneratedOnAdd();
+                    b.Property<string>("Id");
 
                     b.Property<int>("AccessFailedCount");
 
@@ -448,6 +448,10 @@ namespace finalprojectcmpickle.Migrations
 
             modelBuilder.Entity("final_project_cmpickle.Models.Domain.VendorUser", b =>
                 {
+                    b.HasOne("final_project_cmpickle.Models.MemberSystem.MyIdentityUser", "User")
+                        .WithMany()
+                        .HasForeignKey("UserID");
+
                     b.HasOne("final_project_cmpickle.Models.Domain.Vendor", "Vendor")
                         .WithMany("VendorUsers")
                         .HasForeignKey("VendorID")

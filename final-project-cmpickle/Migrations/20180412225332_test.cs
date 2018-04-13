@@ -5,7 +5,7 @@ using System.Collections.Generic;
 
 namespace finalprojectcmpickle.Migrations
 {
-    public partial class testManytoMany : Migration
+    public partial class test : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -368,12 +368,18 @@ namespace finalprojectcmpickle.Migrations
                 {
                     VendorUserID = table.Column<int>(nullable: false)
                         .Annotation("MySql:ValueGenerationStrategy", MySqlValueGenerationStrategy.IdentityColumn),
-                    UserID = table.Column<int>(nullable: false),
+                    UserID = table.Column<string>(nullable: true),
                     VendorID = table.Column<int>(nullable: false)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_VendorUser", x => x.VendorUserID);
+                    table.ForeignKey(
+                        name: "FK_VendorUser_AspNetUsers_UserID",
+                        column: x => x.UserID,
+                        principalTable: "AspNetUsers",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Restrict);
                     table.ForeignKey(
                         name: "FK_VendorUser_Vendor_VendorID",
                         column: x => x.VendorID,
@@ -428,6 +434,11 @@ namespace finalprojectcmpickle.Migrations
                 name: "IX_ProductOrder_Product",
                 table: "ProductOrder",
                 column: "Product");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_VendorUser_UserID",
+                table: "VendorUser",
+                column: "UserID");
 
             migrationBuilder.CreateIndex(
                 name: "IX_VendorUser_VendorID",
@@ -486,13 +497,13 @@ namespace finalprojectcmpickle.Migrations
                 name: "AspNetRoles");
 
             migrationBuilder.DropTable(
-                name: "AspNetUsers");
-
-            migrationBuilder.DropTable(
                 name: "Orders");
 
             migrationBuilder.DropTable(
                 name: "Product");
+
+            migrationBuilder.DropTable(
+                name: "AspNetUsers");
 
             migrationBuilder.DropTable(
                 name: "Vendor");

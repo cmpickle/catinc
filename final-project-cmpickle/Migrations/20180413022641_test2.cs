@@ -4,7 +4,7 @@ using System.Collections.Generic;
 
 namespace finalprojectcmpickle.Migrations
 {
-    public partial class testManytoMany1 : Migration
+    public partial class test2 : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
