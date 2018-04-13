@@ -11,8 +11,8 @@ using System;
 namespace finalprojectcmpickle.Migrations
 {
     [DbContext(typeof(MySqlDbContext))]
-    [Migration("20180413130925_test1")]
-    partial class test1
+    [Migration("20180413131939_test")]
+    partial class test
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -221,7 +221,7 @@ namespace finalprojectcmpickle.Migrations
                 {
                     b.Property<int>("VendorID")
                         .ValueGeneratedOnAdd()
-                        .HasDefaultValue(1);
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
                     b.Property<bool>("IsVendorActive");
 

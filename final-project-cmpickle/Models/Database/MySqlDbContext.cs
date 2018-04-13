@@ -52,7 +52,9 @@ namespace final_project_cmpickle.Models.Database
       {
         b.HasKey(v => v.VendorID);
         b.Property(v => v.VendorID).ValueGeneratedOnAdd();
-        b.Property(v => v.VendorID).HasDefaultValue(System.ComponentModel.DataAnnotations.Schema.DatabaseGeneratedOption.Identity);
+        b.Property(v => v.VendorID).UseSqlServerIdentityColumn();
+        b.Property(v => v.VendorID).IsRequired();
+        // b.Property(v => v.VendorID).HasValueGenerator<System.ComponentModel.DataAnnotations.Schema.DatabaseGeneratedOption.Identity>();
       });
 
       builder.Entity<MyUsers>(b =>
