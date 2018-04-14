@@ -23,7 +23,7 @@ namespace final_project_cmpickle.Controllers
         }
 
         [HttpGet]
-        [AllowAnonymous]
+        // [AllowAnonymous]
         public IActionResult RegisterVendor(string returnURL = null)
         {
             ViewData["ReturnURL"] = returnURL;

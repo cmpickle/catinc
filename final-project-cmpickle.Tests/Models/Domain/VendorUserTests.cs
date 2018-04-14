@@ -33,9 +33,9 @@ namespace Tests.Models.Domain
         [Test]
         public void SetUserId()
         {
-            vendorUser.UserID = 34;
+            vendorUser.UserID = "34";
 
-            Assert.That(vendorUser.UserID == 34);
+            Assert.That(vendorUser.UserID.Equals("34"));
         }
     }
 }
