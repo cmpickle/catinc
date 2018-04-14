@@ -14,6 +14,7 @@ namespace final_project_cmpickle.Repositories
     public class VendorRepository : IVendorRepository<Vendor>
     {
         List<Vendor> vendors;
+        List<VendorUser> vendorUsers;
         private MySqlDbContext _mySqlDbContext;
         private IUserManager<MyIdentityUser> _identityUserManager;
 
@@ -22,7 +23,11 @@ namespace final_project_cmpickle.Repositories
             _mySqlDbContext = mySqlDbContext;
             _identityUserManager = userManager;
 
-            vendors = new List<Vendor>();
+            using(MySqlDbContext context = _mySqlDbContext)
+            {
+                vendors = context.Vendor.ToList();
+                vendorUsers = context.VendorUser.ToList();
+            }
         }
 
         public Result Create(RegisterVendorViewModel model, ClaimsPrincipal user)
@@ -31,6 +36,7 @@ namespace final_project_cmpickle.Repositories
             var myUser = _identityUserManager.FindByNameAsync(user.Identity.Name).Result;
             VendorUser vendorUser = new VendorUser{Vendor = vendor, User = myUser};
             vendors.Add(vendor);
+            vendorUsers.Add(vendorUser);
 
             using(MySqlDbContext context = _mySqlDbContext)
             {
@@ -45,6 +51,12 @@ namespace final_project_cmpickle.Repositories
         public Task<Vendor> FindByNameAsync(string name)
         {
             return Task.Run(() => vendors.FirstOrDefault(v => v.VendorName == name));
+        }
+
+        public Task<Vendor> FindByUserID(string userID)
+        {
+            var vendorUser = vendorUsers.FirstOrDefault(vu => vu.UserID == userID);
+            return Task.Run(() => vendors.FirstOrDefault(v => v.VendorID == vendorUser.VendorID));
         }
 
         public IQueryable Get()
