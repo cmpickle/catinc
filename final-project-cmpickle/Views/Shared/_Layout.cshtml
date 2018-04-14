@@ -1,4 +1,7 @@
-﻿<!DOCTYPE html>
+﻿@using final_project_cmpickle.Models.ViewModels.HomeViewModels
+@model HomeViewModel
+
+<!DOCTYPE html>
 <html>
 <head>
     <meta charset="utf-8" />
@@ -26,7 +29,7 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <a asp-area="" asp-controller="Home" asp-action="Index" class="navbar-brand">Cat Inc</a>
+                <a asp-area="" asp-controller="Home" asp-action="Index" class="navbar-brand">@Model.Vendor</a>
             </div>
             <div class="navbar-collapse collapse">
                 <ul class="nav navbar-nav">
