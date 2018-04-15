@@ -10,7 +10,7 @@ namespace final_project_cmpickle.Controllers
     {
         private IVendorRepository<Vendor> _vendorRepository;
 
-        public string Vendor 
+        public string VendorName 
         {
             get
             {
@@ -38,12 +38,12 @@ namespace final_project_cmpickle.Controllers
                 }
             }
         }
-
+        
         public BaseController(IVendorRepository<Vendor> vendorRepository)
         {
             _vendorRepository = vendorRepository;
-            ViewData.Add("Vendor", Vendor);
-            ViewBag.Scrap = Vendor;
+            ViewData.Add("VendorName", VendorName);
+            ViewBag.Scrap = VendorName;
         }
     }
 }

@@ -5,19 +5,18 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using final_project_cmpickle.Models;
-using final_project_cmpickle.Models.ViewModels.HomeViewModels;
 using final_project_cmpickle.Repositories;
 using final_project_cmpickle.Models.Domain;
 using Microsoft.AspNetCore.Identity;
 using System.Security.Claims;
+using final_project_cmpickle.Models.ViewModels.BaseViewModels;
 
 namespace final_project_cmpickle.Controllers
 {
-    public class HomeController : BaseController
+    public class HomeController : Controller
     {
-        public HomeController(IVendorRepository<Vendor> vendorRepository) : base(vendorRepository)
+        public HomeController(IVendorRepository<Vendor> vendorRepository)
         {
-            ViewBag.Scrap = "Cat Inc";
         }
 
         public IActionResult Index()
