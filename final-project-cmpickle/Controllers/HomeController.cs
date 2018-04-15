@@ -13,41 +13,16 @@ using System.Security.Claims;
 
 namespace final_project_cmpickle.Controllers
 {
-    public class HomeController : Controller
+    public class HomeController : BaseController
     {
-        private IVendorRepository<Vendor> _vendorRepository;
-
-        public HomeController(IVendorRepository<Vendor> vendorRepository)
+        public HomeController(IVendorRepository<Vendor> vendorRepository) : base(vendorRepository)
         {
-            _vendorRepository = vendorRepository;
+            ViewBag.Scrap = "Cat Inc";
         }
 
         public IActionResult Index()
         {
-            HomeViewModel homeViewModel;
-
-            string userIdValue = "";
-            var claimsIdentity = User.Identity as ClaimsIdentity;
-            if (claimsIdentity != null)
-            {
-                // the principal identity is a claims identity.
-                // now we need to find the NameIdentifier claim
-                var userIdClaim = claimsIdentity.Claims
-                    .FirstOrDefault(x => x.Type == ClaimTypes.NameIdentifier);
-
-                if (userIdClaim != null)
-                {
-                    userIdValue = userIdClaim.Value;
-                }
-            }
-            if (!string.IsNullOrEmpty(userIdValue))
-            {
-                homeViewModel = new HomeViewModel(_vendorRepository.FindByUserID(userIdValue).Result.VendorName);
-            }
-            else{
-                homeViewModel = new HomeViewModel();
-            }
-            return View(homeViewModel);
+            return View();
         }
 
         public IActionResult About()
