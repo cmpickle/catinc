@@ -1,0 +1,41 @@
+@model CreateProductViewModel;
+@{
+    ViewData["Title"] = "Create Product";
+}
+
+<h2>@ViewData["Title"]</h2>
+
+<div class="row">
+    <div class="col-md-4">
+        <form asp-route-returnUrl="@ViewData["ReturnUrl"]" method="post">
+            <h4>Create a new Product.</h4>
+            <hr />
+            <div asp-validation-summary="All" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="ProductName"></label>
+                <input asp-for="ProductName" class="form-control" />
+            </div>
+            <div class="form-group">
+                <label asp-for="ProductSKU"></label>
+                <input asp-for="ProductSKU" class="form-control" />
+            </div>
+            <div class="form-group">
+                <label asp-for="ProductPrice"></label>
+                <input asp-for="ProductPrice" class="form-control" />
+            </div>
+            <div class="form-group">
+                <label asp-for="ProductInventory"></label>
+                <input asp-for="ProductInventory" class="form-control" />
+            </div>
+            <div class="form-group">
+                <label asp-for="ProductImageURL"></label>
+                <input asp-for="ProductImageURL" class="form-control" />
+            </div>
+            <button type="submit" class="btn btn-default">Create</button>
+        </form>
+    </div>
+</div>
+
+@section Scripts {
+    @await Html.PartialAsync("_ValidationScriptsPartial")
+}
