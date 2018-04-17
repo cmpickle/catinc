@@ -16,10 +16,10 @@ namespace final_project_cmpickle.Repositories
         {
             _mySqlDbContext = mySqlDbContext;
 
-            using(MySqlDbContext context = _mySqlDbContext)
-            {
-                products = context.Product.ToList();
-            }
+            // using(MySqlDbContext context = _mySqlDbContext)
+            // {
+                products = _mySqlDbContext.Product.ToList();
+            // }
         }
 
         public Result Create(CreateProductViewModel createProductViewModel, Vendor vendor)
@@ -34,11 +34,11 @@ namespace final_project_cmpickle.Repositories
             product.ProductLongDescription = createProductViewModel.ProductLongDescription;
             product.VendorID = vendor.VendorID;
             
-            using(MySqlDbContext context = _mySqlDbContext)
-            {
-                context.Product.Add(product);
-                context.SaveChanges();
-            }
+            // using(MySqlDbContext context = _mySqlDbContext)
+            // {
+                _mySqlDbContext.Product.Add(product);
+                _mySqlDbContext.SaveChanges();
+            // }
 
             return Result.Success;
         }

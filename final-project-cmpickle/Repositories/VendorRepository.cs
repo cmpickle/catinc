@@ -24,11 +24,11 @@ namespace final_project_cmpickle.Repositories
             _mySqlDbContext = mySqlDbContext;
             _identityUserManager = userManager;
 
-            using(MySqlDbContext context = _mySqlDbContext)
-            {
-                vendors = context.Vendor.ToList();
-                vendorUsers = context.VendorUser.ToList();
-            }
+            // using(MySqlDbContext context = _mySqlDbContext)
+            // {
+                vendors = _mySqlDbContext.Vendor.ToList();
+                vendorUsers = _mySqlDbContext.VendorUser.ToList();
+            // }
         }
 
         public Result Create(RegisterVendorViewModel model, ClaimsPrincipal user)
@@ -39,12 +39,12 @@ namespace final_project_cmpickle.Repositories
             vendors.Add(vendor);
             vendorUsers.Add(vendorUser);
 
-            using(MySqlDbContext context = _mySqlDbContext)
-            {
-                context.Vendor.Add(vendor);
-                context.VendorUser.Add(vendorUser);
-                context.SaveChanges();
-            }
+            // using(MySqlDbContext context = _mySqlDbContext)
+            // {
+                _mySqlDbContext.Vendor.Add(vendor);
+                _mySqlDbContext.VendorUser.Add(vendorUser);
+                _mySqlDbContext.SaveChanges();
+            // }
 
             return Result.Success;
         }
