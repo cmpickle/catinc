@@ -15,6 +15,8 @@ namespace final_project_cmpickle.Repositories
         Task<Vendor> FindByUserID(string userID);
 
         Result Create(RegisterVendorViewModel registerVendorViewModel, ClaimsPrincipal user);
+
+        int GetCount();
     }
 
 }

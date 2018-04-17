@@ -16,5 +16,7 @@ namespace final_project_cmpickle.Models.Domain
         public string ProductImageURL { get; set; }
         public DateTime ProductExpirationDate { get; set; }
         public bool IsProductedDeleted { get; set; }
+        public Vendor Vendor { get; set; }
+        public int VendorID { get; set; }
     }
 }

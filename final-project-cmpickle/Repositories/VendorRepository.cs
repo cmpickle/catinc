@@ -13,6 +13,7 @@ namespace final_project_cmpickle.Repositories
 {
     public class VendorRepository : IVendorRepository<Vendor>
     {
+        int Count { get {return vendors.Count;} }
         List<Vendor> vendors;
         List<VendorUser> vendorUsers;
         private MySqlDbContext _mySqlDbContext;
@@ -62,6 +63,11 @@ namespace final_project_cmpickle.Repositories
         public IQueryable Get()
         {
             return vendors.AsQueryable();
+        }
+
+        public int GetCount()
+        {
+            return Count;
         }
     }
 }

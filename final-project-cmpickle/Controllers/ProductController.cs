@@ -1,3 +1,5 @@
+using System.Linq;
+using System.Security.Claims;
 using System.Threading.Tasks;
 using final_project_cmpickle.Models.Domain;
 using final_project_cmpickle.Models.MemberSystem;
@@ -15,10 +17,12 @@ namespace final_project_cmpickle.Controllers
     public class ProductController : Controller
     {
         private ILogger _logger;
+        private IProductRepository<Product> _productRepository;
         private IVendorRepository<Vendor> _vendorRepository;
 
-        public ProductController(IVendorRepository<Vendor> vendorRepository, ILogger<VendorController> logger)
+        public ProductController(IProductRepository<Product> productRepository, IVendorRepository<Vendor> vendorRepository, ILogger<VendorController> logger)
         {
+            _productRepository = productRepository;
             _vendorRepository = vendorRepository;
             _logger = logger;
         }
@@ -39,21 +43,35 @@ namespace final_project_cmpickle.Controllers
             ViewData["ReturnUrl"] = returnUrl;
             if (ModelState.IsValid)
             {
-                // model.UserName = User.Identity.Name;
-                // var result = _vendorRepository.Create(model, HttpContext.User);
-                // if (result == Result.Success)
-                // {
-                //     _logger.LogInformation("User created a new account with password.");
-                //     var user = await _vendorRepository.FindByNameAsync(model.VendorName);
+                string userIdValue = "";
+                if (User != null)
+                {
+                    var claimsIdentity = User.Identity as ClaimsIdentity;
+                    if (claimsIdentity != null)
+                    {
+                        var userIdClaim = claimsIdentity.Claims
+                            .FirstOrDefault(x => x.Type == ClaimTypes.NameIdentifier);
 
-                //     _logger.LogInformation("User created a new Vendor.");
-                //     return RedirectToLocal("/home/index");
-                // }
+                        if (userIdClaim != null)
+                        {
+                            userIdValue = userIdClaim.Value;
+                        }
+                    }
+                }
+                // model.UserName = User.Identity.Name;
+                var result = _vendorRepository.FindByUserID(userIdValue).Result;
+                if (result != null)
+                {
+                    _productRepository.Create(model, result);
+                    _logger.LogInformation("Product created.");
+
+                    return Task.Run(() => RedirectToLocal("/home/index"));
+                }
                 // AddErrors(result);
             }
 
             // If we got this far, something failed, redisplay form
-            // return View(model);
+            // return Task.Run(() => View(model));
             return null;
         }
 

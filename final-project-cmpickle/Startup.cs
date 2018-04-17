@@ -45,6 +45,7 @@ namespace final_project_cmpickle
             services.AddTransient<ISignInManager<MyIdentityUser>, MySignInManager<MyIdentityUser>>();
             services.AddTransient<IIdentityUser, MyIdentityUser>();
             services.AddTransient<IVendorRepository<Vendor>, VendorRepository>();
+            services.AddTransient<IProductRepository<Product>, ProductRepository>();
 
             services.AddMvc();
         }

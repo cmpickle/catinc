@@ -39,9 +39,9 @@ namespace final_project_cmpickle.Controllers
                     }
                 }
             }
-            if (!string.IsNullOrEmpty(userIdValue))
+            if (!string.IsNullOrEmpty(userIdValue) && _vendorRepository.GetCount() < 0)
             {
-                VendorName = _vendorRepository.FindByUserID(userIdValue).Result.VendorName;
+                    VendorName = _vendorRepository.FindByUserID(userIdValue).Result.VendorName;
             }
             else
             {
