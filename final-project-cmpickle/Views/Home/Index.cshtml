@@ -8,6 +8,7 @@
     <ul class="list-group">
         <li class="list-group-item" ng-repeat="product in products">
             <h3>{{ product.productName}}</h3>            
+            <img ng-src="{{product.productImageURL}}" />
             <p>Price: {{product.productPrice | currency}}</p>
             <p>Inventory: {{product.productInventory}}</p>
         </li>
