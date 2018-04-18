@@ -9,6 +9,7 @@
         <li class="list-group-item" ng-repeat="product in products">
             <h3>{{ product.productName}}</h3>            
             <p>Price: {{product.productPrice | currency}}</p>
+            <p>Inventory: {{product.productInventory}}</p>
         </li>
     </ul>
 </div>
