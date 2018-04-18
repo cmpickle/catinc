@@ -2,15 +2,17 @@
     ViewData["Title"] = "Home Page";
 }
 
-<div ng-app="store" ng-controller="ProductController">
-    <h1 ng-hide="vendorName.vendorName == 'Cat Inc'">{{vendorName.vendorName}}</h1>
+<div>
+    <div ng-app="store" ng-controller="ProductController">
+        <h1 ng-hide="vendorName.vendorName == 'Cat Inc'">{{vendorName.vendorName}}</h1>
 
-    <ul class="list-group">
-        <li class="list-group-item" ng-repeat="product in products">
-            <h3>{{ product.productName}}</h3>            
-            <img ng-src="{{product.productImageURL}}" />
-            <p>Price: {{product.productPrice | currency}}</p>
-            <p>Inventory: {{product.productInventory}}</p>
-        </li>
-    </ul>
+        <ul class="list-group list-inline list-unstyled text-center">
+            <li class="list-group-item col-sm-6 col-lg-4 ng-scope" ng-repeat="product in products">
+                <h3>{{ product.productName}}</h3>
+                <img class="img-circle center-block" ng-src="{{product.productImageURL}}" />
+                <p class="pull-right">Price: {{product.productPrice | currency}}</p>
+                <p>Inventory: {{product.productInventory}}</p>
+            </li>
+        </ul>
+    </div>
 </div>
