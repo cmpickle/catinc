@@ -1,25 +1,24 @@
 (function(){
-    // var app = angular.module('store', []);
-    var app = angular.module('store').factory('Products', function($http) {
-        var Products = function(data) {
-            angular.extend(this, data);
-        }
+    var app = angular.module("store", []);
 
-        Products.getAll = function() {
-            return $http.get('api/productapi').then(function(repsonce) {
-                var products = [];
-                for(var i = 0; i < responce.data.length; ++i) {
-                    products.push(new Product(responce.data[i]));
-                }
-                return products;
+    app.service("ProductService", function ($http) {
+        //get All Products
+        this.getProducts = function () {
+            return $http.get('/api/productapi');
+        };
+    });
+
+    app.controller("ProductController", function ($scope, ProductService) {
+        $scope.divProduct = false;
+        GetAllProducts();
+        function GetAllProducts() {
+            // alert('home');
+            var getData = ProductService.getProducts();
+            getData.then(function (product) {
+                $scope.products = product.data;
+            }, function () {
+                alert('Error in getting records');
             });
         }
     });
-
-    app.controller('ProductController', function(Products) {
-        this.products = Products.getAll();
-
-        this.Test = "Hello World";
-    });
-
 })();

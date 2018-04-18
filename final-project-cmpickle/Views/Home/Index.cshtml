@@ -4,13 +4,25 @@
 
 <h1>@ViewData["VendorName"].ToString()</h1>
 
-<div ng-app="store">
-    <div ng-controller="ProductController">
+<!-- <div ng-app="store">
+    <!-- <div ng-controller="ProductController">
         <ul class="list-group">
             <li class="list-group item" ng-repeat="product in ProductController.Products">
                 <h3>{{product.productName}}</h3>
             </li>
         </ul>
         {{ProductController.Test}}
-    </div>
+    </div> 
+<div ng-controller="TestController as test">
+    {{test.test.products}}
 </div>
+</div> -->
+
+<div ng-app="store" ng-controller="ProductController">
+        <ul>
+            <!-- <li>{{productsproductName}}</li> -->
+            <li ng-repeat="x in products">
+                {{ x.productName}}
+            </li>
+        </ul>
+    </div>
