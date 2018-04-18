@@ -58,7 +58,7 @@ namespace final_project_cmpickle.Controllers.API
             else{
                 vendorName = "Cat Inc";
             }
-            return vendorName;
+            return "{\"vendorName\": \"" + vendorName + "\" }";
         }
     }
 }
