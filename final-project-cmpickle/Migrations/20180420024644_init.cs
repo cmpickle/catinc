@@ -5,7 +5,7 @@ using System.Collections.Generic;
 
 namespace finalprojectcmpickle.Migrations
 {
-    public partial class InitialMigration : Migration
+    public partial class init : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -67,6 +67,31 @@ namespace finalprojectcmpickle.Migrations
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Loyalty", x => x.LoyaltyID);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "MyIdentityUser",
+                columns: table => new
+                {
+                    Id = table.Column<string>(nullable: false),
+                    AccessFailedCount = table.Column<int>(nullable: false),
+                    ConcurrencyStamp = table.Column<string>(nullable: true),
+                    Email = table.Column<string>(nullable: true),
+                    EmailConfirmed = table.Column<bool>(nullable: false),
+                    LockoutEnabled = table.Column<bool>(nullable: false),
+                    LockoutEnd = table.Column<DateTimeOffset>(nullable: true),
+                    NormalizedEmail = table.Column<string>(nullable: true),
+                    NormalizedUserName = table.Column<string>(nullable: true),
+                    PasswordHash = table.Column<string>(nullable: true),
+                    PhoneNumber = table.Column<string>(nullable: true),
+                    PhoneNumberConfirmed = table.Column<bool>(nullable: false),
+                    SecurityStamp = table.Column<string>(nullable: true),
+                    TwoFactorEnabled = table.Column<bool>(nullable: false),
+                    UserName = table.Column<string>(nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_MyIdentityUser", x => x.Id);
                 });
 
             migrationBuilder.CreateTable(
@@ -217,31 +242,6 @@ namespace finalprojectcmpickle.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "Users",
-                columns: table => new
-                {
-                    Id = table.Column<string>(nullable: false),
-                    AccessFailedCount = table.Column<int>(nullable: false),
-                    ConcurrencyStamp = table.Column<string>(nullable: true),
-                    Email = table.Column<string>(nullable: true),
-                    EmailConfirmed = table.Column<bool>(nullable: false),
-                    LockoutEnabled = table.Column<bool>(nullable: false),
-                    LockoutEnd = table.Column<DateTimeOffset>(nullable: true),
-                    NormalizedEmail = table.Column<string>(nullable: true),
-                    NormalizedUserName = table.Column<string>(nullable: true),
-                    PasswordHash = table.Column<string>(nullable: true),
-                    PhoneNumber = table.Column<string>(nullable: true),
-                    PhoneNumberConfirmed = table.Column<bool>(nullable: false),
-                    SecurityStamp = table.Column<string>(nullable: true),
-                    TwoFactorEnabled = table.Column<bool>(nullable: false),
-                    UserName = table.Column<string>(nullable: true)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_Users", x => x.Id);
-                });
-
-            migrationBuilder.CreateTable(
                 name: "UserTokens",
                 columns: table => new
                 {
@@ -311,15 +311,16 @@ namespace finalprojectcmpickle.Migrations
                     VendorUserID = table.Column<int>(nullable: false)
                         .Annotation("MySql:ValueGenerationStrategy", MySqlValueGenerationStrategy.IdentityColumn),
                     UserID = table.Column<string>(nullable: true),
+                    UsersId = table.Column<string>(nullable: true),
                     VendorID = table.Column<int>(nullable: false)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_VendorUser", x => x.VendorUserID);
                     table.ForeignKey(
-                        name: "FK_VendorUser_Users_UserID",
-                        column: x => x.UserID,
-                        principalTable: "Users",
+                        name: "FK_VendorUser_MyIdentityUser_UsersId",
+                        column: x => x.UsersId,
+                        principalTable: "MyIdentityUser",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Restrict);
                     table.ForeignKey(
@@ -373,9 +374,9 @@ namespace finalprojectcmpickle.Migrations
                 column: "ProductID");
 
             migrationBuilder.CreateIndex(
-                name: "IX_VendorUser_UserID",
+                name: "IX_VendorUser_UsersId",
                 table: "VendorUser",
-                column: "UserID");
+                column: "UsersId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_VendorUser_VendorID",
@@ -440,7 +441,7 @@ namespace finalprojectcmpickle.Migrations
                 name: "Product");
 
             migrationBuilder.DropTable(
-                name: "Users");
+                name: "MyIdentityUser");
 
             migrationBuilder.DropTable(
                 name: "Vendor");

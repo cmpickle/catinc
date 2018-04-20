@@ -41,6 +41,7 @@ namespace final_project_cmpickle.Models.Database
     public DbSet<ProductOrder> ProductOrder { get; set; }
 
     public DbSet<MyUsers> MyUsers { get; set; }
+    public DbSet<MyIdentityUser> MyIdentityUser { get; set; }
 
     public DbSet<Vendor> Vendor { get; set; }
 
@@ -56,6 +57,9 @@ namespace final_project_cmpickle.Models.Database
         // b.Property(v => v.VendorID).IsRequired();
         // b.Property(v => v.VendorID).HasValueGenerator<System.ComponentModel.DataAnnotations.Schema.DatabaseGeneratedOption.Identity>();
       });
+
+      builder.Entity<Vendor>().HasMany(v => v.VendorUsers).WithOne(vu => vu.Vendor);
+      builder.Entity<MyIdentityUser>().HasMany(u => u.VendorUsers).WithOne(vu => vu.Users);
 
       // builder.Entity<Vendor>().HasKey(v => v.VendorID);
 

@@ -9,7 +9,6 @@ using final_project_cmpickle.Repositories;
 using final_project_cmpickle.Models.Domain;
 using Microsoft.AspNetCore.Identity;
 using System.Security.Claims;
-using final_project_cmpickle.Models.ViewModels.BaseViewModels;
 
 namespace final_project_cmpickle.Controllers
 {

@@ -53,7 +53,15 @@ namespace final_project_cmpickle.Controllers.API
             }
             if (!string.IsNullOrEmpty(userIdValue))
             {
-                vendorName = _vendorRepository.FindByUserID(userIdValue).Result.VendorName;
+                var vendor = _vendorRepository.FindByUserID(userIdValue).Result;
+                if (vendor != null)
+                {
+                    vendorName = vendor.VendorName;
+                }
+                else 
+                {
+                    vendorName = "Cat Inc";
+                }
             }
             else{
                 vendorName = "Cat Inc";

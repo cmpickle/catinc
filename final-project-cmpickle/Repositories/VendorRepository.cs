@@ -35,7 +35,7 @@ namespace final_project_cmpickle.Repositories
         {
             Vendor vendor = new Vendor(model.VendorName, model.Address, model.TelephoneNo, model.Email, model.CreditcardNo);
             var myUser = _identityUserManager.FindByNameAsync(user.Identity.Name).Result;
-            VendorUser vendorUser = new VendorUser{Vendor = vendor, User = myUser};
+            VendorUser vendorUser = new VendorUser{Vendor = vendor, Users = myUser};
             vendors.Add(vendor);
             vendorUsers.Add(vendorUser);
 

@@ -255,11 +255,13 @@ namespace finalprojectcmpickle.Migrations
 
                     b.Property<string>("UserID");
 
+                    b.Property<string>("UsersId");
+
                     b.Property<int>("VendorID");
 
                     b.HasKey("VendorUserID");
 
-                    b.HasIndex("UserID");
+                    b.HasIndex("UsersId");
 
                     b.HasIndex("VendorID");
 
@@ -300,7 +302,7 @@ namespace finalprojectcmpickle.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Users");
+                    b.ToTable("MyIdentityUser");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRole", b =>
@@ -418,9 +420,9 @@ namespace finalprojectcmpickle.Migrations
 
             modelBuilder.Entity("final_project_cmpickle.Models.Domain.VendorUser", b =>
                 {
-                    b.HasOne("final_project_cmpickle.Models.MemberSystem.MyIdentityUser", "User")
-                        .WithMany()
-                        .HasForeignKey("UserID");
+                    b.HasOne("final_project_cmpickle.Models.MemberSystem.MyIdentityUser", "Users")
+                        .WithMany("VendorUsers")
+                        .HasForeignKey("UsersId");
 
                     b.HasOne("final_project_cmpickle.Models.Domain.Vendor", "Vendor")
                         .WithMany("VendorUsers")

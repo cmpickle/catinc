@@ -1,6 +1,8 @@
 using System;
+using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
+using final_project_cmpickle.Models.Domain;
 using Microsoft.AspNetCore.Identity;
 
 namespace final_project_cmpickle.Models.MemberSystem
@@ -18,6 +20,8 @@ namespace final_project_cmpickle.Models.MemberSystem
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.None)]
         override public string Id { get; set; }
+
+        public List<VendorUser> VendorUsers { get; set; }
 
         public IIdentityUser Create()
         {
