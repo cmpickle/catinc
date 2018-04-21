@@ -33,7 +33,7 @@ namespace final_project_cmpickle.Controllers.API
         }
 
         [HttpGet]
-        public string getVendor()
+        public Vendor getVendor()
         {
             string vendorName = "";
             string userIdValue = "";
@@ -51,22 +51,30 @@ namespace final_project_cmpickle.Controllers.API
                     }
                 }
             }
+            Vendor vendor = null;
             if (!string.IsNullOrEmpty(userIdValue))
             {
-                var vendor = _vendorRepository.FindByUserID(userIdValue).Result;
+                vendor = _vendorRepository.FindByUserID(userIdValue).Result;
                 if (vendor != null)
                 {
                     vendorName = vendor.VendorName;
                 }
                 else 
                 {
-                    vendorName = "Cat Inc";
+                    // vendorName = "Cat Inc";
+                    new Vendor {
+                        VendorName = "Cat Inc"
+                    };
                 }
             }
-            else{
-                vendorName = "Cat Inc";
+            else {
+                // vendorName = "Cat Inc";
+                new Vendor {
+                    VendorName = "Cat Inc"
+                };
             }
-            return "{\"vendorName\": \"" + vendorName + "\" }";
+            // return "{\"vendorName\": \"" + vendorName + "\" }";
+            return vendor;
         }
     }
 }
