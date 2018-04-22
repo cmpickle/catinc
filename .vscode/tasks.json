@@ -7,7 +7,7 @@
             "type": "process",
             "args": [
                 "build",
-                "${workspaceFolder}/final-project-cmpickle/final-project-cmpickle.csproj"
+                "${workspaceFolder}/catinc/catinc.csproj"
             ],
             "problemMatcher": "$msCompile"
         }

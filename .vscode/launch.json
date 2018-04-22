@@ -10,9 +10,9 @@
             "request": "launch",
             "preLaunchTask": "build",
             // If you have changed target frameworks, make sure to update the program path.
-            "program": "${workspaceFolder}/final-project-cmpickle/bin/Debug/netcoreapp2.0/final-project-cmpickle.dll",
+            "program": "${workspaceFolder}/catinc/bin/Debug/netcoreapp2.0/catinc.dll",
             "args": [],
-            "cwd": "${workspaceFolder}/final-project-cmpickle",
+            "cwd": "${workspaceFolder}/catinc",
             "stopAtEntry": false,
             "internalConsoleOptions": "openOnSessionStart",
             "launchBrowser": {
