@@ -12,7 +12,7 @@ namespace Tests.Controllers
         [SetUp]
         public void SetUp()
         {
-            homeController = new HomeController();
+            // homeController = new HomeController();
         }
 
         [Test]

@@ -62,14 +62,14 @@ namespace final_project_cmpickle.Controllers.API
                 else 
                 {
                     // vendorName = "Cat Inc";
-                    new Vendor {
+                    vendor = new Vendor {
                         VendorName = "Cat Inc"
                     };
                 }
             }
             else {
                 // vendorName = "Cat Inc";
-                new Vendor {
+                vendor = new Vendor {
                     VendorName = "Cat Inc"
                 };
             }
