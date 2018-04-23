@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 
 namespace catinc.Models.Domain
 {
@@ -14,6 +15,7 @@ namespace catinc.Models.Domain
         public string ProductImageURL { get; set; }
         public DateTime ProductExpirationDate { get; set; }
         public bool IsProductedDeleted { get; set; }
+        public List<ProductOrder> ProductOrders { get; set; }
         public Vendor Vendor { get; set; }
     }
 }

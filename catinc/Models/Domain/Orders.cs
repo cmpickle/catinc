@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 
 namespace catinc.Models.Domain
 {
@@ -8,5 +9,6 @@ namespace catinc.Models.Domain
         public MyIdentityUser User { get; set; }
         public DateTime OrderTimestamp { get; set; }
         public int DiscountID { get; set; }
+        public List<ProductOrder> ProductOrders { get; set; }
     }
 }

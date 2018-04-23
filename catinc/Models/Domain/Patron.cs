@@ -1,3 +1,5 @@
+using System.Collections.Generic;
+
 namespace catinc.Models.Domain
 {
     public class Patron
@@ -11,5 +13,6 @@ namespace catinc.Models.Domain
         public bool IsPatronSuspended { get; set; }
         public bool IsPatronDeleted { get; set; }
         public MyIdentityUser User { get; set; }
+        public List<PatronCreditcard> PatronCreditcards { get; set; }
     }
 }

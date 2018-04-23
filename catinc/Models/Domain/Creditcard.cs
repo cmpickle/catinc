@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 
 namespace catinc.Models.Domain
 {
@@ -8,5 +9,6 @@ namespace catinc.Models.Domain
         public int CreditcardNo { get; set; }
         public DateTime ExpirationDate { get; set; }
         public int CCV { get; set; }
+        public List<PatronCreditcard> PatronCreditcards { get; set; }
     }
 }

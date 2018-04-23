@@ -8,6 +8,8 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.AspNetCore.Identity;
+using catinc.Models.Domain;
 
 namespace catinc
 {
@@ -24,7 +26,14 @@ namespace catinc
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddEntityFrameworkMySql()
-                .AddDbContext<MyDbContext>(options => options.UseMySql("Server=localhost;Database=efTest;Uid=root;Pwd=Pawnshop1976;"));
+                .AddDbContext<MySqlDbContext>(options => options.UseMySql("Server=localhost;Database=cat_inc;Uid=root;Pwd=Pawnshop1976;"));
+            
+            // Add Identity services to the services container
+            services.AddIdentity<MyIdentityUser, IdentityRole>()
+                .AddEntityFrameworkStores<MySqlDbContext>()
+                .AddDefaultTokenProviders();
+                
+            // services.AddTransient<IIdentityUser, MyIdentityUser>();
 
             services.AddMvc();
         }
@@ -35,6 +44,7 @@ namespace catinc
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
+                app.UseStatusCodePages();
             }
             else
             {
@@ -42,6 +52,8 @@ namespace catinc
             }
 
             app.UseStaticFiles();
+
+            app.UseAuthentication();
 
             app.UseMvc(routes =>
             {
