@@ -8,5 +8,6 @@ namespace catinc.Models.Domain
         public DateTime DiscountStart { get; set; }
         public DateTime DiscountEnd { get; set; }
         public bool IsDiscountDeleted { get; set; }
+        public Orders Order { get; set; }
     }
 }

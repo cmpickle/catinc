@@ -63,11 +63,7 @@ namespace catinc.Migrations
 
                     b.Property<DateTime>("LogTimestamp");
 
-                    b.Property<string>("UserId");
-
                     b.HasKey("LogID");
-
-                    b.HasIndex("UserId");
 
                     b.ToTable("Logs");
                 });
@@ -79,11 +75,7 @@ namespace catinc.Migrations
 
                     b.Property<int>("LoyaltyPoints");
 
-                    b.Property<string>("UserId");
-
                     b.HasKey("LoyaltyID");
-
-                    b.HasIndex("UserId");
 
                     b.ToTable("Loyaltys");
                 });
@@ -105,11 +97,17 @@ namespace catinc.Migrations
 
                     b.Property<DateTimeOffset?>("LockoutEnd");
 
+                    b.Property<int?>("LogID");
+
+                    b.Property<int?>("LoyaltyID");
+
                     b.Property<string>("NormalizedEmail");
 
                     b.Property<string>("NormalizedUserName");
 
                     b.Property<string>("PasswordHash");
+
+                    b.Property<int?>("PermissionID");
 
                     b.Property<string>("PhoneNumber");
 
@@ -123,6 +121,15 @@ namespace catinc.Migrations
 
                     b.HasKey("Id");
 
+                    b.HasIndex("LogID")
+                        .IsUnique();
+
+                    b.HasIndex("LoyaltyID")
+                        .IsUnique();
+
+                    b.HasIndex("PermissionID")
+                        .IsUnique();
+
                     b.ToTable("MyIdentityUser");
                 });
 
@@ -131,13 +138,16 @@ namespace catinc.Migrations
                     b.Property<int>("OrderID")
                         .ValueGeneratedOnAdd();
 
-                    b.Property<int>("DiscountID");
+                    b.Property<int?>("DiscountID");
 
                     b.Property<DateTime>("OrderTimestamp");
 
                     b.Property<string>("UserId");
 
                     b.HasKey("OrderID");
+
+                    b.HasIndex("DiscountID")
+                        .IsUnique();
 
                     b.HasIndex("UserId");
 
@@ -167,7 +177,8 @@ namespace catinc.Migrations
 
                     b.HasKey("PatronID");
 
-                    b.HasIndex("UserId");
+                    b.HasIndex("UserId")
+                        .IsUnique();
 
                     b.ToTable("Patrons");
                 });
@@ -197,11 +208,7 @@ namespace catinc.Migrations
 
                     b.Property<int>("PermissionLevel");
 
-                    b.Property<string>("UserId");
-
                     b.HasKey("PermissionID");
-
-                    b.HasIndex("UserId");
 
                     b.ToTable("Permissions");
                 });
@@ -303,13 +310,30 @@ namespace catinc.Migrations
 
                     b.Property<int?>("VendorId");
 
+                    b.Property<int?>("VendorUserPermissionID");
+
                     b.HasKey("VendorUserId");
 
                     b.HasIndex("UserId");
 
                     b.HasIndex("VendorId");
 
+                    b.HasIndex("VendorUserPermissionID")
+                        .IsUnique();
+
                     b.ToTable("VendorUsers");
+                });
+
+            modelBuilder.Entity("catinc.Models.Domain.VendorUserPermission", b =>
+                {
+                    b.Property<int>("VendorUserPermissionID")
+                        .ValueGeneratedOnAdd();
+
+                    b.Property<int>("PermissionLevel");
+
+                    b.HasKey("VendorUserPermissionID");
+
+                    b.ToTable("VendorUserPermission");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRole", b =>
@@ -404,32 +428,37 @@ namespace catinc.Migrations
                     b.ToTable("UserTokens");
                 });
 
-            modelBuilder.Entity("catinc.Models.Domain.Log", b =>
+            modelBuilder.Entity("catinc.Models.Domain.MyIdentityUser", b =>
                 {
-                    b.HasOne("catinc.Models.Domain.MyIdentityUser", "User")
-                        .WithMany()
-                        .HasForeignKey("UserId");
-                });
+                    b.HasOne("catinc.Models.Domain.Log", "Log")
+                        .WithOne("User")
+                        .HasForeignKey("catinc.Models.Domain.MyIdentityUser", "LogID");
 
-            modelBuilder.Entity("catinc.Models.Domain.Loyalty", b =>
-                {
-                    b.HasOne("catinc.Models.Domain.MyIdentityUser", "User")
-                        .WithMany()
-                        .HasForeignKey("UserId");
+                    b.HasOne("catinc.Models.Domain.Loyalty", "Loyalty")
+                        .WithOne("User")
+                        .HasForeignKey("catinc.Models.Domain.MyIdentityUser", "LoyaltyID");
+
+                    b.HasOne("catinc.Models.Domain.Permission", "Permission")
+                        .WithOne("User")
+                        .HasForeignKey("catinc.Models.Domain.MyIdentityUser", "PermissionID");
                 });
 
             modelBuilder.Entity("catinc.Models.Domain.Orders", b =>
                 {
+                    b.HasOne("catinc.Models.Domain.Discount", "Discount")
+                        .WithOne("Order")
+                        .HasForeignKey("catinc.Models.Domain.Orders", "DiscountID");
+
                     b.HasOne("catinc.Models.Domain.MyIdentityUser", "User")
-                        .WithMany()
+                        .WithMany("Orders")
                         .HasForeignKey("UserId");
                 });
 
             modelBuilder.Entity("catinc.Models.Domain.Patron", b =>
                 {
                     b.HasOne("catinc.Models.Domain.MyIdentityUser", "User")
-                        .WithMany()
-                        .HasForeignKey("UserId");
+                        .WithOne("Patron")
+                        .HasForeignKey("catinc.Models.Domain.Patron", "UserId");
                 });
 
             modelBuilder.Entity("catinc.Models.Domain.PatronCreditcard", b =>
@@ -441,13 +470,6 @@ namespace catinc.Migrations
                     b.HasOne("catinc.Models.Domain.Patron", "Patron")
                         .WithMany("PatronCreditcards")
                         .HasForeignKey("PatronID");
-                });
-
-            modelBuilder.Entity("catinc.Models.Domain.Permission", b =>
-                {
-                    b.HasOne("catinc.Models.Domain.MyIdentityUser", "User")
-                        .WithMany()
-                        .HasForeignKey("UserId");
                 });
 
             modelBuilder.Entity("catinc.Models.Domain.Product", b =>
@@ -485,6 +507,10 @@ namespace catinc.Migrations
                     b.HasOne("catinc.Models.Domain.Vendor", "Vendor")
                         .WithMany("VendorUsers")
                         .HasForeignKey("VendorId");
+
+                    b.HasOne("catinc.Models.Domain.VendorUserPermission", "VendorUserPermission")
+                        .WithOne("VendorUser")
+                        .HasForeignKey("catinc.Models.Domain.VendorUser", "VendorUserPermissionID");
                 });
 #pragma warning restore 612, 618
         }
