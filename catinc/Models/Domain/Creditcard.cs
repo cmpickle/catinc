@@ -1,3 +1,5 @@
+using System;
+
 namespace catinc.Models.Domain
 {
     public class Creditcard
