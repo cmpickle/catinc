@@ -29,7 +29,8 @@ namespace catinc
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddEntityFrameworkMySql()
-                .AddDbContext<MySqlDbContext>(options => options.UseMySql("Server=localhost;Database=cat_inc;Uid=root;Pwd=Pawnshop1976;"));
+                // .AddDbContext<MySqlDbContext>(options => options.UseMySql("Server=localhost;Database=cat_inc;Uid=root;Pwd=Pawnshop1976;"));
+                .AddDbContext<MySqlDbContext>(options => options.UseMySql("Server=67.205.183.11;Database=cmpickle;Uid=cmpickle;Pwd=Photog42;"));
             
             // Add Identity services to the services container
             services.AddIdentity<MyIdentityUser, IdentityRole>()

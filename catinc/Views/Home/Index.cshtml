@@ -3,12 +3,12 @@
 }
 
 <div>
-    <div ng-controller="ProductController">
-        <h1 ng-hide="product.vendorName == 'Cat Inc'">{{vendorName.vendorName}}</h1>
+    <div ng-controller="ProductController as ctrl">
+        <h1>{{ctrl.vendorName}}</h1> <!--ng-hide="product.vendorName == 'Cat Inc'"-->
 
         <ul class="list-group list-inline list-unstyled text-center">
-            <li class="list-group-item col-sm-6 col-lg-4 ng-scope" ng-repeat="product in products">
-                <h3>{{ product.productName}}</h3>
+            <li class="list-group-item col-sm-6 col-lg-4 ng-scope" ng-repeat="product in ctrl.products">
+                <h3>{{ product.product.productName}}</h3>
                 <img class="img-circle center-block" ng-src="{{product.productImageURL}}" />
                 <p class="pull-right">Price: {{product.productPrice | currency}}</p>
                 <p>Inventory: {{product.productInventory}}</p>

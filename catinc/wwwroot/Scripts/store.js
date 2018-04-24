@@ -18,10 +18,10 @@
             product.vendorName = data.data.vendorName;
         });
 
-        let products = this;
+        product.products = [];
 
         $http.get('/api/ProductAPI').then(function(data) {
-            products = data.data;
+            product.products = data.data;
         });
     }]);
 
