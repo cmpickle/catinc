@@ -4,7 +4,7 @@ namespace catinc.Models.Domain
 {
     public class Vendor
     {
-        public int VendorId { get; set; }
+        public int VendorID { get; set; }
         public string VendorName { get; set; }
         public string VendorAddress { get; set; }
         public string VendorTelephoneNo { get; set; }

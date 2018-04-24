@@ -10,6 +10,9 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.AspNetCore.Identity;
 using catinc.Models.Domain;
+using catinc.Repositories;
+using catinc.Models.MemberSystem;
+using catinc.Services;
 
 namespace catinc
 {
@@ -33,7 +36,14 @@ namespace catinc
                 .AddEntityFrameworkStores<MySqlDbContext>()
                 .AddDefaultTokenProviders();
                 
-            // services.AddTransient<IIdentityUser, MyIdentityUser>();
+            // Add application services
+            services.AddTransient<IEmailSender, EmailSender>();
+            services.AddTransient<IUserRepository<MyIdentityUser>, UserRepository>();
+            services.AddTransient<IUserManager<MyIdentityUser>, MyIdentityUserManager<MyIdentityUser>>();
+            services.AddTransient<ISignInManager<MyIdentityUser>, MySignInManager<MyIdentityUser>>();
+            services.AddTransient<IIdentityUser, MyIdentityUser>();
+            services.AddTransient<IVendorRepository<Vendor>, VendorRepository>();
+            services.AddTransient<IProductRepository<Product>, ProductRepository>();
 
             services.AddMvc();
         }
