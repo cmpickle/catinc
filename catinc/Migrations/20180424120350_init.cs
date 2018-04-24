@@ -168,7 +168,7 @@ namespace catinc.Migrations
                 name: "Vendors",
                 columns: table => new
                 {
-                    VendorId = table.Column<int>(nullable: false)
+                    VendorID = table.Column<int>(nullable: false)
                         .Annotation("MySql:ValueGenerationStrategy", MySqlValueGenerationStrategy.IdentityColumn),
                     IsVendorActive = table.Column<bool>(nullable: false),
                     IsVendorDeleted = table.Column<bool>(nullable: false),
@@ -182,7 +182,7 @@ namespace catinc.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Vendors", x => x.VendorId);
+                    table.PrimaryKey("PK_Vendors", x => x.VendorID);
                 });
 
             migrationBuilder.CreateTable(
@@ -259,16 +259,16 @@ namespace catinc.Migrations
                     ProductPrice = table.Column<decimal>(nullable: false),
                     ProductSKU = table.Column<string>(nullable: true),
                     ProductShortDescription = table.Column<string>(nullable: true),
-                    VendorId = table.Column<int>(nullable: true)
+                    VendorID = table.Column<int>(nullable: true)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Products", x => x.ProductID);
                     table.ForeignKey(
-                        name: "FK_Products_Vendors_VendorId",
-                        column: x => x.VendorId,
+                        name: "FK_Products_Vendors_VendorID",
+                        column: x => x.VendorID,
                         principalTable: "Vendors",
-                        principalColumn: "VendorId",
+                        principalColumn: "VendorID",
                         onDelete: ReferentialAction.Restrict);
                 });
 
@@ -332,7 +332,7 @@ namespace catinc.Migrations
                     VendorUserId = table.Column<int>(nullable: false)
                         .Annotation("MySql:ValueGenerationStrategy", MySqlValueGenerationStrategy.IdentityColumn),
                     UserId = table.Column<string>(nullable: true),
-                    VendorId = table.Column<int>(nullable: true),
+                    VendorID = table.Column<int>(nullable: true),
                     VendorUserPermissionID = table.Column<int>(nullable: true)
                 },
                 constraints: table =>
@@ -345,10 +345,10 @@ namespace catinc.Migrations
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Restrict);
                     table.ForeignKey(
-                        name: "FK_VendorUsers_Vendors_VendorId",
-                        column: x => x.VendorId,
+                        name: "FK_VendorUsers_Vendors_VendorID",
+                        column: x => x.VendorID,
                         principalTable: "Vendors",
-                        principalColumn: "VendorId",
+                        principalColumn: "VendorID",
                         onDelete: ReferentialAction.Restrict);
                     table.ForeignKey(
                         name: "FK_VendorUsers_VendorUserPermission_VendorUserPermissionID",
@@ -491,9 +491,9 @@ namespace catinc.Migrations
                 column: "ProductID1");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Products_VendorId",
+                name: "IX_Products_VendorID",
                 table: "Products",
-                column: "VendorId");
+                column: "VendorID");
 
             migrationBuilder.CreateIndex(
                 name: "IX_VendorUsers_UserId",
@@ -501,9 +501,9 @@ namespace catinc.Migrations
                 column: "UserId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_VendorUsers_VendorId",
+                name: "IX_VendorUsers_VendorID",
                 table: "VendorUsers",
-                column: "VendorId");
+                column: "VendorID");
 
             migrationBuilder.CreateIndex(
                 name: "IX_VendorUsers_VendorUserPermissionID",

@@ -4,7 +4,7 @@
 
 <div>
     <div ng-controller="ProductController">
-        <h1 ng-hide="vendorName.vendorName == 'Cat Inc'">{{vendorName.vendorName}}</h1>
+        <h1 ng-hide="product.vendorName == 'Cat Inc'">{{vendorName.vendorName}}</h1>
 
         <ul class="list-group list-inline list-unstyled text-center">
             <li class="list-group-item col-sm-6 col-lg-4 ng-scope" ng-repeat="product in products">

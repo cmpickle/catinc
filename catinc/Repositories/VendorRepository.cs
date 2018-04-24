@@ -63,8 +63,15 @@ namespace catinc.Repositories
 
         public Task<Vendor> FindByUserID(string userID)
         {
-            var vendorUser = vendorUsers.FirstOrDefault(vu => vu.User.Id == userID);
-            return Task.Run(() => vendors.FirstOrDefault(v => v.VendorID == vendorUser.Vendor.VendorID));
+            var vendorUser = vendorUsers.FirstOrDefault(vu => vu.User != null && vu.User.Id == userID);
+            if (vendorUser == null)
+            {
+                return Task.Run(() => vendors.FirstOrDefault(v => v == null));
+            }
+            else
+            {
+                return Task.Run(() => vendors.FirstOrDefault(v => vendorUser.Vendor != null && v.VendorID == vendorUser.Vendor.VendorID));
+            }
         }
 
         public IQueryable Get()

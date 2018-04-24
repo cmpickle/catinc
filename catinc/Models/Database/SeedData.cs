@@ -81,6 +81,22 @@ namespace catinc.Models.Database
                         }
                     );
                }
+
+                if (!context.Products.Any())
+                {
+                    context.Products.AddRange(
+                        new Product
+                        {
+                            ProductSKU = "1234",
+                            ProductName = "Azurite Gem",
+                            ProductShortDescription = "Azurite Gem is cool",
+                            ProductLongDescription = "Azurite Gem is cool, so cool it has a long description.",
+                            ProductPrice = 7.56M,
+                            ProductInventory = 12,
+                            ProductImageURL = "/images/gem-01.gif",
+                        }
+                    );
+               }
                context.SaveChanges();
             }
         }

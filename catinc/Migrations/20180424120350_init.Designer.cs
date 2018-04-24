@@ -11,7 +11,7 @@ using System;
 namespace catinc.Migrations
 {
     [DbContext(typeof(MySqlDbContext))]
-    [Migration("20180423122312_init")]
+    [Migration("20180424120350_init")]
     partial class init
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -237,11 +237,11 @@ namespace catinc.Migrations
 
                     b.Property<string>("ProductShortDescription");
 
-                    b.Property<int?>("VendorId");
+                    b.Property<int?>("VendorID");
 
                     b.HasKey("ProductID");
 
-                    b.HasIndex("VendorId");
+                    b.HasIndex("VendorID");
 
                     b.ToTable("Products");
                 });
@@ -276,7 +276,7 @@ namespace catinc.Migrations
 
             modelBuilder.Entity("catinc.Models.Domain.Vendor", b =>
                 {
-                    b.Property<int>("VendorId")
+                    b.Property<int>("VendorID")
                         .ValueGeneratedOnAdd();
 
                     b.Property<bool>("IsVendorActive");
@@ -297,7 +297,7 @@ namespace catinc.Migrations
 
                     b.Property<string>("VendorTelephoneNo");
 
-                    b.HasKey("VendorId");
+                    b.HasKey("VendorID");
 
                     b.ToTable("Vendors");
                 });
@@ -309,7 +309,7 @@ namespace catinc.Migrations
 
                     b.Property<string>("UserId");
 
-                    b.Property<int?>("VendorId");
+                    b.Property<int?>("VendorID");
 
                     b.Property<int?>("VendorUserPermissionID");
 
@@ -317,7 +317,7 @@ namespace catinc.Migrations
 
                     b.HasIndex("UserId");
 
-                    b.HasIndex("VendorId");
+                    b.HasIndex("VendorID");
 
                     b.HasIndex("VendorUserPermissionID")
                         .IsUnique();
@@ -477,7 +477,7 @@ namespace catinc.Migrations
                 {
                     b.HasOne("catinc.Models.Domain.Vendor", "Vendor")
                         .WithMany()
-                        .HasForeignKey("VendorId");
+                        .HasForeignKey("VendorID");
                 });
 
             modelBuilder.Entity("catinc.Models.Domain.ProductOrder", b =>
@@ -507,7 +507,7 @@ namespace catinc.Migrations
 
                     b.HasOne("catinc.Models.Domain.Vendor", "Vendor")
                         .WithMany("VendorUsers")
-                        .HasForeignKey("VendorId");
+                        .HasForeignKey("VendorID");
 
                     b.HasOne("catinc.Models.Domain.VendorUserPermission", "VendorUserPermission")
                         .WithOne("VendorUser")
