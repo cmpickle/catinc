@@ -7,6 +7,8 @@ using Microsoft.AspNetCore;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Logging;
+using catinc.Models.Database;
+using Microsoft.Extensions.DependencyInjection;
 
 namespace catinc
 {
@@ -14,6 +16,21 @@ namespace catinc
     {
         public static void Main(string[] args)
         {
+            var host = BuildWebHost(args);
+
+            using (var scope = host.Services.CreateScope())
+            {
+                var services = scope.ServiceProvider;
+
+                try
+                {
+                    SeedData.Initialize(services);
+                }
+                catch (Exception ex)
+                {
+                    //log it
+                }
+            }
             BuildWebHost(args).Run();
         }
 
