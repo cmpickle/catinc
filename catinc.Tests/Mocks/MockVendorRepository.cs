@@ -15,6 +15,9 @@ namespace catinc.Tests.Mocks
 
         static MySqlDbContext context = new MySqlDbContext(options);
 
+        /// <summary>
+        /// Mock VendorRepository for unit tests
+        /// </summary>
         public MockVendorRepository() 
             : base(context,
                     new Mock<IUserManager<MyIdentityUser>>().Object)
