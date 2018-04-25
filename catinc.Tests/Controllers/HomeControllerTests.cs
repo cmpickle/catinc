@@ -1,5 +1,6 @@
 using NUnit.Framework;
 using catinc.Controllers;
+using catinc.Tests.Mocks;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Tests.Controllers
@@ -12,7 +13,7 @@ namespace Tests.Controllers
         [SetUp]
         public void SetUp()
         {
-            homeController = new HomeController();
+            homeController = new HomeController(new MockVendorRepository());
         }
 
         [Test]
