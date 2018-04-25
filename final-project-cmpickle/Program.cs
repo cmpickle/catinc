@@ -28,6 +28,10 @@ namespace final_project_cmpickle
                 }
                 catch (Exception ex)
                 {
+                    if (ex != null)
+                    {
+                        return;
+                    }
                     //log it
                 }
             }
