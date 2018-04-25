@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Buffers;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -6,6 +7,7 @@ using catinc.Models.Database;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
+using Microsoft.AspNetCore.Mvc.Formatters;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.AspNetCore.Identity;
@@ -13,6 +15,9 @@ using catinc.Models.Domain;
 using catinc.Repositories;
 using catinc.Models.MemberSystem;
 using catinc.Services;
+using Microsoft.Extensions.Options;
+using Newtonsoft.Json;
+using Microsoft.Extensions.Logging;
 
 namespace catinc
 {
@@ -46,7 +51,14 @@ namespace catinc
             services.AddTransient<IVendorRepository<Vendor>, VendorRepository>();
             services.AddTransient<IProductRepository<Product>, ProductRepository>();
 
-            services.AddMvc();
+            services.AddMvc(options =>
+            {
+                options.OutputFormatters.Clear();
+                options.OutputFormatters.Add(new JsonOutputFormatter(new JsonSerializerSettings()
+                {
+                    ReferenceLoopHandling = ReferenceLoopHandling.Ignore,
+                }, ArrayPool<char>.Shared));
+            });
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

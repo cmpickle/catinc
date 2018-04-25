@@ -13,8 +13,8 @@ namespace catinc.Models.Database
             using (var context = new MySqlDbContext(
                 serviceProvider.GetRequiredService<DbContextOptions<MySqlDbContext>>()))
             {
-                Vendor flatlanders;
-                Vendor krustykrab;
+                Vendor flatlanders = null;
+                Vendor krustykrab = null;
                 Vendor carmicheal = null;
                 if (!context.Vendors.Any())
                 {
@@ -76,8 +76,8 @@ namespace catinc.Models.Database
                     context.VendorUsers.AddRange(
                         new VendorUser
                         {
-                            Vendor = carmicheal,
-                            User = garbage
+                            Vendor = context.Vendors.FirstOrDefault(v => v.VendorName.Equals("Carmicheal Industries")),
+                            User = context.MyIdentityUsers.FirstOrDefault(u => u.UserName.Equals("parathegarbage@gmail.com")),
                         }
                     );
                }
@@ -94,6 +94,29 @@ namespace catinc.Models.Database
                             ProductPrice = 7.56M,
                             ProductInventory = 12,
                             ProductImageURL = "/images/gem-01.gif",
+                            Vendor = context.Vendors.FirstOrDefault(v => v.VendorName.Equals("Flatlanders")),
+                        },
+                        new Product
+                        {
+                            ProductSKU = "1235",
+                            ProductName = "Bloodstone Gem",
+                            ProductShortDescription = "Bloodstone Gem is rare",
+                            ProductLongDescription = "Bloodstone Gem is awesome, I would buy 100 if I could afford them.",
+                            ProductPrice = 1000.00M,
+                            ProductInventory = 2,
+                            ProductImageURL = "/images/gem-02.gif",
+                            Vendor = context.Vendors.FirstOrDefault(v => v.VendorName.Equals("Flatlanders")),
+                        },
+                        new Product
+                        {
+                            ProductSKU = "1236",
+                            ProductName = "Dodecahedron Gem",
+                            ProductShortDescription = "Dodecahedron Gem has 10 faces",
+                            ProductLongDescription = "Dodecahedron Gem is rather common, it's still really shiny.",
+                            ProductPrice = 100.00M,
+                            ProductInventory = 200,
+                            ProductImageURL = "/images/gem-03.gif",
+                            Vendor = context.Vendors.FirstOrDefault(v => v.VendorName.Equals("Flatlanders")),
                         }
                     );
                }

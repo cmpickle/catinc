@@ -9,6 +9,7 @@ using Microsoft.AspNetCore.Identity;
 using catinc.Models.MemberSystem;
 using System.Security.Claims;
 using catinc.Models.Util;
+using Microsoft.EntityFrameworkCore;
 
 namespace catinc.Repositories
 {
@@ -28,7 +29,7 @@ namespace catinc.Repositories
             // using(MySqlDbContext context = _mySqlDbContext)
             // {
                 vendors = _mySqlDbContext.Vendors.ToList();
-                vendorUsers = _mySqlDbContext.VendorUsers.ToList();
+                vendorUsers = _mySqlDbContext.VendorUsers.Include(vu => vu.Vendor).Include(vu => vu.User).ToList();
             // }
         }
 

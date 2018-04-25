@@ -15,7 +15,7 @@
         // this.products = gems;
 
         $http.get('/api/UserAPI/getVendor').then(function(data) {
-            product.vendorName = data.data.vendorName;
+            product.vendorName = data.data.VendorName;
         });
 
         product.products = [];

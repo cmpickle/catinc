@@ -28,7 +28,8 @@ namespace catinc
                 }
                 catch (Exception ex)
                 {
-                    //log it
+                    if (ex != null)
+                        return;
                 }
             }
             BuildWebHost(args).Run();

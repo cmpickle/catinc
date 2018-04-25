@@ -3,6 +3,7 @@ using System.Linq;
 using catinc.Models.Database;
 using catinc.Models.Domain;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 
 namespace catinc.Controllers.API
 {
@@ -19,7 +20,7 @@ namespace catinc.Controllers.API
         [HttpGet]
         public IEnumerable<Product> GetAll()
         {
-            return _mySqlDbContext.Products.ToList();
+            return _mySqlDbContext.Products.Include(p => p.Vendor).ToList();
         }
     }
 }
