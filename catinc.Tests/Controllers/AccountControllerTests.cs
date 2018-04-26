@@ -6,7 +6,7 @@ using catinc.Tests.Mocks;
 using Microsoft.AspNetCore.Mvc;
 using catinc.Models.ViewModels.AccountViewModels;
 
-namespace Tests.Controllers
+namespace catinc.Tests.Controllers
 {
     [TestFixture]
     public class AccountControllerTests
