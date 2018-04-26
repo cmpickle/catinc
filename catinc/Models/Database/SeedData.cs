@@ -67,6 +67,24 @@ namespace catinc.Models.Database
                             SecurityStamp = "9a111107-326e-404a-af70-3fed42bcbbc7",
                             TwoFactorEnabled = false,
                             UserName = "parathegarbage@gmail.com"
+                        },
+                        garbage = new MyIdentityUser
+                        {
+                            Id = "f7ee9a14-7208-43bb-acc3-78b2ead68584",
+                            AccessFailedCount = 0,
+                            ConcurrencyStamp = "e3c242b7-317e-477f-a3dd-aac03f6ea31d",
+                            Email = "test@test.com",
+                            EmailConfirmed = false,
+                            LockoutEnabled = true,
+                            LockoutEnd = null,
+                            NormalizedEmail = "TEST@TEST.COM",
+                            NormalizedUserName = "TEST@TEST.COM",
+                            PasswordHash = "AQAAAAEAACcQAAAAEKKxA5vr/8DpWn47nL7S+59MIsJXY8LlN0PhcncoAtCJ5+RExPAX+MqvJakVRrHAfg==",
+                            PhoneNumber = null,
+                            PhoneNumberConfirmed = false,
+                            SecurityStamp = "686334eb-18a2-44e8-9758-0529266883f4",
+                            TwoFactorEnabled = false,
+                            UserName = "test@test.com"
                         }
                     );
                 }
