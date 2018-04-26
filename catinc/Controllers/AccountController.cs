@@ -19,6 +19,9 @@ using catinc.Models.ViewModels;
 
 namespace catinc.Controllers
 {
+    /// <summary>
+    /// Controller for dealing with user account actions
+    /// </summary>
     [Authorize]
     [Route("[controller]/[action]")]
     public class AccountController : Controller
@@ -28,6 +31,13 @@ namespace catinc.Controllers
         private readonly IEmailSender _emailSender;
         private readonly ILogger _logger;
 
+        /// <summary>
+        /// Create a user account controller
+        /// </summary>
+        /// <param name="userRepository"></param>
+        /// <param name="signInManager"></param>
+        /// <param name="emailSender"></param>
+        /// <param name="logger"></param>
         public AccountController(
             IUserRepository<MyIdentityUser> userRepository,
             ISignInManager<MyIdentityUser> signInManager,
@@ -43,6 +53,11 @@ namespace catinc.Controllers
         [TempData]
         public string ErrorMessage { get; set; }
 
+        /// <summary>
+        /// Retrieve a page for user login
+        /// </summary>
+        /// <param name="returnUrl"></param>
+        /// <returns></returns>
         [HttpGet]
         [AllowAnonymous]
         public async Task<IActionResult> Login(string returnUrl = null)
@@ -54,6 +69,12 @@ namespace catinc.Controllers
             return View();
         }
 
+        /// <summary>
+        /// Submit a user login model for authentication
+        /// </summary>
+        /// <param name="model"></param>
+        /// <param name="returnUrl"></param>
+        /// <returns></returns>
         [HttpPost]
         [AllowAnonymous]
         [ValidateAntiForgeryToken]
@@ -90,6 +111,12 @@ namespace catinc.Controllers
             return View(model);
         }
 
+        /// <summary>
+        /// Get a page to log a user in with 2FA
+        /// </summary>
+        /// <param name="rememberMe"></param>
+        /// <param name="returnUrl"></param>
+        /// <returns></returns>
         [HttpGet]
         [AllowAnonymous]
         public async Task<IActionResult> LoginWith2fa(bool rememberMe, string returnUrl = null)
@@ -108,6 +135,10 @@ namespace catinc.Controllers
             return View(model);
         }
 
+        /// <summary>
+        /// Lock out a user account
+        /// </summary>
+        /// <returns></returns>
         [HttpGet]
         [AllowAnonymous]
         public IActionResult Lockout()
@@ -115,6 +146,11 @@ namespace catinc.Controllers
             return View();
         }
 
+        /// <summary>
+        /// Return a view to register a new user
+        /// </summary>
+        /// <param name="returnUrl"></param>
+        /// <returns></returns>
         [HttpGet]
         [AllowAnonymous]
         public IActionResult Register(string returnUrl = null)
@@ -123,6 +159,12 @@ namespace catinc.Controllers
             return View();
         }
 
+        /// <summary>
+        /// Submit a user model to register a new user
+        /// </summary>
+        /// <param name="model"></param>
+        /// <param name="returnUrl"></param>
+        /// <returns></returns>
         [HttpPost]
         [AllowAnonymous]
         [ValidateAntiForgeryToken]
@@ -152,6 +194,10 @@ namespace catinc.Controllers
             return View(model);
         }
 
+        /// <summary>
+        /// Logs out the currently logged in user
+        /// </summary>
+        /// <returns></returns>
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Logout()
@@ -166,6 +212,12 @@ namespace catinc.Controllers
             return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
         }
 
+        /// <summary>
+        /// Returns user email confirmation page
+        /// </summary>
+        /// <param name="userId"></param>
+        /// <param name="code"></param>
+        /// <returns></returns>
         [HttpGet]
         [AllowAnonymous]
         public async Task<IActionResult> ConfirmEmail(string userId, string code)
@@ -183,6 +235,10 @@ namespace catinc.Controllers
             return View(result.Succeeded ? "ConfirmEmail" : "Error");
         }
 
+        /// <summary>
+        /// Returns a page for user forgotten password
+        /// </summary>
+        /// <returns></returns>
         [HttpGet]
         [AllowAnonymous]
         public IActionResult ForgotPassword()
@@ -190,6 +246,11 @@ namespace catinc.Controllers
             return View();
         }
 
+        /// <summary>
+        /// Submits a forgotten password model for processing
+        /// </summary>
+        /// <param name="model"></param>
+        /// <returns></returns>
         [HttpPost]
         [AllowAnonymous]
         [ValidateAntiForgeryToken]
@@ -217,6 +278,10 @@ namespace catinc.Controllers
             return View(model);
         }
 
+        /// <summary>
+        /// Returns a forgotten password confirmation page
+        /// </summary>
+        /// <returns></returns>
         [HttpGet]
         [AllowAnonymous]
         public IActionResult ForgotPasswordConfirmation()
@@ -225,6 +290,11 @@ namespace catinc.Controllers
         }
         
 
+        /// <summary>
+        /// Returns a reset password page
+        /// </summary>
+        /// <param name="code"></param>
+        /// <returns></returns>
         [HttpGet]
         [AllowAnonymous]
         public IActionResult ResetPassword(string code = null)
@@ -237,6 +307,11 @@ namespace catinc.Controllers
             return View(model);
         }
 
+        /// <summary>
+        /// Submits a reset password model for processing
+        /// </summary>
+        /// <param name="model"></param>
+        /// <returns></returns>
         [HttpPost]
         [AllowAnonymous]
         [ValidateAntiForgeryToken]
@@ -261,6 +336,10 @@ namespace catinc.Controllers
             return View();
         }
 
+        /// <summary>
+        /// returns a reset password page
+        /// </summary>
+        /// <returns></returns>
         [HttpGet]
         [AllowAnonymous]
         public IActionResult ResetPasswordConfirmation()
@@ -268,6 +347,11 @@ namespace catinc.Controllers
             return View();
         }
 
+
+        /// <summary>
+        /// Returns an access denied page
+        /// </summary>
+        /// <returns></returns>
         [HttpGet]
         public IActionResult AccessDenied()
         {

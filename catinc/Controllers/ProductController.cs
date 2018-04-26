@@ -12,6 +12,9 @@ using Microsoft.Extensions.Logging;
 
 namespace catinc.Controllers
 {
+    /// <summary>
+    /// Product controller to deal with products
+    /// </summary>
     [Authorize]
     [Route("[controller]/[action]")]
     public class ProductController : Controller
@@ -20,6 +23,12 @@ namespace catinc.Controllers
         private IProductRepository<Product> _productRepository;
         private IVendorRepository<Vendor> _vendorRepository;
 
+        /// <summary>
+        /// Creates the product controller
+        /// </summary>
+        /// <param name="productRepository"></param>
+        /// <param name="vendorRepository"></param>
+        /// <param name="logger"></param>
         public ProductController(IProductRepository<Product> productRepository, IVendorRepository<Vendor> vendorRepository, ILogger<VendorController> logger)
         {
             _productRepository = productRepository;
@@ -27,6 +36,11 @@ namespace catinc.Controllers
             _logger = logger;
         }
 
+        /// <summary>
+        /// Returens the create product page
+        /// </summary>
+        /// <param name="returnURL"></param>
+        /// <returns></returns>
         [HttpGet]
         // [AllowAnonymous]
         public IActionResult CreateProduct(string returnURL = null)
@@ -35,6 +49,12 @@ namespace catinc.Controllers
             return View();
         }
 
+        /// <summary>
+        /// Submits the create product model to create a product
+        /// </summary>
+        /// <param name="model"></param>
+        /// <param name="returnUrl"></param>
+        /// <returns></returns>
         [HttpPost]
         // [AllowAnonymous]
         [ValidateAntiForgeryToken]

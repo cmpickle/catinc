@@ -11,17 +11,30 @@ namespace catinc.Controllers.API
     {
         private MySqlDbContext _mySqlDbContext;
 
+        /// <summary>
+        /// Creates a vendor API object
+        /// </summary>
+        /// <param name="mySqlDbContext"></param>
         public VendorAPI(MySqlDbContext mySqlDbContext)
         {
             _mySqlDbContext = mySqlDbContext;
         }
 
+        /// <summary>
+        /// Returns all vendor objects in DB
+        /// </summary>
+        /// <returns></returns>
         [HttpGet]
         public IEnumerable<Vendor> GetAll()
         {
             return _mySqlDbContext.Vendors.ToList();
         }
 
+        /// <summary>
+        /// Returns a vendor object based on the id
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
         [HttpGet("{id:int}")]
         public Vendor GetById(int id)
         {

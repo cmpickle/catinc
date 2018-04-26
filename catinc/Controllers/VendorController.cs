@@ -10,6 +10,9 @@ using catinc.Models.Util;
 
 namespace catinc.Controllers
 {
+    /// <summary>
+    /// Vendor controller to deal with vendors
+    /// </summary>
     [Authorize]
     [Route("[controller]/[action]")]
     public class VendorController : Controller
@@ -17,12 +20,22 @@ namespace catinc.Controllers
         private ILogger _logger;
         private IVendorRepository<Vendor> _vendorRepository;
 
+        /// <summary>
+        /// Creates a vendor controller
+        /// </summary>
+        /// <param name="vendorRepository"></param>
+        /// <param name="logger"></param>
         public VendorController(IVendorRepository<Vendor> vendorRepository, ILogger<VendorController> logger)
         {
             _vendorRepository = vendorRepository;
             _logger = logger;
         }
 
+        /// <summary>
+        /// Returns the register vendor page
+        /// </summary>
+        /// <param name="returnURL"></param>
+        /// <returns></returns>
         [HttpGet]
         // [AllowAnonymous]
         public IActionResult RegisterVendor(string returnURL = null)
@@ -31,6 +44,12 @@ namespace catinc.Controllers
             return View();
         }
 
+        /// <summary>
+        /// Submits the register vendor model to create a vendor
+        /// </summary>
+        /// <param name="model"></param>
+        /// <param name="returnUrl"></param>
+        /// <returns></returns>
         [HttpPost]
         // [AllowAnonymous]
         [ValidateAntiForgeryToken]

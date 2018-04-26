@@ -13,6 +13,9 @@ using Microsoft.EntityFrameworkCore;
 
 namespace catinc.Repositories
 {
+    /// <summary>
+    /// Vendor repository for interacting with vendor objects in the DB
+    /// </summary>
     public class VendorRepository : IVendorRepository<Vendor>
     {
         int Count { get {return vendors.Count;} }
@@ -21,18 +24,26 @@ namespace catinc.Repositories
         private MySqlDbContext _mySqlDbContext;
         private IUserManager<MyIdentityUser> _identityUserManager;
 
+        /// <summary>
+        /// Creates the vendor repository
+        /// </summary>
+        /// <param name="mySqlDbContext"></param>
+        /// <param name="userManager"></param>
         public VendorRepository(MySqlDbContext mySqlDbContext, IUserManager<MyIdentityUser> userManager)
         {
             _mySqlDbContext = mySqlDbContext;
             _identityUserManager = userManager;
 
-            // using(MySqlDbContext context = _mySqlDbContext)
-            // {
-                vendors = _mySqlDbContext.Vendors.ToList();
-                vendorUsers = _mySqlDbContext.VendorUsers.Include(vu => vu.Vendor).Include(vu => vu.User).ToList();
-            // }
+            vendors = _mySqlDbContext.Vendors.ToList();
+            vendorUsers = _mySqlDbContext.VendorUsers.Include(vu => vu.Vendor).Include(vu => vu.User).ToList();
         }
 
+        /// <summary>
+        /// Creates a vendor in the DB
+        /// </summary>
+        /// <param name="model"></param>
+        /// <param name="user"></param>
+        /// <returns></returns>
         public Result Create(RegisterVendorViewModel model, ClaimsPrincipal user)
         {
             Vendor vendor = new Vendor {
@@ -47,21 +58,28 @@ namespace catinc.Repositories
             vendors.Add(vendor);
             vendorUsers.Add(vendorUser);
 
-            // using(MySqlDbContext context = _mySqlDbContext)
-            // {
-                _mySqlDbContext.Vendors.Add(vendor);
-                _mySqlDbContext.VendorUsers.Add(vendorUser);
-                _mySqlDbContext.SaveChanges();
-            // }
+            _mySqlDbContext.Vendors.Add(vendor);
+            _mySqlDbContext.VendorUsers.Add(vendorUser);
+            _mySqlDbContext.SaveChanges();
 
             return Result.Success;
         }
 
+        /// <summary>
+        /// Finds a vendor by name
+        /// </summary>
+        /// <param name="name"></param>
+        /// <returns></returns>
         public Task<Vendor> FindByNameAsync(string name)
         {
             return Task.Run(() => vendors.FirstOrDefault(v => v.VendorName == name));
         }
 
+        /// <summary>
+        /// Finds a vendor by user id
+        /// </summary>
+        /// <param name="userID"></param>
+        /// <returns></returns>
         public Task<Vendor> FindByUserID(string userID)
         {
             var vendorUser = vendorUsers.FirstOrDefault(vu => vu.User != null && vu.User.Id == userID);
@@ -75,11 +93,19 @@ namespace catinc.Repositories
             }
         }
 
+        /// <summary>
+        /// Gets all vendors
+        /// </summary>
+        /// <returns></returns>
         public IQueryable Get()
         {
             return vendors.AsQueryable();
         }
 
+        /// <summary>
+        /// Returns the count of vendors
+        /// </summary>
+        /// <returns></returns>
         public int GetCount()
         {
             return Count;

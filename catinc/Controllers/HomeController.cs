@@ -13,14 +13,26 @@ using catinc.Models.ViewModels;
 
 namespace catinc.Controllers
 {
+    /// <summary>
+    /// A controller for the home page
+    /// </summary>
     public class HomeController : Controller
     {
         private IVendorRepository<Vendor> _vendorRepository;
+
+        /// <summary>
+        /// Creates the home controller
+        /// </summary>
+        /// <param name="vendorRepository"></param>
         public HomeController(IVendorRepository<Vendor> vendorRepository)
         {
             _vendorRepository = vendorRepository;
         }
 
+        /// <summary>
+        /// Returns the index page
+        /// </summary>
+        /// <returns></returns>
         public IActionResult Index()
         {
             string VendorName = "";
@@ -51,6 +63,10 @@ namespace catinc.Controllers
             return View();
         }
 
+        /// <summary>
+        /// Returns the about page
+        /// </summary>
+        /// <returns></returns>
         public IActionResult About()
         {
             ViewData["Message"] = "Your application description page.";
@@ -58,6 +74,10 @@ namespace catinc.Controllers
             return View();
         }
 
+        /// <summary>
+        /// Returns the contact page
+        /// </summary>
+        /// <returns></returns>
         public IActionResult Contact()
         {
             ViewData["Message"] = "Your contact page.";

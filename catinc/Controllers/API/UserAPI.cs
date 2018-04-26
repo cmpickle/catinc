@@ -8,30 +8,50 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace catinc.Controllers.API
 {
+    /// <summary>
+    /// API to interact with user objects
+    /// </summary>
     [Route("api/[controller]/[action]")]
     public class UserAPI : Controller
     {
         private MySqlDbContext _mySqlDbContext;
         private IVendorRepository<Vendor> _vendorRepository;
 
+        /// <summary>
+        /// Create User API object
+        /// </summary>
+        /// <param name="mySqlDbContext"></param>
+        /// <param name="vendorRepository"></param>
         public UserAPI(MySqlDbContext mySqlDbContext, IVendorRepository<Vendor> vendorRepository)
         {
             _mySqlDbContext = mySqlDbContext;
             _vendorRepository = vendorRepository;
         }
 
+        /// <summary>
+        /// Get the currently logged in user
+        /// </summary>
+        /// <returns></returns>
         [HttpGet]
         public ClaimsPrincipal getCurrent()
         {
             return HttpContext.User;
         }
-
+ 
+        /// <summary>
+        /// Returns the name of the currently logged in user
+        /// </summary>
+        /// <returns></returns>
         [HttpGet]
         public string getName()
         {
             return HttpContext.User.Identity.Name;
         }
 
+        /// <summary>
+        /// Returns the vendor associated with the currently logged in user
+        /// </summary>
+        /// <returns></returns>
         [HttpGet]
         public Vendor getVendor()
         {

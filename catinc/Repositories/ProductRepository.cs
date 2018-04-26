@@ -8,21 +8,31 @@ using catinc.Models.Util;
 
 namespace catinc.Repositories
 {
+    /// <summary>
+    /// product repository for accessing products from the DB
+    /// </summary>
     public class ProductRepository : IProductRepository<Product>
     {
         List<Product> products;
         private MySqlDbContext _mySqlDbContext;
 
+        /// <summary>
+        /// Creates a product repository
+        /// </summary>
+        /// <param name="mySqlDbContext"></param>
         public ProductRepository(MySqlDbContext mySqlDbContext)
         {
             _mySqlDbContext = mySqlDbContext;
 
-            // using(MySqlDbContext context = _mySqlDbContext)
-            // {
-                products = _mySqlDbContext.Products.ToList();
-            // }
+            products = _mySqlDbContext.Products.ToList();
         }
 
+        /// <summary>
+        /// Create a product in the DB
+        /// </summary>
+        /// <param name="createProductViewModel"></param>
+        /// <param name="vendor"></param>
+        /// <returns></returns>
         public Result Create(CreateProductViewModel createProductViewModel, Vendor vendor)
         {
             var product = new Product();
@@ -35,20 +45,27 @@ namespace catinc.Repositories
             product.ProductLongDescription = createProductViewModel.ProductLongDescription;
             product.Vendor = vendor;
             
-            // using(MySqlDbContext context = _mySqlDbContext)
-            // {
-                _mySqlDbContext.Products.Add(product);
-                _mySqlDbContext.SaveChanges();
-            // }
+            _mySqlDbContext.Products.Add(product);
+            _mySqlDbContext.SaveChanges();
 
             return Result.Success;
         }
 
+        /// <summary>
+        /// Finds a product by name
+        /// </summary>
+        /// <param name="name"></param>
+        /// <returns></returns>
         public Task<Product> FindByNameAsync(string name)
         {
             throw new System.NotImplementedException();
         }
 
+        /// <summary>
+        /// Finds a product by id
+        /// </summary>
+        /// <param name="productID"></param>
+        /// <returns></returns>
         public Task<Product> FindByProductIDAsync(string productID)
         {
             throw new System.NotImplementedException();
