@@ -20,6 +20,26 @@ namespace catinc.Migrations
                 .HasAnnotation("MySql:ValueGenerationStrategy", MySqlValueGenerationStrategy.IdentityColumn)
                 .HasAnnotation("ProductVersion", "2.0.1-rtm-125");
 
+            modelBuilder.Entity("catinc.Models.Domain.CartItem", b =>
+                {
+                    b.Property<string>("ItemId")
+                        .ValueGeneratedOnAdd();
+
+                    b.Property<string>("CartId");
+
+                    b.Property<DateTime>("DateCreated");
+
+                    b.Property<int>("ProductId");
+
+                    b.Property<int>("Quantity");
+
+                    b.HasKey("ItemId");
+
+                    b.HasIndex("ProductId");
+
+                    b.ToTable("ShoppingCartItems");
+                });
+
             modelBuilder.Entity("catinc.Models.Domain.Creditcard", b =>
                 {
                     b.Property<int>("CreditcardID")
@@ -426,6 +446,14 @@ namespace catinc.Migrations
                     b.HasKey("UserId");
 
                     b.ToTable("UserTokens");
+                });
+
+            modelBuilder.Entity("catinc.Models.Domain.CartItem", b =>
+                {
+                    b.HasOne("catinc.Models.Domain.Product", "Product")
+                        .WithMany()
+                        .HasForeignKey("ProductId")
+                        .OnDelete(DeleteBehavior.Cascade);
                 });
 
             modelBuilder.Entity("catinc.Models.Domain.MyIdentityUser", b =>

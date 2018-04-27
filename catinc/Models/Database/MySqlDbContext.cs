@@ -25,6 +25,7 @@ namespace catinc.Models.Database
         public DbSet<MyIdentityUser> MyIdentityUsers { get; set; }
         public DbSet<Vendor> Vendors { get; set; }
         public DbSet<VendorUser> VendorUsers { get; set; }
+        public DbSet<CartItem> ShoppingCartItems { get; set; }
 
         protected override void OnModelCreating(ModelBuilder builder)
         {
@@ -55,6 +56,11 @@ namespace catinc.Models.Database
             builder.Entity<IdentityUserToken<string>>(b =>
             {
                 b.HasKey(i => i.UserId);
+            });
+
+            builder.Entity<CartItem>(c =>
+            {
+                c.HasKey(i => i.ItemId);
             });
         }
     }

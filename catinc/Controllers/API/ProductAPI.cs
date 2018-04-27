@@ -2,8 +2,10 @@ using System.Collections.Generic;
 using System.Linq;
 using catinc.Models.Database;
 using catinc.Models.Domain;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using WingtipToys.Logic;
 
 namespace catinc.Controllers.API
 {
@@ -32,6 +34,14 @@ namespace catinc.Controllers.API
         public IEnumerable<Product> GetAll()
         {
             return _mySqlDbContext.Products.Include(p => p.Vendor).ToList();
+        }
+
+        [HttpPost]
+        public void AddToCart()
+        {
+            HttpContextAccessor accessor = new HttpContextAccessor();
+            ShoppingCartActions actions = new ShoppingCartActions(_mySqlDbContext);
+            actions.AddToCart(accessor.HttpContext, 1);
         }
     }
 }
