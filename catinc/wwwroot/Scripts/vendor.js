@@ -1,7 +1,13 @@
 (function() {
-    var app = angular.module("vendor", ['store']);
+    angular.module("vendor", ['store', 'ngRoute'])
+    .config(['$routeProvider', function ($routeProvider) {
+      $routeProvider
+        .when('/Product/:id', {
+          templateUrl: 'wwwroot/templates/product.html'
+        });
+    }]);
     
-    app.controller('VendorController', [ '$http',  function($http) {
+    angular.module("vendor").controller('VendorController', [ '$http',  function($http) {
         let vendor = this;
         vendor.vendorName = {};
 

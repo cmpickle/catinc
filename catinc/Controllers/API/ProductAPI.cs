@@ -12,7 +12,7 @@ namespace catinc.Controllers.API
     /// <summary>
     /// The API is used to interact with products
     /// </summary>
-    [Route("api/[controller]")]
+    [Route("api/[controller]/[action]")]
     public class ProductAPI : Controller
     {
         private MySqlDbContext _mySqlDbContext;
@@ -34,6 +34,18 @@ namespace catinc.Controllers.API
         public IEnumerable<Product> GetAll()
         {
             return _mySqlDbContext.Products.Include(p => p.Vendor).ToList();
+        }
+
+        /// <summary>
+        /// Gets a product by Id from the Db
+        /// </summary>
+        /// <param name="Id"></param>
+        /// /// <returns></returns>
+        [HttpGet]
+        // [Route("api/[controller]/{Id}")]
+        public Product Get(int Id)
+        {
+            return _mySqlDbContext.Products.Include(p => p.Vendor).Where(p => p.ProductID == Id).SingleOrDefault();
         }
 
         [HttpPost]

@@ -63,6 +63,13 @@ namespace catinc.Controllers
             return View();
         }
 
+        [Route("[controller]/[action]/{productId:int}")]
+        public IActionResult Product(int productId)
+        {
+            ViewData.Add("productId", productId);
+            return View();
+        }
+
         /// <summary>
         /// Returns the about page
         /// </summary>

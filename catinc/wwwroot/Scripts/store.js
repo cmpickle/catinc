@@ -3,7 +3,7 @@
 
     app.service("ProductService", function ($http) {
         this.getProducts = function () {
-            return $http.get('/api/productapi');
+            return $http.get('/api/productapi/getall');
         };
     });
 
@@ -17,7 +17,7 @@
 
         product.products = [];
 
-        $http.get('/api/ProductAPI').then(function(data) {
+        $http.get('/api/ProductAPI/GetAll').then(function(data) {
             product.products = data.data;
         });
     }]);

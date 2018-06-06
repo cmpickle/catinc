@@ -1,15 +1,8 @@
-﻿@{
-    ViewData["Title"] = "Home Page";
-}
-
 <div>
     <div ng-controller="ProductController as ctrl">
-        <!-- <h1>{{ctrl.vendorName}}</h1> ng-hide="product.vendorName == 'Cat Inc'" -->
+        <h1>{{ctrl.vendorName}}</h1>
 
-        <div ng-view></div>
-
-        <div class="col-sm-6 col-lg-4 ng-scope" ng-repeat="product in ctrl.products">
-            <a ng-href="#/product/{{product.ProductID}}">
+        <div class="col-sm-1 col-lg-1 ng-scope">
             <div class="panel panel-primary">
                 <div class="panel-heading">
                     <h3>{{ product.ProductName}}</h3>
@@ -21,8 +14,6 @@
                     <p>Seller: {{product.Vendor.VendorName}}</p>
                 </div>
             </div>
-
-            </a>
         </div>
     </div>
 </div>
